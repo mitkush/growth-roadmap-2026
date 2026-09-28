@@ -6,6 +6,10 @@
 
 **Versions and tools:** Python 3.13 (3.14 is fine too), **uv** (Python versions, venvs, dependencies), **ruff** (lint + format), **mypy** (type checking), **pytest**.
 
+## What you will learn this step
+
+You will learn Python from the ground up, but at the speed of an experienced Rubyist: every lesson shows the Ruby you already know next to the Python equivalent, and spends its time on the differences that cause real bugs (explicit `return`, truthiness, default arguments, Python's very different `yield`, explicit imports). You will set up projects the modern way with uv, lint with ruff, type-check with mypy and test with pytest from day one. By the end you will have solved five practice problems and ported a Ruby utility, all with tests and CI, and you will write Python that reads like Python, not like Ruby. The lessons are in [`lessons/05-python-fundamentals/`](../lessons/05-python-fundamentals/00-start-here.md); start with the overview.
+
 ## 1. Objective
 
 This step starts from fundamentals but moves fast. By the end of these two weeks you will be able to:
@@ -31,26 +35,26 @@ Create one repo, `python-katas`, for the whole step (`uv init python-katas`, `sr
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 26 Oct** | Tooling + basics | 1. Install uv; `uv python install 3.13`; `uv init --package python-katas`; `uv add --dev pytest ruff mypy`. 2. In the REPL: numbers, strings, f-strings, `None`, truthiness (`0`, `""`, `[]`, `{}` are falsy). 3. Write the first test `tests/test_basics.py` and run `uv run pytest`. | 1.5 |
-| **Tue 27 Oct** | Collections | 1. `list`, `tuple`, `dict`, `set`: create, slice, copy, mutate. 2. Rewrite 10 Ruby one-liners you use often (`map`, `select`, `reject`, `group_by`, `each_with_object`, `tally`, `sort_by`, `zip`, `each_with_index`, `sum`) as comprehensions and built-ins. 3. Use `collections.Counter` and `defaultdict`. | 1.5 |
-| **Wed 28 Oct** | Functions | 1. Positional, keyword, default, keyword-only (`*`), `*args`, `**kwargs`. 2. Reproduce the **mutable default argument** bug and fix it. 3. Closures, `nonlocal`, `lambda`, passing functions as arguments; `functools.partial` and `lru_cache`. | 1.25 |
-| **Thu 29 Oct** | Modules, packages, pytest | 1. Split code into `src/katas/<module>.py`; understand `__init__.py`, absolute imports and `if __name__ == "__main__":`. 2. pytest: fixtures (like `let`), `@pytest.mark.parametrize` (like shared examples with data), `pytest.raises`, `tmp_path`. | 1.25 |
-| **Fri 30 Oct** | Errors, files, `with` | 1. `try/except/else/finally`, custom exception classes, `raise ... from ...`. 2. `pathlib.Path`, `open()` in a `with` block, `json` and `csv` modules. 3. Send the weekly update. | 1 |
-| **Sat 31 Oct** | OOP + problems 1-2 | 1. Classes, `__init__`, `__repr__`, `__eq__`, `@property`, `@classmethod`, `@staticmethod`, inheritance and `super()`. 2. `@dataclass` (and `frozen=True`, `field(default_factory=...)`). 3. Solve **Problem 1** and **Problem 2** with tests. | 2.5 |
-| **Sun 1 Nov** | Tooling config + review | 1. Configure ruff (`[tool.ruff]` with rules `E`, `F`, `I`, `B`, `UP`, `SIM`) and `ruff format`. 2. Run `mypy src` and fix errors. 3. Fill in your own notes column in the translation table below. | 1 |
+| **Mon 26 Oct** | Tooling + basics | **Read first:** [00 Start here](../lessons/05-python-fundamentals/00-start-here.md), [01 Tooling](../lessons/05-python-fundamentals/01-tooling-uv-ruff-mypy.md), [02 Values and truthiness](../lessons/05-python-fundamentals/02-values-and-truthiness.md).<br>1. Install uv; `uv python install 3.13`; `uv init --package python-katas`; `uv add --dev pytest ruff mypy`. 2. In the REPL: numbers, strings, f-strings, `None`, truthiness (`0`, `""`, `[]`, `{}` are falsy). 3. Write the first test `tests/test_basics.py` and run `uv run pytest`. | 1.5 |
+| **Tue 27 Oct** | Collections | **Read first:** [03 Collections and comprehensions](../lessons/05-python-fundamentals/03-collections-and-comprehensions.md).<br>1. `list`, `tuple`, `dict`, `set`: create, slice, copy, mutate. 2. Rewrite 10 Ruby one-liners you use often (`map`, `select`, `reject`, `group_by`, `each_with_object`, `tally`, `sort_by`, `zip`, `each_with_index`, `sum`) as comprehensions and built-ins. 3. Use `collections.Counter` and `defaultdict`. | 1.5 |
+| **Wed 28 Oct** | Functions | **Read first:** [04 Functions and closures](../lessons/05-python-fundamentals/04-functions-and-closures.md).<br>1. Positional, keyword, default, keyword-only (`*`), `*args`, `**kwargs`. 2. Reproduce the **mutable default argument** bug and fix it. 3. Closures, `nonlocal`, `lambda`, passing functions as arguments; `functools.partial` and `lru_cache`. | 1.25 |
+| **Thu 29 Oct** | Modules, packages, pytest | **Read first:** [05 Modules and imports](../lessons/05-python-fundamentals/05-modules-packages-and-imports.md), [06 Testing with pytest](../lessons/05-python-fundamentals/06-testing-with-pytest.md).<br>1. Split code into `src/katas/<module>.py`; understand `__init__.py`, absolute imports and `if __name__ == "__main__":`. 2. pytest: fixtures (like `let`), `@pytest.mark.parametrize` (like shared examples with data), `pytest.raises`, `tmp_path`. | 1.25 |
+| **Fri 30 Oct** | Errors, files, `with` | **Read first:** [07 Errors, files and `with`](../lessons/05-python-fundamentals/07-errors-files-and-with.md).<br>1. `try/except/else/finally`, custom exception classes, `raise ... from ...`. 2. `pathlib.Path`, `open()` in a `with` block, `json` and `csv` modules. 3. Send the weekly update. | 1 |
+| **Sat 31 Oct** | OOP + problems 1-2 | **Read first:** [08 Classes and dataclasses](../lessons/05-python-fundamentals/08-classes-and-dataclasses.md).<br>1. Classes, `__init__`, `__repr__`, `__eq__`, `@property`, `@classmethod`, `@staticmethod`, inheritance and `super()`. 2. `@dataclass` (and `frozen=True`, `field(default_factory=...)`). 3. Solve **Problem 1** and **Problem 2** with tests. | 2.5 |
+| **Sun 1 Nov** | Tooling config + review | **Read first:** [01 Tooling](../lessons/05-python-fundamentals/01-tooling-uv-ruff-mypy.md), the ruff and mypy sections (review).<br>1. Configure ruff (`[tool.ruff]` with rules `E`, `F`, `I`, `B`, `UP`, `SIM`) and `ruff format`. 2. Run `mypy src` and fix errors. 3. Fill in your own notes column in the translation table below. | 1 |
 | | | **Week 1 total** | **10** |
 
 ### Week 2 (2 Nov - 8 Nov): idioms, types, practice and the port
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 2 Nov** | Iterators + generators | 1. The iterator protocol (`__iter__`, `__next__`); generator functions and expressions; `itertools` (`islice`, `groupby`, `chain`, `batched` on 3.12+). 2. Note: Python `yield` makes a **generator**; it is not Ruby's `yield` to a block. 3. Start **Problem 5**. | 1.5 |
-| **Tue 3 Nov** | Type hints | 1. Annotate all katas: `list[str]`, `dict[str, int]`, `X \| None`, `Callable`, `Iterator`, `TypedDict`, `Literal`, `Protocol`. 2. Turn on `mypy --strict` for `src/` and fix errors. 3. Finish Problem 5. | 1.5 |
-| **Wed 4 Nov** | Decorators + context managers | 1. Write a timing decorator with `functools.wraps`. 2. Write a context manager with a class (`__enter__`/`__exit__`) and with `contextlib.contextmanager`. 3. Solve **Problem 3**. | 1.25 |
-| **Thu 5 Nov** | `match`, enums, problem 4 | 1. Structural pattern matching (`match/case`) on dicts and dataclasses. 2. `enum.Enum` / `StrEnum` instead of Ruby symbols. 3. Solve **Problem 4**. | 1.25 |
-| **Fri 6 Nov** | Port: plan | 1. Choose the Ruby utility (see lab). 2. List its behaviours as test cases. 3. Build the CLI skeleton with `argparse` and a `[project.scripts]` entry point. 4. Send the weekly update. | 1 |
-| **Sat 7 Nov** | Port: build + CI | 1. Implement the port with tests for every behaviour. 2. Add GitHub Actions: `astral-sh/setup-uv`, then `uv run ruff check`, `uv run ruff format --check`, `uv run mypy src`, `uv run pytest`. | 2.5 |
-| **Sun 8 Nov** | Consolidate + proof | 1. Repo README with a table of problems and how to run them. 2. Self-check questions. 3. Write "10 things that surprised me coming from Ruby" in `NOTES.md`. | 1 |
+| **Mon 2 Nov** | Iterators + generators | **Read first:** [09 Iterators and generators](../lessons/05-python-fundamentals/09-iterators-and-generators.md).<br>1. The iterator protocol (`__iter__`, `__next__`); generator functions and expressions; `itertools` (`islice`, `groupby`, `chain`, `batched` on 3.12+). 2. Note: Python `yield` makes a **generator**; it is not Ruby's `yield` to a block. 3. Start **Problem 5**. | 1.5 |
+| **Tue 3 Nov** | Type hints | **Read first:** [10 Type hints and mypy](../lessons/05-python-fundamentals/10-type-hints-and-mypy.md).<br>1. Annotate all katas: `list[str]`, `dict[str, int]`, `X \| None`, `Callable`, `Iterator`, `TypedDict`, `Literal`, `Protocol`. 2. Turn on `mypy --strict` for `src/` and fix errors. 3. Finish Problem 5. | 1.5 |
+| **Wed 4 Nov** | Decorators + context managers | **Read first:** [11 Decorators and context managers](../lessons/05-python-fundamentals/11-decorators-and-context-managers.md).<br>1. Write a timing decorator with `functools.wraps`. 2. Write a context manager with a class (`__enter__`/`__exit__`) and with `contextlib.contextmanager`. 3. Solve **Problem 3**. | 1.25 |
+| **Thu 5 Nov** | `match`, enums, problem 4 | **Read first:** [12 Pattern matching and enums](../lessons/05-python-fundamentals/12-pattern-matching-and-enums.md).<br>1. Structural pattern matching (`match/case`) on dicts and dataclasses. 2. `enum.Enum` / `StrEnum` instead of Ruby symbols. 3. Solve **Problem 4**. | 1.25 |
+| **Fri 6 Nov** | Port: plan | **Read first:** [05 Modules and imports](../lessons/05-python-fundamentals/05-modules-packages-and-imports.md), the `argparse` and entry-point sections (review).<br>1. Choose the Ruby utility (see lab). 2. List its behaviours as test cases. 3. Build the CLI skeleton with `argparse` and a `[project.scripts]` entry point. 4. Send the weekly update. | 1 |
+| **Sat 7 Nov** | Port: build + CI | **Read first:** [06 Testing with pytest](../lessons/05-python-fundamentals/06-testing-with-pytest.md) (review) and the CI workflow in [Step 6 lesson 12](../lessons/06-applied-python/12-github-actions-ci.md).<br>1. Implement the port with tests for every behaviour. 2. Add GitHub Actions: `astral-sh/setup-uv`, then `uv run ruff check`, `uv run ruff format --check`, `uv run mypy src`, `uv run pytest`. | 2.5 |
+| **Sun 8 Nov** | Consolidate + proof | **Read first:** [00 Start here](../lessons/05-python-fundamentals/00-start-here.md), "The mental model" table (review, then write your own `NOTES.md`).<br>1. Repo README with a table of problems and how to run them. 2. Self-check questions. 3. Write "10 things that surprised me coming from Ruby" in `NOTES.md`. | 1 |
 | | | **Week 2 total** | **10** |
 
 ## 4. Topic checklist
@@ -147,13 +151,14 @@ Port a small Ruby script or Rake task **you wrote at work** (100-300 lines), rem
 
 ## 7. Curated resources
 
-1. **The Python Tutorial** (official): https://docs.python.org/3/tutorial/ (sections 3-9; skim what you already know).
-2. **Luciano Ramalho, *Fluent Python*, 2nd edition** (O'Reilly, 2022): ch. 2-3 (sequences, dicts), ch. 5 (data class builders), ch. 7 and 9 (functions, decorators, closures), ch. 17 (iterators and generators).
-3. **uv docs**: https://docs.astral.sh/uv/ (Projects guide and "Working on projects").
-4. **ruff docs**: https://docs.astral.sh/ruff/
-5. **pytest docs: Getting started, fixtures, parametrize**: https://docs.pytest.org/en/stable/
-6. **mypy: type hints cheat sheet**: https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
-7. **Exercism Python track** (extra practice with mentoring): https://exercism.org/tracks/python
+1. **Lessons for this step**: [`lessons/05-python-fundamentals/`](../lessons/05-python-fundamentals/00-start-here.md) (read these first).
+2. **The Python Tutorial** (official): https://docs.python.org/3/tutorial/ (sections 3-9; skim what you already know).
+3. **Luciano Ramalho, *Fluent Python*, 2nd edition** (O'Reilly, 2022): ch. 2-3 (sequences, dicts), ch. 5 (data class builders), ch. 7 and 9 (functions, decorators, closures), ch. 17 (iterators and generators).
+4. **uv docs**: https://docs.astral.sh/uv/ (Projects guide and "Working on projects").
+5. **ruff docs**: https://docs.astral.sh/ruff/
+6. **pytest docs: Getting started, fixtures, parametrize**: https://docs.pytest.org/en/stable/
+7. **mypy: type hints cheat sheet**: https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+8. **Exercism Python track** (extra practice with mentoring): https://exercism.org/tracks/python
 
 ## 8. Self-check questions
 

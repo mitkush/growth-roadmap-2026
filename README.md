@@ -10,6 +10,29 @@ This roadmap turns 3+ years of Rails experience into senior-level depth, then us
 
 See [CHANGES.md](CHANGES.md) for how the original draft was refined.
 
+## How to use this roadmap
+
+This repository is a **self-contained course**: every concept a step asks you to use is explained in a lesson, with a Rails analogy, a runnable example with real output, common mistakes and self-check questions.
+
+1. **Start each step with its overview.** Open the step file in [`steps/`](steps/) and read "What you will learn this step", the objectives and the hands-on lab, so you know where the week is going. Then open the step's lesson folder at `00-start-here.md` (the mental model and a glossary).
+2. **Each day: read the lesson first, then do the tasks.** Every row in a step's day-by-day plan starts with **"Read first:"** links. Read those lessons (20-30 minutes), run their minimal example, then do the concrete tasks in the same row.
+3. **Use the starter kits** so you spend your time on the topic, not on setup: [`starters/shop-lab/`](starters/shop-lab/README.md) (Rails app with 2.8M rows of seed data and deliberately slow endpoints, Steps 1-3) and [`starters/kb-api/`](starters/kb-api/README.md) (a working FastAPI skeleton with tests and CI, Steps 6-7).
+4. **On Sunday, self-check.** Answer the step's self-check questions and the "Check your understanding" questions of that week's lessons without looking (answers are folded under each lesson). Anything you cannot answer is next week's first 20 minutes.
+5. **Look up any unfamiliar term** in the combined [GLOSSARY.md](GLOSSARY.md), which links each term to the lesson that explains it.
+
+| Step | Lessons | Starter |
+|---|---|---|
+| 1 | [lessons/01-advanced-ruby](lessons/01-advanced-ruby/00-start-here.md) | [shop-lab](starters/shop-lab/README.md) |
+| 2 | [lessons/02-rails-at-scale](lessons/02-rails-at-scale/00-start-here.md) | [shop-lab](starters/shop-lab/README.md) |
+| 3 | [lessons/03-architecture](lessons/03-architecture/00-start-here.md) | [shop-lab](starters/shop-lab/README.md) |
+| 4 | [lessons/04-open-source](lessons/04-open-source/00-start-here.md) | |
+| 5 | [lessons/05-python-fundamentals](lessons/05-python-fundamentals/00-start-here.md) | |
+| 6 | [lessons/06-applied-python](lessons/06-applied-python/00-start-here.md) | [kb-api](starters/kb-api/README.md) |
+| 7 | [lessons/07-agentic-ai](lessons/07-agentic-ai/00-start-here.md) | [kb-api](starters/kb-api/README.md) (your Step 6 version) |
+| 8 | [lessons/08-ai-tool-mvp](lessons/08-ai-tool-mvp/00-start-here.md) | |
+
+Outputs shown in lessons come from real runs on the machine used to build this course (Ruby 3.3, Rails 8.1, PostgreSQL 16, Python 3.13) unless a lesson says they are illustrative; your numbers will differ, but the shape of the results should match. Anything the course could not verify is marked "(verify)".
+
 ## Steps
 
 | # | Step | Weight | Due | Plan |
@@ -46,13 +69,13 @@ Weeks run Monday to Sunday. The due date of each step is the Sunday that ends it
 
 | Day | Time | What to do |
 |---|---|---|
-| Mon | 1-1.5 h | **Read + plan.** Read the week's main resource. Write 3 bullet goals for the week in your log. |
+| Mon | 1-1.5 h | **Read + plan.** Read the step overview and the day's "Read first" lessons. Write 3 bullet goals for the week in your log. |
 | Tue | 1-1.5 h | **Build.** Small, focused coding tasks from the day-by-day plan. |
 | Wed | 1-1.5 h | **Build.** Continue. Commit every session, even if unfinished. |
 | Thu | 1-1.5 h | **Build + measure.** Run benchmarks or tests; record numbers in the step's results file. |
 | Fri | 1-1.5 h | **Consolidate.** 15 min: send the [weekly update](templates/weekly-update.md). The rest: finish the day's task. |
 | Sat | 2-2.5 h | **Deep work.** The hands-on lab: the longest, hardest task of the week. |
-| Sun | 1-1.5 h | **Close out.** Self-check questions, write notes, prepare the proof of completion, 20 min of OSS scouting (W1-W3). |
+| Sun | 1-1.5 h | **Close out.** Self-check questions (step file and lessons), write notes, prepare the proof of completion, 20 min of OSS scouting (W1-W3). |
 
 Rules that keep the plan on track:
 
@@ -67,9 +90,9 @@ You will create these outside this roadmap repository:
 
 | Repo | Used in | Purpose |
 |---|---|---|
-| `shop-lab` (Rails 8, PostgreSQL) | Steps 1-3 | A sample shop with seeded data for benchmarks. Use your work app instead if allowed (on a staging copy). |
+| `shop-lab` (Rails 8, PostgreSQL) | Steps 1-3 | A sample shop with seeded data for benchmarks, built from the [starter kit](starters/shop-lab/README.md). Use your work app instead if allowed (on a staging copy). |
 | `python-katas` | Step 5 | Practice problems and the Ruby port. |
-| `kb-api` (FastAPI) | Steps 6-7 | An engineering knowledge-base API that later gets tools, MCP and retrieval. |
+| `kb-api` (FastAPI) | Steps 6-7 | An engineering knowledge-base API that later gets tools, MCP and retrieval. Start from the [starter skeleton](starters/kb-api/README.md). |
 | Step 8 project | Step 8 | The public AI tool (for example `rails-lens-mcp`). |
 
 ## Progress tracker
@@ -113,6 +136,8 @@ Use [templates/blog-post-outline.md](templates/blog-post-outline.md) for both.
 Optional short write-up: a short internal note on the Step 3 ADRs, if your team has a tech-blog or wiki.
 
 ## Templates
+
+- [GLOSSARY.md](GLOSSARY.md): every term used in the course, linked to the lesson that explains it.
 
 - [templates/weekly-update.md](templates/weekly-update.md): 5-minute Friday update for your manager.
 - [templates/blog-post-outline.md](templates/blog-post-outline.md): structure for both blog posts.

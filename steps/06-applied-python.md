@@ -4,7 +4,11 @@
 |---|---|---|
 | 15% | Mon 9 Nov - Sun 22 Nov 2026 (2 weeks) | ~20 h |
 
-**Stack:** Python 3.13, uv, FastAPI, Pydantic v2 + pydantic-settings, SQLAlchemy 2.0 (async, asyncpg), Alembic, httpx, pytest, Docker, GitHub Actions. PostgreSQL uses the `pgvector/pgvector` image so that Step 7 can add embeddings without new infrastructure.
+**Stack:** Python 3.13, uv, FastAPI, Pydantic v2 + pydantic-settings, SQLAlchemy 2.x (async, asyncpg; 2.1 at the time of writing), Alembic, httpx, pytest, Docker, GitHub Actions. PostgreSQL uses the `pgvector/pgvector` image so that Step 7 can add embeddings without new infrastructure.
+
+## What you will learn this step
+
+You will build a real Python web service, `kb-api`, the way you would build a Rails API: routes, validation, a database with migrations, authentication, tests against real Postgres, Docker and CI. Each tool is taught through its Rails equivalent: FastAPI is your router and controllers, Pydantic your strong parameters and serializers, SQLAlchemy your Active Record, Alembic your migrations, FastAPI dependencies your `before_action`s. You will also learn `asyncio`, Python's way of doing many slow network and database calls at once, which matters for every AI step that follows. You start from a small, tested [starter](../starters/kb-api/README.md) (one resource, end to end) and extend it with sources, GitHub ingestion and full-text search. The lessons are in [`lessons/06-applied-python/`](../lessons/06-applied-python/00-start-here.md).
 
 ## 1. Objective
 
@@ -30,6 +34,8 @@ By the end of these two weeks you will be able to:
 
 `kb-api` stores engineering documents (ADRs, runbooks, READMEs, guides). It ingests Markdown files from GitHub repositories and offers CRUD and full-text search. In Step 7 you will add semantic search, tools and an MCP server on top.
 
+**Starting point:** copy the [kb-api starter](../starters/kb-api/README.md) (Tue 10 Nov). It already has `Document` CRUD with cursor pagination, API-key auth, settings, an Alembic migration, 7 passing tests, a Dockerfile, `compose.yaml` and a CI workflow. You add everything else below.
+
 **Core resources:** `Source` (a GitHub repo + path filter), `Document` (title, path, body, tags, source, content hash, updated_at).
 **Endpoints:** `POST /sources`, `POST /sources/{id}/sync`, `GET /documents` (cursor pagination, filters), `GET/POST/PATCH/DELETE /documents/{id}`, `GET /search?q=` (Postgres full-text), `GET /healthz`.
 
@@ -37,49 +43,51 @@ By the end of these two weeks you will be able to:
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 9 Nov** | HTTP clients + asyncio | 1. Script: list Markdown files in `rails/solid_queue` using the GitHub REST API with **`requests`**. 2. Rewrite with **`httpx.Client`**, then with `httpx.AsyncClient` + `asyncio.gather` to fetch 20 file contents; compare timings. 3. Add a timeout and an `asyncio.Semaphore(5)` limit. | 1.5 |
-| **Tue 10 Nov** | pandas session + scaffold | 1. Load the fetched file metadata into a pandas `DataFrame`; group by directory; write a CSV and print the top 10 largest files (`scripts/repo_report.py`). 2. `uv init --package kb-api`; `uv add "fastapi[standard]"`; hello-world route; run `uv run fastapi dev src/kb_api/main.py` and open `/docs`. | 1.5 |
-| **Wed 11 Nov** | Pydantic v2 + settings | 1. Schemas: `DocumentCreate`, `DocumentUpdate` (all optional), `DocumentRead` (`model_config = ConfigDict(from_attributes=True)`). 2. Field validation (`Field(min_length=...)`, `field_validator`). 3. `Settings(BaseSettings)` reading `DATABASE_URL`, `GITHUB_TOKEN`, `API_KEY` from env/`.env`. | 1.25 |
-| **Thu 12 Nov** | Async SQLAlchemy + Alembic | 1. `compose.yaml` with `pgvector/pgvector:pg17`. 2. `create_async_engine("postgresql+asyncpg://...")`, `async_sessionmaker`, models with `DeclarativeBase`, `Mapped[...]`, `mapped_column`. 3. `alembic init -t async migrations`; point it at your metadata; autogenerate and apply the first migration. | 1.25 |
-| **Fri 13 Nov** | CRUD endpoints | 1. `get_session` dependency (`async with` session, one per request). 2. Routers for documents; a small repository module for queries. 3. Correct status codes (201, 204, 404, 422). 4. Send the weekly update. | 1 |
-| **Sat 14 Nov** | Ingestion + search | 1. `services/github_client.py` (async httpx, token auth, bounded concurrency). 2. `POST /sources/{id}/sync` runs ingestion as a `BackgroundTasks` job: fetch Markdown, upsert by `(source_id, path)` using `content_hash` to skip unchanged files. 3. Add a generated `tsvector` column + GIN index (Alembic migration) and `GET /search?q=` with `websearch_to_tsquery` and `ts_rank`. 4. Cursor pagination on `GET /documents`. | 2.5 |
-| **Sun 15 Nov** | Errors, lifespan, logging | 1. Consistent error responses (problem-details style, like Step 3). 2. `lifespan` to create/dispose the engine and the httpx client. 3. Structured JSON logs with a request ID middleware. 4. Review week 1 code with ruff and mypy. | 1 |
+| **Mon 9 Nov** | HTTP clients + asyncio | **Read first:** [00 Start here](../lessons/06-applied-python/00-start-here.md), [01 HTTP clients](../lessons/06-applied-python/01-http-clients-requests-and-httpx.md), [02 asyncio basics](../lessons/06-applied-python/02-asyncio-basics.md).<br>1. Run the lesson's `fetch_readmes.py` (requests vs httpx sync vs async). 2. Write `scripts/list_docs.py`: list the Markdown files of `rails/solid_queue` with the GitHub REST API using `httpx.Client` (token from `GITHUB_TOKEN`), then fetch 20 file contents with `httpx.AsyncClient` + `asyncio.gather`; compare timings. 3. Add a timeout and an `asyncio.Semaphore(5)` limit; handle a 403/429 rate limit. | 1.5 |
+| **Tue 10 Nov** | pandas + the starter | **Read first:** [03 pandas basics](../lessons/06-applied-python/03-pandas-basics.md), [04 FastAPI basics](../lessons/06-applied-python/04-fastapi-basics.md).<br>1. `scripts/repo_report.py`: load Monday's file metadata into a DataFrame; files and total KB per folder; top 10 largest; write a CSV. 2. Copy the [starter](../starters/kb-api/README.md) into a new `kb-api` repository and follow its setup (compose, `uv sync`, `alembic upgrade head`, `pytest`, `fastapi dev`). 3. Open `/docs` and call every endpoint once. | 1.5 |
+| **Wed 11 Nov** | Pydantic v2 + settings | **Read first:** [05 Pydantic and settings](../lessons/06-applied-python/05-pydantic-and-settings.md).<br>1. Read the starter's `schemas.py` and `config.py`. 2. Add `SourceCreate` (`repo` like `owner/name`, validated with a `field_validator`; optional `path_prefix`) and `SourceRead`. 3. Add a `content_hash` field to `DocumentRead`. 4. Confirm secrets are `SecretStr` and `.env` is ignored by Git. | 1.25 |
+| **Thu 12 Nov** | Async SQLAlchemy + Alembic | **Read first:** [06 SQLAlchemy with asyncio](../lessons/06-applied-python/06-sqlalchemy-async.md), [07 Alembic migrations](../lessons/06-applied-python/07-alembic-migrations.md).<br>1. Add the `Source` model and `Document.source_id` (plus `content_hash`) as in lesson 07. 2. `alembic revision --autogenerate`, **review** it, `upgrade head`, then test `downgrade -1` and `upgrade head`. 3. Try a query with `selectinload(Source.documents)` in a scratch script. | 1.25 |
+| **Fri 13 Nov** | Sources API + dependencies | **Read first:** [08 Dependency injection](../lessons/06-applied-python/08-dependency-injection.md).<br>1. `api/sources.py` router: `POST /sources` (201, 409 on duplicate), `GET /sources`, `GET /sources/{id}` (with its documents via `selectinload`). 2. Protect writes with the existing `require_api_key` dependency. 3. Add tests for the new endpoints (copy the patterns in `tests/test_documents.py`). 4. Send the weekly update. | 1 |
+| **Sat 14 Nov** | Ingestion + search | **Read first:** [09 Full-text search and cursor pagination](../lessons/06-applied-python/09-full-text-search-and-cursor-pagination.md).<br>1. `services/github_client.py` (async httpx, token auth, bounded concurrency). 2. `POST /sources/{id}/sync` runs ingestion as a `BackgroundTasks` job: fetch Markdown, upsert by `(source_id, path)` using `content_hash` to skip unchanged files. 3. A hand-written migration for the generated `search_vector` column + GIN index (lesson 07), and `GET /search?q=` with `websearch_to_tsquery`, `ts_rank` and `ts_headline` (lesson 09). | 2.5 |
+| **Sun 15 Nov** | Errors, lifespan, logging | **Read first:** [04 FastAPI basics](../lessons/06-applied-python/04-fastapi-basics.md), "The app object and routers" (lifespan), and [08 Dependency injection](../lessons/06-applied-python/08-dependency-injection.md) (review).<br>1. Consistent error responses (problem-details style, like Step 3) with an exception handler. 2. Create and close the shared `httpx.AsyncClient` in the app's `lifespan`. 3. Structured JSON logs with a request ID middleware. 4. Run ruff and mypy on the week's code. | 1 |
 | | | **Week 1 total** | **10** |
 
 ### Week 2 (16 - 22 Nov): tests, packaging, CI and polish
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 16 Nov** | Test setup | 1. pytest with `anyio` (or `pytest-asyncio`) for async tests. 2. `httpx.AsyncClient(transport=ASGITransport(app=app), base_url="http://test")` fixture. 3. Test DB: run migrations once per session; wrap each test in a transaction that rolls back; inject with `app.dependency_overrides`. | 1.5 |
-| **Tue 17 Nov** | Tests | 1. Tests for CRUD, validation errors, pagination and search ranking. 2. Mock GitHub with `respx` for ingestion tests (success, 404, rate limit 403/429, unchanged hash skipped). | 1.5 |
-| **Wed 18 Nov** | Auth + coverage | 1. API-key auth as a dependency (`X-API-Key` header) on write endpoints. 2. `pytest-cov`; reach **≥ 85%** line coverage on `src/`. 3. Review the generated OpenAPI docs; add examples to schemas. | 1.25 |
-| **Thu 19 Nov** | Docker | 1. Multi-stage `Dockerfile` using uv (copy `uv` binary from `ghcr.io/astral-sh/uv`, `uv sync --locked --no-dev`). 2. `compose.yaml` with app + db; run `alembic upgrade head` on start. 3. Image under ~250 MB; runs as a non-root user. | 1.25 |
-| **Fri 20 Nov** | GitHub Actions CI | 1. Workflow (below): Postgres service, `astral-sh/setup-uv`, ruff, mypy, Alembic, pytest with coverage. 2. Add a Docker build job. 3. Send the weekly update. | 1 |
-| **Sat 21 Nov** | Performance + polish | 1. Fix SQLAlchemy lazy-load issues (async sessions raise on lazy loads: use `selectinload`). 2. Load test `GET /search` with `oha`; record p50/p95. 3. Ingest 3 real repos (e.g. your `shop-lab` docs, `rails/solid_queue`, `basecamp/kamal`); record ingest time. 4. Write the README (setup, architecture, decisions). | 2.5 |
-| **Sun 22 Nov** | Consolidate + proof | 1. Tag `v0.1.0`. 2. Self-check questions. 3. Write "Rails vs FastAPI: 10 notes" in `NOTES.md`. | 1 |
+| **Mon 16 Nov** | Test setup, understood | **Read first:** [10 Testing FastAPI](../lessons/06-applied-python/10-testing-fastapi.md).<br>1. Read the starter's `tests/conftest.py` line by line with the lesson: session-scoped schema, per-test rollback with savepoints, `dependency_overrides`, `ASGITransport`. 2. Break it on purpose (remove `join_transaction_mode`) and watch data leak between tests; restore it. 3. Add `tests/test_sources.py`. | 1.5 |
+| **Tue 17 Nov** | Tests | **Read first:** [10 Testing FastAPI](../lessons/06-applied-python/10-testing-fastapi.md), Part B (respx).<br>1. Tests for search ranking and pagination edge cases. 2. Mock GitHub with `respx` for ingestion tests (success, 404, rate limit 403/429, unchanged hash skipped). 3. One end-to-end test: create a source, sync with GitHub mocked, search for a word from a mocked file. | 1.5 |
+| **Wed 18 Nov** | Auth, coverage, API docs | **Read first:** [08 Dependency injection](../lessons/06-applied-python/08-dependency-injection.md), "Overriding in tests" (review).<br>1. Check every write endpoint returns 401 without the key (one parametrized test). 2. `uv run pytest --cov`; reach **≥ 85%** line coverage on `src/`. 3. Review the generated OpenAPI docs; add `examples=` to schemas. | 1.25 |
+| **Thu 19 Nov** | Docker | **Read first:** [11 Docker for Python services](../lessons/06-applied-python/11-docker-for-python-services.md).<br>1. `docker compose up --build`; fix anything that fails (the starter's image was not built while it was prepared). 2. Check: non-root user, no uv in the final image, image size (aim for about 250 MB or less), dependency layer cached after a code change. 3. Call `/healthz` and `/search` in the container. | 1.25 |
+| **Fri 20 Nov** | GitHub Actions CI | **Read first:** [12 GitHub Actions CI](../lessons/06-applied-python/12-github-actions-ci.md).<br>1. Push to GitHub; watch the starter's workflow run (Postgres service, uv, ruff, mypy, Alembic, pytest with coverage, Docker build). 2. Make the checks required for `main`. 3. Add the CI badge to the README. 4. Send the weekly update. | 1 |
+| **Sat 21 Nov** | Performance + polish | **Read first:** [06 SQLAlchemy with asyncio](../lessons/06-applied-python/06-sqlalchemy-async.md), "Why lazy loading fails in async" (review).<br>1. Fix any lazy-load errors with `selectinload`. 2. Load test `GET /search` with `oha`; record p50/p95. 3. Ingest 3 real repos (for example your `shop-lab` docs, `rails/solid_queue`, `basecamp/kamal`); record ingest time. 4. Write the README (setup, architecture, decisions). | 2.5 |
+| **Sun 22 Nov** | Consolidate + proof | **Read first:** [00 Start here](../lessons/06-applied-python/00-start-here.md), the Rails-to-Python map (review, then write your own notes).<br>1. Tag `v0.1.0`. 2. Self-check questions. 3. Write "Rails vs FastAPI: 10 notes" in `NOTES.md`. | 1 |
 | | | **Week 2 total** | **10** |
 
 ### Suggested repository structure
 
+Files marked ★ are already in the [starter](../starters/kb-api/README.md); the rest you add during the two weeks.
+
 ```
 kb-api/
-├── pyproject.toml            # deps, ruff, mypy, pytest config
-├── uv.lock
-├── .python-version
-├── Dockerfile
-├── compose.yaml              # app + pgvector/pgvector:pg17
-├── alembic.ini
-├── migrations/               # Alembic (async template)
+├── pyproject.toml ★            # deps, ruff, mypy, pytest config
+├── uv.lock ★
+├── .python-version ★
+├── Dockerfile ★
+├── compose.yaml ★              # app + pgvector/pgvector:pg17
+├── alembic.ini ★
+├── migrations/ ★             # Alembic (async template)
 │   └── versions/
 ├── src/kb_api/
-│   ├── main.py               # app factory, lifespan, routers
-│   ├── config.py             # Settings (pydantic-settings)
-│   ├── db.py                 # engine, async_sessionmaker, get_session
-│   ├── models.py             # SQLAlchemy models
-│   ├── schemas.py            # Pydantic models
+│   ├── main.py ★               # app factory, lifespan, routers
+│   ├── config.py ★             # Settings (pydantic-settings)
+│   ├── db.py ★                 # engine, async_sessionmaker, get_session
+│   ├── models.py ★             # SQLAlchemy models
+│   ├── schemas.py ★            # Pydantic models
 │   ├── api/
-│   │   ├── deps.py           # auth, session, pagination deps
-│   │   ├── documents.py
+│   │   ├── deps.py ★           # auth, session, pagination deps
+│   │   ├── documents.py ★
 │   │   ├── sources.py
 │   │   ├── search.py
 │   │   └── health.py
@@ -91,40 +99,16 @@ kb-api/
 ├── scripts/
 │   └── repo_report.py        # pandas report
 ├── tests/
-│   ├── conftest.py           # db, client, respx fixtures
-│   ├── test_documents.py
+│   ├── conftest.py ★           # db, client, respx fixtures
+│   ├── test_documents.py ★
 │   ├── test_search.py
 │   └── test_ingest.py
-└── .github/workflows/ci.yml
+└── .github/workflows/ci.yml ★
 ```
 
-### CI workflow (starting point)
+### CI workflow
 
-```yaml
-name: CI
-on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: pgvector/pgvector:pg17
-        env: { POSTGRES_USER: kb, POSTGRES_PASSWORD: kb, POSTGRES_DB: kb_test }
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd "pg_isready -U kb" --health-interval 5s
-          --health-timeout 5s --health-retries 10
-    env:
-      DATABASE_URL: postgresql+asyncpg://kb:kb@localhost:5432/kb_test
-    steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6   # use the latest major version
-      - run: uv sync --locked
-      - run: uv run ruff check . && uv run ruff format --check .
-      - run: uv run mypy src
-      - run: uv run alembic upgrade head
-      - run: uv run pytest --cov=kb_api --cov-fail-under=85
-```
+The starter already contains the workflow: [`starters/kb-api/.github/workflows/ci.yml`](../starters/kb-api/.github/workflows/ci.yml) (Postgres service container, uv, ruff, mypy, Alembic, pytest with an 85% coverage gate, and a Docker build job). [Lesson 12](../lessons/06-applied-python/12-github-actions-ci.md) explains every line.
 
 ## 4. Topic checklist
 
@@ -173,14 +157,15 @@ jobs:
 
 ## 7. Curated resources
 
-1. **FastAPI docs**: Tutorial - User Guide, "Dependencies", "Bigger Applications", "Testing", "Lifespan Events": https://fastapi.tiangolo.com/
-2. **Pydantic v2 docs** (models, validators, settings): https://docs.pydantic.dev/latest/
-3. **SQLAlchemy 2.0**: "ORM Quick Start", "Unified Tutorial" and "Asynchronous I/O (asyncio)": https://docs.sqlalchemy.org/en/20/
-4. **Alembic tutorial** (and the async template): https://alembic.sqlalchemy.org/en/latest/tutorial.html
-5. **HTTPX docs** (async client, timeouts, transports for testing): https://www.python-httpx.org/
-6. **uv: Using uv in Docker**: https://docs.astral.sh/uv/guides/integration/docker/ and **uv in GitHub Actions**: https://docs.astral.sh/uv/guides/integration/github/
-7. **pandas: 10 minutes to pandas**: https://pandas.pydata.org/docs/user_guide/10min.html
-8. **Harry Percival & Bob Gregory, *Architecture Patterns with Python*** (O'Reilly, 2020): ch. 1-2 (domain model, repository pattern). Free online at https://www.cosmicpython.com
+1. **Lessons for this step**: [`lessons/06-applied-python/`](../lessons/06-applied-python/00-start-here.md) and the [kb-api starter](../starters/kb-api/README.md) (start here).
+2. **FastAPI docs**: Tutorial - User Guide, "Dependencies", "Bigger Applications", "Testing", "Lifespan Events": https://fastapi.tiangolo.com/
+3. **Pydantic v2 docs** (models, validators, settings): https://docs.pydantic.dev/latest/
+4. **SQLAlchemy 2.x**: "ORM Quick Start", "Unified Tutorial" and "Asynchronous I/O (asyncio)": https://docs.sqlalchemy.org/en/20/
+5. **Alembic tutorial** (and the async template): https://alembic.sqlalchemy.org/en/latest/tutorial.html
+6. **HTTPX docs** (async client, timeouts, transports for testing): https://www.python-httpx.org/
+7. **uv: Using uv in Docker**: https://docs.astral.sh/uv/guides/integration/docker/ and **uv in GitHub Actions**: https://docs.astral.sh/uv/guides/integration/github/
+8. **pandas: 10 minutes to pandas**: https://pandas.pydata.org/docs/user_guide/10min.html
+9. **Harry Percival & Bob Gregory, *Architecture Patterns with Python*** (O'Reilly, 2020): ch. 1-2 (domain model, repository pattern). Free online at https://www.cosmicpython.com
 
 ## 8. Self-check questions
 

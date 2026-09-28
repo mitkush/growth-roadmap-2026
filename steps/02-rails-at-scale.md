@@ -6,6 +6,10 @@
 
 **Versions:** PostgreSQL 16+ (17 or 18 preferred), Rails 8.x, Solid Queue 1.x, Kamal 2.x.
 
+## What you will learn this step
+
+This week is about the database, which is the real bottleneck in most Rails apps. You will find the queries that cost the most with `pg_stat_statements`, read their `EXPLAIN ANALYZE` plans line by line, fix them with the right index, and remove N+1 queries. Then you look at locks: why a 50 ms migration can take a site down, and how to write migrations that cannot. Finally you meet the Rails 8 infrastructure around Postgres: partitioning and read replicas, Solid Queue (jobs stored in the database, claimed with `SKIP LOCKED`) and Kamal (deploying containers to your own server). The lessons in [`lessons/02-rails-at-scale/`](../lessons/02-rails-at-scale/00-start-here.md) explain each concept with real plans and output from `shop-lab`.
+
 ## 1. Objective
 
 By the end of this week you will be able to:
@@ -25,17 +29,17 @@ By the end of this week you will be able to:
 
 ## 3. Day-by-day plan
 
-Continue in `shop-lab` from Step 1 (or your work app's staging copy). Add an `events` table (~2M rows) in the seeds for the partitioning task.
+Continue in `shop-lab` from Step 1 (or your work app's staging copy). The [starter kit](../starters/shop-lab/README.md) already seeds the `events` table (2M rows) for the partitioning task and leaves out the indexes you will add.
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 5 Oct** | Find slow queries | 1. Enable `pg_stat_statements` (`shared_preload_libraries`, `CREATE EXTENSION`). 2. Run the Step 1 load test, then list the top 10 queries by `total_exec_time`. 3. For the top 3, run `EXPLAIN (ANALYZE, BUFFERS)` and paste the plans into explain.dalibo.com. 4. For each, note: scan type, estimated vs actual rows, buffers read vs hit. | 1.5 |
-| **Tue 6 Oct** | Indexes + N+1 | 1. Fix the top 3 queries: one composite index (column order matters), one partial index (e.g. `WHERE status = 'pending'`), one covering index (`INCLUDE`). Use `algorithm: :concurrently` with `disable_ddl_transaction!`. 2. Record timings before/after. 3. Turn on `strict_loading` for `Order` in dev; fix the N+1s it finds with `includes`/`preload`; count queries per request before/after. | 1.5 |
-| **Wed 7 Oct** | Locking + safe migrations | 1. In two `rails console` sessions, reproduce: a row lock wait (`with_lock`), a deadlock (two rows locked in opposite order) and an optimistic lock conflict (`lock_version`). 2. Reproduce a **lock queue**: open a long transaction, run `ALTER TABLE ... ADD COLUMN ... DEFAULT` in another session, then a simple `SELECT` in a third; watch `pg_locks`/`pg_stat_activity`. 3. Add `strong_migrations`; set `lock_timeout` and `statement_timeout` for migrations. | 1.5 |
-| **Thu 8 Oct** | Partitioning + multi-DB | 1. Create `events_partitioned` with range partitioning by month (SQL migration, switch to `structure.sql`); copy data; compare `EXPLAIN` for a one-month query (look for partition pruning). 2. Run `bin/rails g active_record:multi_db`; configure a `primary_replica` (use a read-only DB user on the same DB, or a real replica via Docker if you have time); enable automatic role switching; prove reads go to the replica in logs. | 1.25 |
-| **Fri 9 Oct** | Solid Queue (and Solid Cache/Cable) | 1. Confirm the `queue` DB in `config/database.yml`; run `bin/jobs`. 2. Add one recurring job in `config/recurring.yml` and one job with `limits_concurrency`. 3. Mount Mission Control – Jobs; trigger failures and retry them. 4. Read how Solid Queue claims jobs (`FOR UPDATE SKIP LOCKED`) in its README. 5. Skim Solid Cache and Solid Cable configs. 6. Send the weekly update. | 1 |
-| **Sat 10 Oct** | Kamal deploy lab | 1. Get a small VPS (any provider, ~2 GB RAM) or a local VM. 2. Fill `config/deploy.yml` and `.kamal/secrets`; add Postgres as an **accessory**. 3. `kamal setup`, then `kamal deploy`. 4. Run Solid Queue inside Puma (`SOLID_QUEUE_IN_PUMA`) or as a separate role. 5. Do a second deploy with a migration and observe zero-downtime switching by kamal-proxy. 6. Run a short load test against the deployed app. | 2.5 |
-| **Sun 11 Oct** | Consolidate + proof | 1. Finish `perf/db-report.md` (query table, lock experiments, partition result). 2. Self-check questions. 3. 20 min: OSS scouting (look at `rails/solid_queue` and `basecamp/kamal` issues). | 0.75 |
+| **Mon 5 Oct** | Find slow queries | **Read first:** [00 Start here](../lessons/02-rails-at-scale/00-start-here.md), [01 Finding slow queries and EXPLAIN](../lessons/02-rails-at-scale/01-finding-slow-queries-and-explain.md).<br>1. Enable `pg_stat_statements` (`shared_preload_libraries`, `CREATE EXTENSION`). 2. Run the Step 1 load test, then list the top 10 queries by `total_exec_time`. 3. For the top 3, run `EXPLAIN (ANALYZE, BUFFERS)` and paste the plans into explain.dalibo.com. 4. For each, note: scan type, estimated vs actual rows, buffers read vs hit. | 1.5 |
+| **Tue 6 Oct** | Indexes + N+1 | **Read first:** [02 Indexes, N+1 and batching](../lessons/02-rails-at-scale/02-indexes-and-n-plus-one.md).<br>1. Fix the top 3 queries: one composite index (column order matters), one partial index (e.g. `WHERE status = 'pending'`), one covering index (`INCLUDE`). Use `algorithm: :concurrently` with `disable_ddl_transaction!`. 2. Record timings before/after. 3. Turn on `strict_loading` for `Order` in dev; fix the N+1s it finds with `includes`/`preload`; count queries per request before/after. | 1.5 |
+| **Wed 7 Oct** | Locking + safe migrations | **Read first:** [03 Locks and safe migrations](../lessons/02-rails-at-scale/03-locks-and-safe-migrations.md).<br>1. In two `rails console` sessions, reproduce: a row lock wait (`with_lock`), a deadlock (two rows locked in opposite order) and an optimistic lock conflict (`lock_version`). 2. Reproduce a **lock queue**: open a long transaction, run `ALTER TABLE ... ADD COLUMN ... DEFAULT` in another session, then a simple `SELECT` in a third; watch `pg_locks`/`pg_stat_activity`. 3. Add `strong_migrations`; set `lock_timeout` and `statement_timeout` for migrations. | 1.5 |
+| **Thu 8 Oct** | Partitioning + multi-DB | **Read first:** [04 Partitioning, replicas and sharding](../lessons/02-rails-at-scale/04-partitioning-and-multi-db.md).<br>1. Create `events_partitioned` with range partitioning by month (SQL migration, switch to `structure.sql`); copy data; compare `EXPLAIN` for a one-month query (look for partition pruning). 2. Run `bin/rails g active_record:multi_db`; configure a `primary_replica` (use a read-only DB user on the same DB, or a real replica via Docker if you have time); enable automatic role switching; prove reads go to the replica in logs. | 1.25 |
+| **Fri 9 Oct** | Solid Queue (and Solid Cache/Cable) | **Read first:** [05 Solid Queue internals](../lessons/02-rails-at-scale/05-solid-queue-internals.md).<br>1. Confirm the `queue` DB in `config/database.yml`; run `bin/jobs`. 2. Add one recurring job in `config/recurring.yml` and one job with `limits_concurrency`. 3. Mount Mission Control – Jobs; trigger failures and retry them. 4. Enqueue jobs before starting `bin/jobs` and inspect the `solid_queue_*` tables, then kill a worker mid-job and find the failed execution (lesson 05, section 5). 5. Skim Solid Cache and Solid Cable configs. 6. Send the weekly update. | 1 |
+| **Sat 10 Oct** | Kamal deploy lab | **Read first:** [06 Kamal architecture](../lessons/02-rails-at-scale/06-kamal-architecture.md).<br>1. Get a small VPS (any provider, ~2 GB RAM) or a local VM. 2. Fill `config/deploy.yml` and `.kamal/secrets`; add Postgres as an **accessory**. 3. `kamal setup`, then `kamal deploy`. 4. Run Solid Queue inside Puma (`SOLID_QUEUE_IN_PUMA`) or as a separate role. 5. Do a second deploy with a migration and observe zero-downtime switching by kamal-proxy. 6. Run a short load test against the deployed app. | 2.5 |
+| **Sun 11 Oct** | Consolidate + proof | **Read first:** the glossary in [00 Start here](../lessons/02-rails-at-scale/00-start-here.md); re-read the "Check your understanding" sections of lessons 01-06.<br>1. Finish `perf/db-report.md` (query table, lock experiments, partition result). 2. Self-check questions. 3. 20 min: OSS scouting (look at `rails/solid_queue` and `basecamp/kamal` issues). | 0.75 |
 | | | **Total** | **10** |
 
 ## 4. Topic checklist
@@ -100,14 +104,15 @@ Continue in `shop-lab` from Step 1 (or your work app's staging copy). Add an `ev
 
 ## 7. Curated resources
 
-1. **PostgreSQL docs: Using EXPLAIN**: https://www.postgresql.org/docs/current/using-explain.html
-2. **PostgreSQL docs: Explicit Locking** (table and row lock modes): https://www.postgresql.org/docs/current/explicit-locking.html
-3. **PostgreSQL docs: Table Partitioning**: https://www.postgresql.org/docs/current/ddl-partitioning.html
-4. **Andrew Atkinson, *High Performance PostgreSQL for Rails*** (Pragmatic Bookshelf, 2024): chapters on indexes, query optimisation and migrations.
-5. **Rails Guides: Multiple Databases with Active Record**: https://guides.rubyonrails.org/active_record_multiple_databases.html
-6. **Solid Queue README** (architecture, configuration, concurrency controls): https://github.com/rails/solid_queue
-7. **Kamal docs**: https://kamal-deploy.org
-8. **strong_migrations** (safe-migration rules and explanations): https://github.com/ankane/strong_migrations
+1. **Course lessons for this step**: [`lessons/02-rails-at-scale/`](../lessons/02-rails-at-scale/00-start-here.md) (start here; each lesson ends with its own "Go deeper" links).
+2. **PostgreSQL docs: Using EXPLAIN**: https://www.postgresql.org/docs/current/using-explain.html
+3. **PostgreSQL docs: Explicit Locking** (table and row lock modes): https://www.postgresql.org/docs/current/explicit-locking.html
+4. **PostgreSQL docs: Table Partitioning**: https://www.postgresql.org/docs/current/ddl-partitioning.html
+5. **Andrew Atkinson, *High Performance PostgreSQL for Rails*** (Pragmatic Bookshelf, 2024): chapters on indexes, query optimisation and migrations.
+6. **Rails Guides: Multiple Databases with Active Record**: https://guides.rubyonrails.org/active_record_multiple_databases.html
+7. **Solid Queue README** (architecture, configuration, concurrency controls): https://github.com/rails/solid_queue
+8. **Kamal docs**: https://kamal-deploy.org
+9. **strong_migrations** (safe-migration rules and explanations): https://github.com/ankane/strong_migrations
 
 ## 8. Self-check questions
 
@@ -138,5 +143,5 @@ Continue in `shop-lab` from Step 1 (or your work app's staging copy). Add an `ev
 - Set up **horizontal sharding** with two shard databases and `connected_to(shard:)`; route by tenant ID.
 - Add **PgHero** (ankane) to `shop-lab` and compare its suggestions with your own analysis.
 - Add **PgBouncer** in transaction mode in front of Postgres and fix what breaks.
-- Try UUIDv7 primary keys (`uuidv7()` is built into PostgreSQL 18) and compare index size with random UUIDs.
+- Try UUIDv7 primary keys (`uuidv7()` is built into PostgreSQL 18) and compare index size with random UUIDs. UUIDv7 values start with a timestamp, so new keys land at the end of the B-tree index like `bigint` ids, while random (v4) UUIDs land anywhere and cause more page splits and a larger, less cache-friendly index ([lesson 02](../lessons/02-rails-at-scale/02-indexes-and-n-plus-one.md) explains B-trees).
 - Benchmark Solid Cache vs Redis for your top cached fragment.

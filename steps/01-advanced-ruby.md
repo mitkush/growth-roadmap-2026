@@ -6,6 +6,10 @@
 
 **Versions:** Ruby 3.4 (notes for Ruby 4.0 where relevant), Rails 8.x, Puma 6+ (or whatever your work app uses).
 
+## What you will learn this step
+
+This week you look underneath your Rails apps: how Ruby runs threads (and why some endpoints get faster with more Puma threads while others do not), what Fibers and Ractors are for, what YJIT and the garbage collector do, and how to find exactly where time and memory go with profilers. Everything is measured on a sample app with realistic data, [`shop-lab`](../starters/shop-lab/README.md), so every claim you make ends with a before/after number. The lessons in [`lessons/01-advanced-ruby/`](../lessons/01-advanced-ruby/00-start-here.md) explain each concept with Rails examples and real output.
+
 ## 1. Objective
 
 By the end of this week you will be able to:
@@ -25,17 +29,17 @@ By the end of this week you will be able to:
 
 ## 3. Day-by-day plan
 
-Set up the sample app on Monday. If you can use a staging copy of your work app, use it instead of `shop-lab` for the measurements; the tasks stay the same.
+Set up the sample app on Monday with the **[shop-lab starter kit](../starters/shop-lab/README.md)** (models, seed data for 2.8M rows, the three endpoints, a slow upstream server, a load generator and a production-like `benchmark` environment). If you can use a staging copy of your work app, use it instead for the measurements; the tasks stay the same.
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 28 Sep** | Setup + GVL model | 1. `rails new shop-lab -d postgresql` (Rails 8). 2. Add models `Product`, `Order`, `LineItem`, `Customer`; seed ~20k products, ~200k orders, ~600k line items with `insert_all` in batches. 3. Read the Ruby docs for `Thread` and `Thread::Queue`. 4. In a plain Ruby script, run a CPU task (e.g. naive `fib(30)`) and an I/O task (`sleep 0.2` or `Net::HTTP` to a local slow server) with 1, 2 and 4 threads; record wall times. | 1.5 |
-| **Tue 29 Sep** | Threads in practice | 1. Write a thread-safety bug on purpose (unsynchronised `@counter += 1` across threads, and a lazy `@cache ||=` race), then fix it with `Mutex` and `Concurrent::Map` (concurrent-ruby). 2. Build a producer/consumer with `Thread::Queue` and a fixed pool of 4 workers. 3. Write 5 lines in your log: "What the GVL protects and what it does not". | 1.5 |
-| **Wed 30 Sep** | Fibers, scheduler, Ractors | 1. Add the `async` gem; fetch 20 URLs from a local slow endpoint with `Async { ... }` tasks; compare wall time with sequential and 4-thread versions. 2. Write a tiny `Ractor` demo that runs a CPU task on 4 Ractors; compare with 4 threads. 3. Note 3 limits of Ractors (shareable objects, gem support, experimental status). | 1.25 |
-| **Thu 1 Oct** | Puma + baseline benchmark | 1. Add 3 endpoints to `shop-lab`: `GET /products` (JSON with associations), `GET /reports/sales` (CPU-heavy Ruby aggregation), `GET /slow_io` (calls a local endpoint that sleeps 100 ms). 2. Run in production mode locally. 3. Load test each with `oha -z 30s -c 16` (or `wrk`) after a 10 s warm-up; record req/s, p50, p95, p99 and RSS in `perf/results.md`. This is your **baseline**. | 1.25 |
-| **Fri 2 Oct** | YJIT | 1. Confirm YJIT state: `RubyVM::YJIT.enabled?` in `bin/rails runner`. 2. Benchmark the 3 endpoints with YJIT off and on (`config.yjit` or `RUBY_YJIT_ENABLE=1`). 3. Collect `RubyVM::YJIT.runtime_stats` (run with `--yjit-stats` once) and note `ratio_in_yjit` and code memory. 4. Send the weekly update. | 1 |
-| **Sat 3 Oct** | Profiling lab + GC + memory | 1. Profile `/reports/sales` with Vernier (`Vernier.profile` around the action or `vernier run`); open in the Firefox Profiler and find the top 3 hot frames. 2. Profile allocations with `memory_profiler`; find the top allocation sites. 3. Fix the hot path (e.g. move aggregation to SQL, avoid intermediate arrays, `each_with_object`, frozen string literals). 4. Tune Puma: test (workers × threads) = (2×3), (2×5), (4×3) on `/slow_io` and `/reports/sales`; set `pool` to match threads. 5. Try jemalloc or `MALLOC_ARENA_MAX=2`; record RSS after 5 min of load. Re-run all benchmarks. | 2.5 |
-| **Sun 4 Oct** | Consolidate + proof | 1. Run `GC.stat` before/after a load test; note minor/major GC counts and time (`GC.stat(:time)`, in milliseconds). 2. Finish `perf/results.md` (tables + 3 conclusions). 3. Answer the self-check questions in writing. 4. 20 min: OSS issue scouting (see Step 4). | 1 |
+| **Mon 28 Sep** | Setup + GVL model | **Read first:** [00 Start here](../lessons/01-advanced-ruby/00-start-here.md), [01 GVL and threads](../lessons/01-advanced-ruby/01-gvl-threads-and-thread-safety.md) (sections 1-4).<br>1. Build `shop-lab` with the [starter kit](../starters/shop-lab/README.md) (about 15 minutes, including full-size seeding). 2. Run the lesson's `gvl_demo.rb` (CPU vs I/O with 1 and 4 threads) and record the timings. 3. Read the Ruby docs for `Thread` and `Thread::Queue`. | 1.5 |
+| **Tue 29 Sep** | Threads in practice | **Read first:** [01 GVL and threads](../lessons/01-advanced-ruby/01-gvl-threads-and-thread-safety.md) (section 5, Part B, and "Common mistakes").<br>1. Run `race_demo.rb`; then write your own race (unsynchronised `@counter += 1`, lazy `@cache \|\|=`) and fix it with `Mutex` and `Concurrent::Map`. 2. Build a producer/consumer with `Thread::Queue` and a fixed pool of 4 workers. 3. Write 5 lines in your log: "What the GVL protects and what it does not". | 1.5 |
+| **Wed 30 Sep** | Fibers, scheduler, Ractors | **Read first:** [02 Fibers and Ractors](../lessons/01-advanced-ruby/02-fibers-and-ractors.md).<br>1. Run `fibers_demo.rb` against `script/slow_server.rb`; compare sequential, threads and `async` fibers. 2. Run `ractor_demo.rb` on your Ruby version and compare with the lesson's result. 3. Note 3 limits of Ractors (shareable objects, gem support, experimental status). | 1.25 |
+| **Thu 1 Oct** | Puma + baseline benchmark | **Read first:** [03 Puma and benchmarking](../lessons/01-advanced-ruby/03-puma-and-benchmarking.md).<br>1. Start `ruby script/slow_server.rb` and `RAILS_ENV=benchmark bin/rails server`. 2. Load test each endpoint (`/products`, `/reports/sales`, `/slow_io`) with `oha -z 30s -c 16` (or the kit's `ruby script/load.rb URL 16 30`) after a 10 s warm-up; record req/s, p50, p95, p99 and RSS in `perf/results.md`. This is your **baseline**. 3. Check one result against Little's Law. | 1.25 |
+| **Fri 2 Oct** | YJIT | **Read first:** [04 YJIT](../lessons/01-advanced-ruby/04-yjit.md).<br>1. Confirm YJIT state: `RubyVM::YJIT.enabled?` in `bin/rails runner`. 2. Benchmark the 3 endpoints with `YJIT=0` and with YJIT on (the kit's benchmark environment reads `YJIT`). 3. Collect `RubyVM::YJIT.runtime_stats` after warm-up and note the ratio in YJIT and code memory. 4. Send the weekly update. | 1 |
+| **Sat 3 Oct** | Profiling lab + GC + memory | **Read first:** [06 Profiling](../lessons/01-advanced-ruby/06-profiling.md), [05 GC and memory](../lessons/01-advanced-ruby/05-gc-and-memory.md).<br>1. Profile `/reports/sales` with Vernier; open it in the Firefox Profiler and find the top 3 hot frames (compare with the lesson's stackprof report). 2. Profile allocations with `memory_profiler`; find the top allocation sites. 3. Fix the hot path (the lesson's `pluck` version is a first step; aggregating in SQL is better). 4. Tune Puma: test (workers × threads) = (2×3), (2×5), (4×3) on `/slow_io` and `/reports/sales`; set the DB pool to match. 5. Try `MALLOC_ARENA_MAX=2` (or jemalloc); record RSS after 5 min of load. Re-run all benchmarks. | 2.5 |
+| **Sun 4 Oct** | Consolidate + proof | **Read first:** [05 GC and memory](../lessons/01-advanced-ruby/05-gc-and-memory.md), "`GC.stat`: your dashboard" (review).<br>1. Run `GC.stat` before/after a load test; note minor/major GC counts and time (`GC.stat(:time)`, in milliseconds). 2. Finish `perf/results.md` (tables + 3 conclusions). 3. Answer the self-check questions in writing. 4. 20 min: OSS issue scouting (see Step 4). | 1 |
 | | | **Total** | **10** |
 
 ## 4. Topic checklist
@@ -100,14 +104,15 @@ Send your manager:
 
 ## 7. Curated resources
 
-1. **Ruby docs: `Thread`, `Thread::Queue`, `Fiber`, `Ractor`**: https://docs.ruby-lang.org/en/3.4/ (use the class pages; Ractor guide: `ractor.md` in the same docs).
-2. **YJIT documentation** (options, stats, memory): https://github.com/ruby/ruby/blob/master/doc/yjit/yjit.md
-3. **Vernier** (sampling profiler with GVL/GC markers): https://github.com/jhawthorn/vernier
-4. **memory_profiler**: https://github.com/SamSaffron/memory_profiler and **stackprof**: https://github.com/tmm1/stackprof
-5. **Puma docs: deployment and threads/workers**: https://github.com/puma/puma/blob/master/docs/deployment.md
-6. **Nate Berkopec, *The Complete Guide to Rails Performance*** (sections on memory, Puma and profiling). Paid book; chapter names vary by edition (verify).
-7. **Jean Boussier (byroot) blog**, posts on the GVL and Puma/thread sizing: https://byroot.github.io/ (verify the specific post titles).
-8. **derailed_benchmarks**: https://github.com/zombocom/derailed_benchmarks
+1. **Lessons for this step**: [`lessons/01-advanced-ruby/`](../lessons/01-advanced-ruby/00-start-here.md) and the [shop-lab starter kit](../starters/shop-lab/README.md) (start here).
+2. **Ruby docs: `Thread`, `Thread::Queue`, `Fiber`, `Ractor`**: https://docs.ruby-lang.org/en/3.4/ (use the class pages; Ractor guide: `ractor.md` in the same docs).
+3. **YJIT documentation** (options, stats, memory): https://github.com/ruby/ruby/blob/master/doc/yjit/yjit.md
+4. **Vernier** (sampling profiler with GVL/GC markers): https://github.com/jhawthorn/vernier
+5. **memory_profiler**: https://github.com/SamSaffron/memory_profiler and **stackprof**: https://github.com/tmm1/stackprof
+6. **Puma docs: deployment and threads/workers**: https://github.com/puma/puma/blob/master/docs/deployment.md
+7. **Nate Berkopec, *The Complete Guide to Rails Performance*** (sections on memory, Puma and profiling). Paid book; chapter names vary by edition (verify).
+8. **Jean Boussier (byroot) blog**, posts on the GVL and Puma/thread sizing: https://byroot.github.io/ (verify the specific post titles).
+9. **derailed_benchmarks**: https://github.com/zombocom/derailed_benchmarks
 
 ## 8. Self-check questions
 

@@ -1,0 +1,28 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17 # Postgres 17 with pgvector, ready for Step 7
+    environment:
+      POSTGRES_USER: kb
+      POSTGRES_PASSWORD: kb
+      POSTGRES_DB: kb
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kb"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+asyncpg://kb:kb@db:5432/kb
+      API_KEY: change-me
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

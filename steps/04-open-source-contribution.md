@@ -4,6 +4,10 @@
 |---|---|---|
 | 10% | Mon 19 Oct - Sun 25 Oct 2026 (scouting starts in W1) | ~10 h (+ ~1 h scouting in W1-W3) |
 
+## What you will learn this step
+
+This week you make a real contribution to a Ruby project you have used (Solid Queue, Kamal, Rails and others): choosing an issue that fits, getting an unfamiliar project's test suite running, reproducing the bug with a failing test, making a small fix and writing a PR that maintainers can review quickly, then handling their feedback. The one lesson for this step, [The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md), walks through each stage and includes a worked example of setting up and running Solid Queue's own test suite, including the setup errors you are likely to hit.
+
 ## 1. Objective
 
 By the end of this week you will be able to:
@@ -27,21 +31,21 @@ By the end of this week you will be able to:
 
 | When | Task |
 |---|---|
-| Sun 4 Oct | Star the 8 projects below. Read `CONTRIBUTING.md` for 3 of them. |
-| Sun 11 Oct | Browse `good first issue`, `help wanted` and recent bug issues in `rails/solid_queue` and `basecamp/kamal` (you used both in Step 2). Save 5 candidates. |
-| Sun 18 Oct | Narrow to a **shortlist of 3** using the "issue fit" checks below. Comment on your top pick: "I'd like to work on this; my plan is X. Does that sound right?" |
+| Sun 4 Oct | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) (sections 1-4).<br>Star the 8 projects below. Read `CONTRIBUTING.md` for 3 of them. |
+| Sun 11 Oct | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md), "Issue fit checks".<br>Browse `good first issue`, `help wanted` and recent bug issues in `rails/solid_queue` and `basecamp/kamal` (you used both in Step 2). Save 5 candidates. |
+| Sun 18 Oct | **Read first:** section 5.2 below (issue fit checks).<br>Narrow to a **shortlist of 3** using the "issue fit" checks below. Comment on your top pick: "I'd like to work on this; my plan is X. Does that sound right?" |
 
 ### Week 4
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 19 Oct** | Choose + set up | 1. Read maintainer replies; choose the issue (or switch to #2 on the shortlist). 2. Fork, clone and run the full test suite locally (or in the project's devcontainer). 3. Note how long the suite takes and how to run one test file. | 1.5 |
-| **Tue 20 Oct** | Reproduce | 1. Write a **failing test** that reproduces the issue (for Rails: start from the bug report templates in `guides/bug_report_templates`). 2. Find the code path with `git grep`, the debugger (`ruby/debug`, `binding.b`) and `git log -S`. 3. Read the last 3 merged PRs that touched those files. | 1.5 |
-| **Wed 21 Oct** | Fix | 1. Make the smallest change that makes the test pass. 2. Run the related test files and the linter (RuboCop/Standard). 3. Check edge cases: nil, empty, multiple DB adapters, older Ruby versions supported by the project. | 1.5 |
-| **Thu 22 Oct** | Polish + open PR | 1. Add a CHANGELOG entry if the project wants one. 2. Squash into one clean commit with a clear message. 3. Open the PR using the PR template below. 4. Link the issue. | 1.25 |
-| **Fri 23 Oct** | Blog post #1 | 1. Draft Blog post #1 from Steps 1-2 results (the PR is now waiting for review). 2. Send the weekly update with the PR link. | 1 |
-| **Sat 24 Oct** | Review loop or second contribution | 1. Answer review comments within 24 h; push fixes as new commits unless asked to squash. 2. If there is no review yet: start a **second, smaller contribution** (a docs fix, or another issue from your shortlist), or start the fallback below if the first PR is blocked. 3. Finish and publish Blog post #1. | 2.5 |
-| **Sun 25 Oct** | Proof | 1. Write `contribution-notes.md`: issue, root cause, fix, what you learned from the codebase. 2. Self-check questions. 3. Update the README tracker. | 0.75 |
+| **Mon 19 Oct** | Choose + set up | **Read first:** [00 Start here](../lessons/04-open-source/00-start-here.md), [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) ("Git setup for a fork" and section 5).<br>1. Read maintainer replies; choose the issue (or switch to #2 on the shortlist). 2. Fork, clone and run the full test suite locally (or in the project's devcontainer). 3. Note how long the suite takes and how to run one test file. | 1.5 |
+| **Tue 20 Oct** | Reproduce | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) ("Finding your way in unfamiliar code").<br>1. Write a **failing test** that reproduces the issue (for Rails: start from the bug report templates in `guides/bug_report_templates`). 2. Find the code path with `git grep`, the debugger (`ruby/debug`, `binding.b`) and `git log -S`. 3. Read the last 3 merged PRs that touched those files. | 1.5 |
+| **Wed 21 Oct** | Fix | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) (section 7, "Common mistakes").<br>1. Make the smallest change that makes the test pass. 2. Run the related test files and the linter (RuboCop/Standard). 3. Check edge cases: nil, empty, multiple DB adapters, older Ruby versions supported by the project. | 1.5 |
+| **Thu 22 Oct** | Polish + open PR | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) ("A PR description that gets reviewed") and section 5.4 below.<br>1. Add a CHANGELOG entry if the project wants one. 2. Squash into one clean commit with a clear message. 3. Open the PR using the PR template below. 4. Link the issue. | 1.25 |
+| **Fri 23 Oct** | Blog post #1 | **Read first:** [`templates/blog-post-outline.md`](../templates/blog-post-outline.md).<br>1. Draft Blog post #1 from Steps 1-2 results (the PR is now waiting for review). 2. Send the weekly update with the PR link. | 1 |
+| **Sat 24 Oct** | Review loop or second contribution | **Read first:** [01 The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) ("Handling review").<br>1. Answer review comments within 24 h; push fixes as new commits unless asked to squash. 2. If there is no review yet: start a **second, smaller contribution** (a docs fix, or another issue from your shortlist), or start the fallback below if the first PR is blocked. 3. Finish and publish Blog post #1. | 2.5 |
+| **Sun 25 Oct** | Proof | **Read first:** the glossary in [00 Start here](../lessons/04-open-source/00-start-here.md); re-answer lesson 01's "Check your understanding".<br>1. Write `contribution-notes.md`: issue, root cause, fix, what you learned from the codebase. 2. Self-check questions. 3. Update the README tracker. | 0.75 |
 | | | **Total** | **10** |
 
 ## 4. Topic checklist
@@ -139,12 +143,13 @@ If no suitable issue is confirmed by Wednesday, or the project is unresponsive, 
 
 ## 7. Curated resources
 
-1. **Rails: Contributing to Ruby on Rails guide**: https://guides.rubyonrails.org/contributing_to_ruby_on_rails.html
-2. **GitHub docs: Finding ways to contribute to open source**: https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github
-3. **Open Source Guides: How to Contribute to Open Source**: https://opensource.guide/how-to-contribute/
-4. **RuboCop: Development docs** (how cops are built and tested): https://docs.rubocop.org/rubocop/development.html
-5. **Bundler guide: Creating a gem** (for the fallback): https://bundler.io/guides/creating_gem.html
-6. **ruby/debug** (the standard debugger for exploring unfamiliar code): https://github.com/ruby/debug
+1. **Course lesson for this step**: [The contribution workflow](../lessons/04-open-source/01-contribution-workflow.md) (with a worked example of running Solid Queue's test suite).
+2. **Rails: Contributing to Ruby on Rails guide**: https://guides.rubyonrails.org/contributing_to_ruby_on_rails.html
+3. **GitHub docs: Finding ways to contribute to open source**: https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github
+4. **Open Source Guides: How to Contribute to Open Source**: https://opensource.guide/how-to-contribute/
+5. **RuboCop: Development docs** (how cops are built and tested): https://docs.rubocop.org/rubocop/development.html
+6. **Bundler guide: Creating a gem** (for the fallback): https://bundler.io/guides/creating_gem.html
+7. **ruby/debug** (the standard debugger for exploring unfamiliar code): https://github.com/ruby/debug
 
 ## 8. Self-check questions
 

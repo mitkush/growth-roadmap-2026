@@ -6,6 +6,10 @@
 
 **Versions:** Rails 8.1 (for `Rails.event`), Packwerk 3.x + packwerk-extensions, OpenTelemetry Ruby SDK.
 
+## What you will learn this step
+
+This week turns `shop-lab` from a fast app into a well-structured, observable one. You will split it into business modules (bounded contexts) inside the same Rails app and let Packwerk enforce the boundaries; publish events that are never lost or processed twice using the transactional outbox; design an API that behaves correctly when clients retry, page through changing data or send too much; and trace one request from HTTP through the database into a background job with OpenTelemetry. You will also write your decisions down as ADRs. The lessons in [`lessons/03-architecture/`](../lessons/03-architecture/00-start-here.md) explain each idea with tested code and real output.
+
 ## 1. Objective
 
 By the end of this week you will be able to:
@@ -30,13 +34,13 @@ Continue in `shop-lab`. Target contexts: **Catalog** (products), **Ordering** (o
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 12 Oct** | Boundaries + ADRs | 1. List every model and the models it references; draw a context map (Mermaid) with the 4 contexts. 2. Mark each cross-context call (e.g. `Order` reading `Product#price`). 3. Write `docs/adr/0001-modular-monolith-with-packwerk.md` (Context, Decision, Consequences). 4. Read the Packwerk README and "Resolving violations" docs. | 1.5 |
-| **Tue 13 Oct** | Packwerk | 1. Add `packwerk` and `packwerk-extensions` (privacy checker); `bundle exec packwerk init`. 2. Move Catalog and Ordering into `packs/catalog` and `packs/ordering` (add their `app/*` paths to autoload, or use `packs-rails`). 3. Enable `enforce_dependencies` and privacy; run `bin/packwerk check`. 4. Fix 2 violations by adding a small public API (e.g. `Catalog::PriceLookup.for(product_ids)`); record the rest with `update-todo`. | 1.5 |
-| **Wed 14 Oct** | Events + outbox | 1. Emit `order.placed` with `Rails.event.notify` (Rails 8.1) and subscribe to it; compare with `ActiveSupport::Notifications`. 2. Create an `outbox_events` table; write the event **in the same transaction** as the order. 3. Add a Solid Queue job that publishes unsent rows with `FOR UPDATE SKIP LOCKED` and marks them sent. 4. Add a consumer (e.g. "reserve stock") that is idempotent via a unique `event_id` in a `processed_events` table. | 1.5 |
-| **Thu 15 Oct** | API design | 1. Build `GET /api/v1/orders` with **cursor** pagination (`created_at, id` keyset) and `POST /api/v1/orders` with an `Idempotency-Key` header (store key + response hash). 2. Return errors as RFC 9457 problem details (`type`, `title`, `status`, `detail`). 3. Add Rails `rate_limit` to `create`. 4. Document both endpoints with rswag (OpenAPI). | 1.25 |
-| **Fri 16 Oct** | OpenTelemetry setup | 1. Run `grafana/otel-lgtm` (or Jaeger all-in-one) in Docker. 2. Add `opentelemetry-sdk`, `opentelemetry-exporter-otlp`, `opentelemetry-instrumentation-all`; configure with `c.use_all` and a service name. 3. Confirm spans for Rack, Active Record and Active Job. 4. Send the weekly update. | 1 |
-| **Sat 17 Oct** | Observability lab | 1. Add a custom span around the outbox publisher and consumer with attributes (`event.type`, `order.id`). 2. Confirm that one trace covers HTTP → DB → job → consumer. 3. Switch logs to structured JSON with `trace_id` and `span_id`; jump from a log line to its trace. 4. Build a small dashboard: request rate, error rate, p95 duration (RED) and outbox lag. 5. Write a one-page design doc for the event flow (use the ADR as a starting point). | 2.5 |
-| **Sun 18 Oct** | Consolidate + proof | 1. Write ADR-0002 (outbox) and ADR-0003 (API conventions). 2. Self-check questions. 3. Pick your OSS issue shortlist (Step 4). 4. Outline **Blog post #1** with the template. | 0.75 |
+| **Mon 12 Oct** | Boundaries + ADRs | **Read first:** [00 Start here](../lessons/03-architecture/00-start-here.md), [01 Bounded contexts and Packwerk](../lessons/03-architecture/01-bounded-contexts-and-packwerk.md) (sections 1-4), [05 ADRs and design docs](../lessons/03-architecture/05-adrs-and-design-docs.md).<br>1. List every model and the models it references; draw a context map (Mermaid) with the 4 contexts. 2. Mark each cross-context call (e.g. `Order` reading `Product#price`). 3. Write `docs/adr/0001-modular-monolith-with-packwerk.md` (Context, Decision, Consequences). 4. Read the Packwerk README and "Resolving violations" docs. | 1.5 |
+| **Tue 13 Oct** | Packwerk | **Read first:** [01 Bounded contexts and Packwerk](../lessons/03-architecture/01-bounded-contexts-and-packwerk.md) (section 5 onwards).<br>1. Add `packwerk` and `packwerk-extensions` (privacy checker); `bundle binstub packwerk`, then `bin/packwerk init`. 2. Move Catalog and Ordering into `packs/catalog` and `packs/ordering` (add their `app/*` paths to autoload, or use `packs-rails`). 3. Enable `enforce_dependencies` and privacy; run `bin/packwerk check`. 4. Fix 2 violations by adding a small public API (e.g. `Catalog::PriceLookup.for(product_ids)`); record the rest with `update-todo`. | 1.5 |
+| **Wed 14 Oct** | Events + outbox | **Read first:** [02 Events and the transactional outbox](../lessons/03-architecture/02-events-and-outbox.md).<br>1. Emit `order.placed` with `Rails.event.notify` (Rails 8.1) and subscribe to it; compare with `ActiveSupport::Notifications`. 2. Create an `outbox_events` table; write the event **in the same transaction** as the order. 3. Add a Solid Queue job that publishes unsent rows with `FOR UPDATE SKIP LOCKED` and marks them sent. 4. Add a consumer (e.g. "reserve stock") that is idempotent via a unique `event_id` in a `processed_events` table. | 1.5 |
+| **Thu 15 Oct** | API design | **Read first:** [03 API design](../lessons/03-architecture/03-api-design.md).<br>1. Build `GET /api/v1/orders` with **cursor** pagination (`created_at, id` keyset) and `POST /api/v1/orders` with an `Idempotency-Key` header (store key + response hash). 2. Return errors as RFC 9457 problem details (`type`, `title`, `status`, `detail`). 3. Add Rails `rate_limit` to `create`. 4. Document both endpoints with rswag (OpenAPI). | 1.25 |
+| **Fri 16 Oct** | OpenTelemetry setup | **Read first:** [04 OpenTelemetry for Rails](../lessons/03-architecture/04-opentelemetry.md) (sections 1-5, Part A-B).<br>1. Run `grafana/otel-lgtm` (or Jaeger all-in-one) in Docker. 2. Add `opentelemetry-sdk`, `opentelemetry-exporter-otlp`, `opentelemetry-instrumentation-all`; configure in `config/initializers/opentelemetry.rb` with `c.use_all` (Active Job `propagation_style: :child` to keep jobs in the request's trace) and a service name. 3. Confirm spans for Rack, Active Record and Active Job. 4. Send the weekly update. | 1 |
+| **Sat 17 Oct** | Observability lab | **Read first:** [04 OpenTelemetry for Rails](../lessons/03-architecture/04-opentelemetry.md) (Part C, and sections 6-8).<br>1. Add a custom span around the outbox publisher and consumer with attributes (`event.type`, `order.id`). 2. Confirm that one trace covers HTTP → DB → job → consumer. 3. Switch logs to structured JSON with `trace_id` and `span_id`; jump from a log line to its trace. 4. Build a small dashboard: request rate, error rate, p95 duration (RED) and outbox lag. 5. Write a one-page design doc for the event flow (use the ADR as a starting point). | 2.5 |
+| **Sun 18 Oct** | Consolidate + proof | **Read first:** [05 ADRs and design docs](../lessons/03-architecture/05-adrs-and-design-docs.md) (the example ADR); the glossary in [00 Start here](../lessons/03-architecture/00-start-here.md).<br>1. Write ADR-0002 (outbox) and ADR-0003 (API conventions). 2. Self-check questions. 3. Pick your OSS issue shortlist (Step 4). 4. Outline **Blog post #1** with the template. | 0.75 |
 | | | **Total** | **10** |
 
 ## 4. Topic checklist
@@ -103,14 +107,15 @@ Continue in `shop-lab`. Target contexts: **Catalog** (products), **Ordering** (o
 
 ## 7. Curated resources
 
-1. **Packwerk** (README, USAGE, resolving violations): https://github.com/Shopify/packwerk and **packwerk-extensions**: https://github.com/rubyatscale/packwerk-extensions
-2. **Ruby at Scale** (Gusto's modularisation guides and tools): https://github.com/rubyatscale (verify current doc site)
-3. **Vlad Khononov, *Learning Domain-Driven Design*** (O'Reilly, 2021): Part I, chapters 1-4 (strategic design, bounded contexts).
-4. **Martin Kleppmann, *Designing Data-Intensive Applications***: chapter 7 (Transactions) and chapter 11 (Stream Processing) in the 1st edition (chapter numbers may differ in the 2nd edition, verify).
-5. **Transactional outbox pattern** (Chris Richardson): https://microservices.io/patterns/data/transactional-outbox.html
-6. **OpenTelemetry Ruby docs** (getting started, instrumentation, exporters): https://opentelemetry.io/docs/languages/ruby/
-7. **RFC 9457, Problem Details for HTTP APIs**: https://www.rfc-editor.org/rfc/rfc9457
-8. **Rails 8.1 release notes** (structured event reporting, `Rails.event`): https://guides.rubyonrails.org/8_1_release_notes.html (verify)
+1. **Course lessons for this step**: [`lessons/03-architecture/`](../lessons/03-architecture/00-start-here.md) (start here; each lesson ends with its own "Go deeper" links).
+2. **Packwerk** (README, USAGE, resolving violations): https://github.com/Shopify/packwerk and **packwerk-extensions**: https://github.com/rubyatscale/packwerk-extensions
+3. **Ruby at Scale** (Gusto's modularisation guides and tools): https://github.com/rubyatscale (verify current doc site)
+4. **Vlad Khononov, *Learning Domain-Driven Design*** (O'Reilly, 2021): Part I, chapters 1-4 (strategic design, bounded contexts).
+5. **Martin Kleppmann, *Designing Data-Intensive Applications***: chapter 7 (Transactions) and chapter 11 (Stream Processing) in the 1st edition (chapter numbers may differ in the 2nd edition, verify).
+6. **Transactional outbox pattern** (Chris Richardson): https://microservices.io/patterns/data/transactional-outbox.html
+7. **OpenTelemetry Ruby docs** (getting started, instrumentation, exporters): https://opentelemetry.io/docs/languages/ruby/
+8. **RFC 9457, Problem Details for HTTP APIs**: https://www.rfc-editor.org/rfc/rfc9457
+9. **Rails 8.1 release notes** (structured event reporting, `Rails.event`): https://guides.rubyonrails.org/8_1_release_notes.html (verify)
 
 ## 8. Self-check questions
 
@@ -137,7 +142,7 @@ Continue in `shop-lab`. Target contexts: **Catalog** (products), **Ordering** (o
 
 ## 10. Stretch goals
 
-- Rebuild the order flow with **Rails Event Store** (`rails_event_store` gem) and compare it with your outbox.
+- Rebuild the order flow with **Rails Event Store** (`rails_event_store` gem: stores events in database tables and gives you publish/subscribe, event streams and asynchronous handlers) and compare it with your outbox from [lesson 02](../lessons/03-architecture/02-events-and-outbox.md).
 - Add an **OpenTelemetry Collector** with tail-based sampling (keep all errors and slow traces).
 - Enforce API contracts in CI by validating responses against the rswag OpenAPI file.
 - Extract `packs/billing` as a Rails engine and compare the developer experience with a Packwerk pack.
