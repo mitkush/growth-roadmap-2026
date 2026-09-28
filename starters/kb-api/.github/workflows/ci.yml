@@ -1,0 +1,42 @@
+# Runs when this starter is the root of your kb-api repository.
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: kb
+          POSTGRES_PASSWORD: kb
+          POSTGRES_DB: kb_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U kb"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+asyncpg://kb:kb@localhost:5432/kb_test
+      TEST_DATABASE_URL: postgresql+asyncpg://kb:kb@localhost:5432/kb_test
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --locked
+      - name: Lint and format
+        run: uv run ruff check . && uv run ruff format --check .
+      - name: Type check
+        run: uv run mypy src
+      - name: Migrations apply cleanly
+        run: uv run alembic upgrade head
+      - name: Tests with coverage
+        run: uv run pytest --cov --cov-fail-under=85
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t kb-api .
