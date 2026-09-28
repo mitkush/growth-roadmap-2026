@@ -72,7 +72,7 @@ self.strict_loading_by_default = true   # or per query: Order.strict_loading.fir
 ### Loading less
 
 - **Aggregate in SQL**, not Ruby: `group(:product_id).sum(:quantity)` instead of loading line items.
-- **`pluck`** when you need values, not models (Step 1 lesson 05: 8× fewer allocations).
+- **`pluck`** when you need values, not models (Step 1 lesson 06: about 4× fewer objects and 8× faster on `/reports/sales`).
 - **`in_batches` / `find_each`** to process big tables in chunks of 1,000.
 - **`insert_all` / `upsert_all`** for bulk writes in one statement. They **skip validations and callbacks** and do not set timestamps unless the columns have defaults (Rails 7+ fills `created_at`/`updated_at` automatically when `record_timestamps` is on, the default).
 - **`load_async`** starts a query on a background thread so several independent queries run in parallel. Each running query needs its **own connection** from the pool (and `config.active_record.async_query_executor` must be set, for example `:global_thread_pool`).

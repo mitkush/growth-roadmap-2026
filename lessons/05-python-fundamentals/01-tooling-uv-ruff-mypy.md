@@ -14,7 +14,9 @@ In 2026 a clean, fast default exists: **uv** does all of it with one tool. Add *
 
 | Ruby / Rails | Python with uv | Notes |
 |---|---|---|
+| `ruby` (the interpreter) | `python` (the **interpreter**: the program that runs your `.py` files) | `uv run python ...` picks the project's version |
 | `rbenv install 3.4.1`, `.ruby-version` | `uv python install 3.13`, `.python-version` | uv downloads and manages Python builds |
+| RubyGems.org | **PyPI** (pypi.org), the Python package registry | `uv add` downloads packages from PyPI |
 | `Gemfile` | `pyproject.toml` (`[project] dependencies`) | Standard Python project file |
 | `Gemfile.lock` | `uv.lock` | Commit it for applications |
 | `bundle install` | `uv sync` | Creates `.venv/` and installs exactly what the lockfile says |
@@ -164,6 +166,8 @@ Add these to your editor (the Ruff and Mypy extensions for VS Code, or your edit
 
 ## 6. Key terms
 
+- **Interpreter**: the program that runs Python code (`python`), like `ruby`.
+- **PyPI**: the Python Package Index (pypi.org), Python's RubyGems.org.
 - **uv**: Python version, environment and dependency manager.
 - **Virtual environment (`.venv`)**: per-project folder with Python and packages.
 - **`pyproject.toml`**: project metadata, dependencies and tool configuration.

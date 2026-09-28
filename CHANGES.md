@@ -204,3 +204,20 @@ Every lesson example was re-run, and the course was checked again against primar
 | Clarified | Step 1: `ruby -retc` replaced by a plain `require "etc"`; Ractor performance claim softened; README states that the daily hours include lesson reading | Easier to follow, and no claim the course could not verify. |
 
 **What was re-run:** a fresh `shop-lab` built from the kit README (full seed; all three endpoints; the load test, which gave 30.4 req/s against the 29.4 in the kit's README); the Step 1 scripts; the kb-api starter's full CI sequence on a clean copy (ruff, mypy, Alembic, 7 tests, 93% coverage); every Step 5 and 6 lesson example, with output compared to the lesson text; Alembic autogenerate, upgrade and downgrade; and every Python block in Steps 7-8, linted against the anthropic 1.8 and mcp 2.2 SDKs (every SDK attribute the lessons use exists).
+
+### Routing check
+
+Checked every link and reference in the course:
+- All 889 relative links and heading anchors resolve (the checker skipped code blocks; the two hits inside inline code are not rendered as links).
+- Every numbered link label matches its target lesson.
+- Every link to another step's lesson says which step it is.
+- Every "Read first" hint names a section, part or quoted heading that exists.
+- Every lesson is listed on its start page and linked from its step plan on the days the start page names.
+- The README links every step, lesson folder, starter, the glossary and the templates, and each start page links back to its step plan.
+- Each glossary term's linked lesson explains it.
+
+Fixed:
+- The Step 8 start page's list of reused lessons now says "Step 7 lesson …". Inside Step 8, a bare "lesson 02" means Step 8's own lesson.
+- The Step 8 plan's first day now links lesson 07 for Options B and C.
+- Step 2's `pluck` note now points to Step 1 lesson 06 with the re-measured numbers.
+- "Interpreter", "PyPI" and the `help wanted` label are now explained in the lessons their glossary entries link to.

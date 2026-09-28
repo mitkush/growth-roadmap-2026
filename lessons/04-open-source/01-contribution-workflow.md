@@ -34,6 +34,8 @@ flowchart TD
 
 ### Issue fit checks
 
+Start from the labels maintainers use for newcomers: **`good first issue`** (small, well-described) and **`help wanted`** (the maintainers want outside help; may be larger). On GitHub, open the repository's Issues tab and filter by label, or search `is:issue is:open label:"good first issue"`. Recent bug reports without a label are also worth reading.
+
 A good first issue for you this week: **reproducible** (clear steps), **scoped** (touches a few files), **wanted** (a maintainer confirmed or labelled it), **recent** (the code has not moved on), **not claimed** (nobody said "I'm on it" in the last few weeks), and ideally **in code you used** (Solid Queue, Kamal, Rails internals from Steps 1-3).
 
 ### Git setup for a fork

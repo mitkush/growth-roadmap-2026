@@ -17,7 +17,7 @@ Step 8 is where everything comes together: you build a small but real AI tool, p
 | 06 | [Writing an eval report](06-writing-an-eval-report.md) | All options |
 | 07 | [Building blocks for Options B and C (GitHub Actions bots)](07-github-bots-for-options-b-and-c.md) | Options B and C only |
 
-Everything from Step 7 is reused: tool design (lesson 02), the agent loop (03), MCP servers (04-05), evals and judges (11-12), cost (13) and security (14).
+Everything from Step 7 is reused (these numbers are Step 7's lessons, in [`lessons/07-agentic-ai/`](../07-agentic-ai/00-start-here.md)): tool design (Step 7 lesson 02), the agent loop (03), MCP servers (04-05), evals and judges (11-12), cost (13) and security (14).
 
 ## The three options in plain language
 
