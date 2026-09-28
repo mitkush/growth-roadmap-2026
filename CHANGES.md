@@ -137,3 +137,24 @@ This file records what changed from the first draft of the goal and why. The ove
 | Added | A README template for the public repository | Good packaging increases the chance of real users. |
 | Added | Blog post #2 is written from the project (14-15 Dec) | This gives the second write-up a natural topic. |
 | Re-scoped | Timeline: 30 Nov - 15 Dec (2 weeks + 2 days), with a feature freeze on 11 Dec | This leaves time to polish, publish and write. |
+
+---
+
+## Revision 2: from task plan to self-contained course
+
+The roadmap was revised so that every task can be followed without searching elsewhere. Each step now has a folder of **lessons** in [`lessons/`](lessons/), and every day in each plan starts with **"Read first:"** links to the lessons it needs. The overall plan, weights and due dates are unchanged. The changes below were needed to make the plan accurate and achievable.
+
+### Phase 1: Steps 7 and 8
+
+| Change | Item | Why |
+|---|---|---|
+| Added | 15 lessons in `lessons/07-agentic-ai/` (API calls, tool calling, agent loop, MCP, embeddings, chunking, pgvector, hybrid search, RAG, evals, LLM-as-judge, cost and latency, security) with a full glossary | You are new to building AI applications; every term the plan uses is now explained with a runnable example. |
+| Added | 8 lessons in `lessons/08-ai-tool-mvp/` (the three options in plain language, Rails introspection, static mode, building the server, A/B evals, packaging, eval report, GitHub bots for Options B/C) | Step 8 needs concepts that Step 7 does not cover (introspection, packaging, releasing, reporting). |
+| Fixed | Model IDs: `claude-opus-5` → **`claude-opus-5-5`** as the default model; `claude-sonnet-5` and `claude-haiku-4-5` kept for comparison and judging | Use the current Opus model. The lessons also explain its API behaviour: thinking is always on, `temperature` and forced `tool_choice` are rejected, and responses must be passed back unchanged in tool loops. |
+| Fixed | MCP Python SDK: `FastMCP` → **`MCPServer`** (`from mcp.server import MCPServer`), `ToolError` for model-visible errors | The current SDK is v2 (2.2 at the time of writing); v1 code (`mcp.server.fastmcp`) fails with an import error. |
+| Changed | Embeddings: `sentence-transformers` → **`fastembed`** with `BAAI/bge-small-en-v1.5` (384 dimensions) | `fastembed` runs on CPU without PyTorch (a much smaller install); same free, local approach. |
+| Re-scoped | Step 7: daily reading time (~30 min) is now inside the 10 hours; end-to-end tasks 20 → **15**; judge calibration 15 → **10-15** labels; `claude-haiku-4-5` comparison made optional; the **CI regression gate moved to Step 8** (Thu 10 Dec) | Reading the lessons takes time out of a 1-week step. Step 8 already builds CI evals, so the gate fits naturally there. |
+| Changed | Step 8 Option A tools: `table_schema` folded into `describe_model`; tools are `describe_model`, `find_routes`, `model_graph`, `search_code` | Fewer, non-overlapping tools are easier for the model to choose between (Step 7 lesson 02). |
+| Added | Step 8 day-by-day plan links each day to its lesson; the RAG workflow and the agent are both compared in the Step 7 report | Required by the revision; comparing workflow and agent is the practical point of Step 7 lesson 03. |
+
+**How the lesson code was checked:** all Python examples were run with the current library versions (anthropic 1.8, mcp 2.2, SQLAlchemy 2.1, pgvector 0.5). SQL was run on PostgreSQL 16 with pgvector, and Ruby on Ruby 3.3 with Rails 8.1. The one exception is live Claude API calls: no API key was available, so those examples were run against a local stand-in for the API that checks the request format. Their sample outputs are labelled "example output". All Mermaid diagrams were rendered to check their syntax.

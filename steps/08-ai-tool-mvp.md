@@ -6,6 +6,12 @@
 
 **Key dates:** choose the option by Sun 29 Nov (end of Step 7) · feature freeze **Fri 11 Dec** · release **Mon 14 Dec** · Blog post #2 + final report **Tue 15 Dec**.
 
+## What you will learn this step
+
+This is the capstone: you turn what you learned into a tool other people can install and use. With the recommended option, **rails-lens**, you will ask a Rails app to describe itself (its models, associations, validations, callbacks and routes) by running a small Ruby script inside it, and serve those facts to AI assistants through an MCP server. You will then prove the tool helps by running the same questions **with and without it** and comparing accuracy, tokens and time, using answers that Rails itself provides. Finally, you will package it so anyone can run it with one command, release `v0.1.0`, write an honest eval report, and turn it into your second blog post. Start with the lessons in [`lessons/08-ai-tool-mvp/`](../lessons/08-ai-tool-mvp/00-start-here.md), which also explain the three project options in plain language.
+
+**Models:** `claude-opus-5-5` for the agent in your evals; `claude-sonnet-5` as the judge for layer-3 tasks (see [Step 7 lesson 12](../lessons/07-agentic-ai/12-llm-as-judge.md)). **SDKs:** `mcp` 2.x (`MCPServer`), `anthropic`.
+
 ## 1. Objective
 
 By 15 Dec you will have:
@@ -25,40 +31,40 @@ By 15 Dec you will have:
 
 ## 3. Day-by-day plan
 
-The plan below is for the **recommended Option A**. For Option B or C, keep the same shape (core → evals → hardening → release) and use that option's milestone table in section 5.
+The plan below is for the **recommended Option A**. For Option B or C, keep the same shape (core → evals → hardening → release), use that option's milestone table in section 5, and read [lesson 07](../lessons/08-ai-tool-mvp/07-github-bots-for-options-b-and-c.md) on Mon 30 Nov instead of lessons 01-03.
 
 ### Week 1 (30 Nov - 6 Dec): core + evals
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 30 Nov** | Scope + introspection | 1. Create the public repo; write `docs/adr/0001-scope.md` with goals and **non-goals** (read-only, no code edits). 2. Write `introspect.rb`: run with `bin/rails runner`, output JSON for models (table, columns, associations, validations, callbacks, scopes), routes and jobs. 3. Run it on `shop-lab`; save the JSON as a test fixture. | 1.5 |
-| **Tue 1 Dec** | Index + static mode | 1. Pydantic models for the codebase index. 2. A static `db/schema.rb` parser as a fallback when the app cannot boot. 3. Cache the index per Git SHA. | 1.5 |
-| **Wed 2 Dec** | MCP tools 1-3 | `describe_model(name)`, `find_routes(path_or_controller)`, `table_schema(table)`. Compact outputs with file paths. Test each in the MCP Inspector. | 1.25 |
-| **Thu 3 Dec** | MCP tools 4-5 | `search_code(pattern, glob)` (a ripgrep wrapper restricted to the repo) and `model_graph(name, depth)` (Mermaid of associations). Unit tests for all tools. | 1.25 |
-| **Fri 4 Dec** | Eval harness 1 | Auto-generate **≥ 100 ground-truth questions** from the introspection JSON of 2 apps (e.g. "Which models does `Order` belong to?"); score tool answers exactly. Send the weekly update. | 1 |
-| **Sat 5 Dec** | Eval harness 2 | Write **20 real developer tasks** (e.g. "Add a `status` filter to the orders index: which files and tables are involved?"). Run the Step 7 agent loop **with** and **without** the MCP tools; record success, tokens, turns and latency. | 2.5 |
-| **Sun 6 Dec** | Review | Read 10 failed traces; list the top 3 causes; plan fixes. | 1 |
+| **Mon 30 Nov** | Scope + introspection | **Read first:** [00 Start here](../lessons/08-ai-tool-mvp/00-start-here.md) (if not read on Sunday), [01 Rails introspection](../lessons/08-ai-tool-mvp/01-rails-introspection-with-rails-runner.md).<br>1. Create the public repo; write `docs/adr/0001-scope.md` with goals and **non-goals** (read-only, no code edits). 2. Add the lesson's `introspect.rb` and run it on `shop-lab` with `bin/rails runner`; save the JSON as `tests/fixtures/rails_index.json`. 3. Run it on a second, larger app you can boot (for example Mastodon, verify it boots locally). | 1.5 |
+| **Tue 1 Dec** | Static mode + cache | **Read first:** [02 Static mode](../lessons/08-ai-tool-mvp/02-static-mode-parsing-schema-rb.md).<br>1. Add the lesson's `schema.rb` parser as the fallback when the app cannot boot; test it on 3 real `schema.rb` files. 2. Cache the index per Git commit SHA. 3. Every tool response includes `mode` (live/static) and `missing` facts. | 1.5 |
+| **Wed 2 Dec** | MCP tools 1-2 | **Read first:** [03 Building the rails-lens server](../lessons/08-ai-tool-mvp/03-building-the-rails-lens-server.md) (and Step 7 [lesson 05](../lessons/07-agentic-ai/05-building-an-mcp-server.md) if needed).<br>1. `describe_model(name)` and `find_routes(query)` with `MCPServer`, compact outputs with file paths, helpful `ToolError`s. 2. In-memory tests with `Client(mcp)`; check both in the MCP Inspector. | 1.25 |
+| **Thu 3 Dec** | MCP tools 3-4 + safety basics | **Read first:** [03 Building the rails-lens server](../lessons/08-ai-tool-mvp/03-building-the-rails-lens-server.md), section "Safety rules in code" (review).<br>1. `model_graph(name)` (Mermaid) and `search_code(pattern, path)` (ripgrep, fixed strings, restricted to the app, secret files excluded). 2. Tests for path traversal and secret files. 3. Connect it to Claude Code and try 3 real questions. | 1.25 |
+| **Fri 4 Dec** | Eval harness 1 | **Read first:** [04 Evaluating your tool](../lessons/08-ai-tool-mvp/04-evaluating-your-tool.md).<br>1. `generate_questions.py`: **≥ 100 ground-truth questions** from the live index of your 2 apps. 2. `score.py` (exact match). 3. Layer-1 contract tests (every association and route in the fixture is returned). Send the weekly update. | 1 |
+| **Sat 5 Dec** | Eval harness 2 | **Read first:** [04 Evaluating your tool](../lessons/08-ai-tool-mvp/04-evaluating-your-tool.md) Part C, and Step 7 [lesson 11](../lessons/07-agentic-ai/11-evals-from-zero.md) section "End-to-end metrics" (review).<br>1. `ab_eval.py`: run 20 generated questions **with** and **without** rails-lens on `claude-opus-5-5`; record accuracy, tokens, turns, cost, time. 2. Write **15 real developer tasks** (layer 3) with deterministic checks (files and callbacks that must be mentioned). 3. Save all results to `evals/results/`. | 2.5 |
+| **Sun 6 Dec** | Review | **Read first:** Step 7 [lesson 03](../lessons/07-agentic-ai/03-agent-loop.md), section on traces (review).<br>Read 10 failed cases or traces; group them into causes; plan fixes for the top 3. | 1 |
 | | | **Week 1 total** | **10** |
 
 ### Week 2 (7 - 13 Dec): harden, package, pilot
 
 | Day | Topic | Concrete tasks | Hours |
 |---|---|---|---|
-| **Mon 7 Dec** | Fix + re-run | Fix the top 3 failure causes (tool descriptions, output shape, missing data); re-run both evals and record the change. | 1.5 |
-| **Tue 8 Dec** | Safety | Path allowlist and traversal tests; never return `config/credentials*`, `.env` or `master.key`; live mode off by default, runs only the bundled script; timeouts on every tool. Add these as eval cases. | 1.5 |
-| **Wed 9 Dec** | Packaging | Installable with `uvx`; config snippets for Claude Code, Claude Desktop and Cursor; `--app-path` and `--mode static\|live` flags. | 1.25 |
-| **Thu 10 Dec** | CI | Lint, types, unit tests + the **deterministic eval on every PR** (fixture app); the agent eval as a manual `workflow_dispatch` job (controls API cost). | 1.25 |
-| **Fri 11 Dec** | **Feature freeze** + docs | README from the template below; `EVALS.md` with results; a short demo GIF or asciinema. Send the weekly update. | 1 |
-| **Sat 12 Dec** | Pilot | 2 teammates use it on the work app (or a real open-source app) for 30 minutes; collect feedback; fix the most important issue. | 2.5 |
-| **Sun 13 Dec** | Buffer | Finish any open item; draft Blog post #2. | 1 |
+| **Mon 7 Dec** | Fix + re-run | **Read first:** [04 Evaluating your tool](../lessons/08-ai-tool-mvp/04-evaluating-your-tool.md), "Keeping the comparison fair" (review).<br>Fix the top 3 failure causes (tool descriptions, output shape, missing data); re-run the A/B eval and record the change. | 1.5 |
+| **Tue 8 Dec** | Safety + judge | **Read first:** Step 7 [lesson 14](../lessons/07-agentic-ai/14-security-and-prompt-injection.md) (review).<br>1. Safety eval cases: `.env`, `master.key`, `credentials.yml.enc`, `../` paths are refused; live mode runs only the bundled script, with a timeout. 2. For layer-3 tasks, add the faithfulness/completeness judge on `claude-sonnet-5` and calibrate it on 10 of your own labels. | 1.5 |
+| **Wed 9 Dec** | Packaging | **Read first:** [05 Packaging and releasing](../lessons/08-ai-tool-mvp/05-packaging-and-releasing.md).<br>1. `src/` layout, `rails-lens index` and `rails-lens serve` commands, `introspect.rb` shipped as package data. 2. `uv build`, then test the **wheel** with `uvx --from dist/...whl`. 3. Config snippets for Claude Code, Claude Desktop and Cursor. | 1.25 |
+| **Thu 10 Dec** | CI + regression gate | **Read first:** [04 Evaluating your tool](../lessons/08-ai-tool-mvp/04-evaluating-your-tool.md) Part D, and Step 7 [lesson 11](../lessons/07-agentic-ai/11-evals-from-zero.md) Part C.<br>1. GitHub Actions: ruff, mypy, pytest (layer-1 contract tests and safety cases) on every PR. 2. The A/B eval as a manual `workflow_dispatch` job (it costs money). 3. A regression check: layer-1 accuracy must stay at 100%, and A/B accuracy in `evals/baseline.json` must not drop by more than 5 points on re-runs (this is the CI gate moved here from Step 7). | 1.25 |
+| **Fri 11 Dec** | **Feature freeze** + docs | **Read first:** [06 Writing an eval report](../lessons/08-ai-tool-mvp/06-writing-an-eval-report.md).<br>README from the template below; `EVALS.md` generated with `report.py`; a short demo GIF or asciinema. Send the weekly update. | 1 |
+| **Sat 12 Dec** | Pilot | **Read first:** [00 Start here](../lessons/08-ai-tool-mvp/00-start-here.md), Option A walkthrough (use it as the pilot script).<br>2 teammates use it on the work app (or a real open-source app) for 30 minutes; collect feedback; fix the most important issue. | 2.5 |
+| **Sun 13 Dec** | Buffer | **Read first:** [06 Writing an eval report](../lessons/08-ai-tool-mvp/06-writing-an-eval-report.md), "Writing the numbers honestly" (review).<br>Finish any open item; draft Blog post #2 from `EVALS.md` ([template](../templates/blog-post-outline.md)). | 1 |
 | | | **Week 2 total** | **10** |
 
 ### Launch (14 - 15 Dec)
 
 | Day | Concrete tasks | Hours |
 |---|---|---|
-| **Mon 14 Dec** | Tag and release `v0.1.0` with release notes; (optional) publish to PyPI; final eval run recorded in `EVALS.md`. | 1.5 |
-| **Tue 15 Dec** | Publish Blog post #2; send the final report to your manager (all 8 steps, links, numbers); update the README tracker to 100%. | 1.5 |
+| **Mon 14 Dec** | **Read first:** [05 Packaging and releasing](../lessons/08-ai-tool-mvp/05-packaging-and-releasing.md), "Releasing v0.1.0 on GitHub".<br>Tag and release `v0.1.0` with release notes (`gh release create`); (optional) publish to PyPI with trusted publishing ([lesson 05](../lessons/08-ai-tool-mvp/05-packaging-and-releasing.md)); final eval run recorded in `EVALS.md`. | 1.5 |
+| **Tue 15 Dec** | **Read first:** [templates/blog-post-outline.md](../templates/blog-post-outline.md) (Blog post #2 outline).<br>Publish Blog post #2; send the final report to your manager (all 8 steps, links, numbers); update the README tracker to 100%. | 1.5 |
 
 ## 4. Topic checklist
 
@@ -85,8 +91,8 @@ flowchart LR
   subgraph Client["MCP client: Claude Code, Cursor, Claude Desktop"]
     LLM["LLM agent"]
   end
-  LLM -- "MCP (stdio)" --> S["rails-lens-mcp server (Python, FastMCP)"]
-  S --> T["Tools: describe_model, find_routes, table_schema, search_code, model_graph"]
+  LLM -- "MCP (stdio)" --> S["rails-lens-mcp server (Python, MCPServer)"]
+  S --> T["Tools: describe_model, find_routes, model_graph, search_code"]
   T --> I["Codebase index (Pydantic, cached per Git SHA)"]
   I -- "live mode" --> R["bin/rails runner introspect.rb (JSON)"]
   I -- "static mode" --> P["schema.rb + routes parser"]
@@ -98,7 +104,7 @@ flowchart LR
 
 | Item | Details |
 |---|---|
-| **Tech stack** | Python 3.13, `mcp` SDK (FastMCP), Pydantic v2, a Ruby introspection script, ripgrep, pytest, GitHub Actions |
+| **Tech stack** | Python 3.13, `mcp` SDK 2.x (`MCPServer`), a Ruby introspection script run with `bin/rails runner`, ripgrep, pytest, GitHub Actions; `anthropic` SDK for the evals |
 | **Eval plan** | (1) **Tool correctness:** ≥ 100 auto-generated questions per app from introspection JSON, exact-match scoring; target ≥ 95%. (2) **Agent A/B:** 20 real tasks with vs without the server; metrics: task success (rubric + calibrated judge), tokens, turns, p95 latency; target +20 points success or −30% tokens. (3) **Safety:** secret files never returned, path traversal blocked, live mode off by default: 100% pass required. |
 | **Milestones** | M1 (2 Dec): index + 3 tools · M2 (5 Dec): 5 tools + both eval harnesses · M3 (8 Dec): fixes + safety · M4 (11 Dec): packaged, CI, docs (freeze) · M5 (14 Dec): pilot feedback fixed, `v0.1.0` |
 
@@ -184,7 +190,7 @@ flowchart LR
 - Read-only by design: <safety statement>
 
 ## Quick start
-    uvx <project-name> --app-path /path/to/rails/app
+    uvx --from <package-name> <command> serve --app /path/to/rails/app
 <Client config snippets: Claude Code, Claude Desktop, Cursor.>
 
 ## How it works
@@ -217,13 +223,14 @@ MIT
 
 ## 7. Curated resources
 
-1. **Model Context Protocol docs and spec** (server concepts, transports, security best practices): https://modelcontextprotocol.io
-2. **MCP Python SDK** (FastMCP servers, Inspector, packaging): https://github.com/modelcontextprotocol/python-sdk
-3. **Claude docs: Tool use** and **Prompt caching**: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview and https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-4. **Rails API: `ActiveRecord::Reflection`** (`reflect_on_all_associations`) and **`ActiveModel::Validations`** (`validators`), for `introspect.rb`: https://api.rubyonrails.org
-5. **GitHub docs: Creating releases** and **Publishing actions in GitHub Marketplace** (Option B/C): https://docs.github.com/en/repositories/releasing-projects-on-github and https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace (verify path)
-6. **uv: Building and publishing a package** (for `uvx` installs and PyPI): https://docs.astral.sh/uv/guides/package/
-7. **Hamel Husain, "Your AI Product Needs Evals"**: https://hamel.dev/blog/posts/evals/
+1. **Lessons for this step**: [`lessons/08-ai-tool-mvp/`](../lessons/08-ai-tool-mvp/00-start-here.md) (read these first).
+2. **Model Context Protocol docs and spec** (server concepts, transports, security best practices): https://modelcontextprotocol.io
+3. **MCP Python SDK** (v2 `MCPServer`, Inspector, testing): https://github.com/modelcontextprotocol/python-sdk
+4. **Claude docs: Tool use** and **Prompt caching**: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview and https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+5. **Rails API: `ActiveRecord::Reflection`** (`reflect_on_all_associations`) and **`ActiveModel::Validations`** (`validators`), for `introspect.rb`: https://api.rubyonrails.org
+6. **GitHub docs: Creating releases** and **Publishing actions in GitHub Marketplace** (Option B/C): https://docs.github.com/en/repositories/releasing-projects-on-github and https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace (verify path)
+7. **uv: Building and publishing a package** (for `uvx` installs and PyPI): https://docs.astral.sh/uv/guides/package/
+8. **Hamel Husain, "Your AI Product Needs Evals"**: https://hamel.dev/blog/posts/evals/
 
 ## 8. Self-check questions
 
