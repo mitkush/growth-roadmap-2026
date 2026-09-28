@@ -1,5 +1,9 @@
 # Blog post outline template
 
+<!-- nav:top -->
+[Course home](../README.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 Use this for both posts (Blog post #1 after Steps 1-2, Blog post #2 after Step 8). Target length: **1,200-2,000 words**, with at least one table or chart of real numbers. Plan about 3 hours: 1 h outline, 1.5 h draft, 0.5 h edit.
 
 ## Before you write
@@ -66,3 +70,10 @@ Repository, docs you relied on, and related posts.
 - [ ] No confidential data or names.
 - [ ] Read it aloud once; cut 10%.
 - [ ] Share the link in the weekly update and in the README tracker.
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](../README.md)
+<!-- nav:end -->

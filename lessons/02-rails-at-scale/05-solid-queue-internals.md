@@ -1,5 +1,9 @@
 # 05 · Solid Queue internals (and Solid Cache, Solid Cable)
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Solid Queue** is Rails 8's default Active Job backend: jobs are rows in a set of database tables, **workers** poll the "ready" table and claim rows with `SELECT ... FOR UPDATE SKIP LOCKED` so they never take the same job twice, and a **supervisor**, **dispatcher** and **scheduler** handle process health, delayed jobs, concurrency limits and recurring jobs.
@@ -241,3 +245,10 @@ HTTP basic auth is **on and closed by default**: without credentials configured,
 - [Solid Queue README](https://github.com/rails/solid_queue) (configuration, concurrency controls, recurring tasks, failed jobs).
 - [Solid Cache README](https://github.com/rails/solid_cache) and [Solid Cable README](https://github.com/rails/solid_cable).
 - [Mission Control – Jobs](https://github.com/rails/mission_control-jobs).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · Partitioning, replicas and sharding](04-partitioning-and-multi-db.md) · [Step 2 lessons](00-start-here.md) · [06 · Kamal 2 architecture and a first deploy →](06-kamal-architecture.md)
+<!-- nav:end -->

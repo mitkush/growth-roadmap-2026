@@ -1,5 +1,9 @@
 # 09 · Full-text, vector and hybrid search
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Full-text search** matches words, **vector search** matches meaning, and **hybrid search** runs both and merges the two ranked lists (usually with **reciprocal rank fusion**, RRF), so you get the strengths of each.
@@ -218,3 +222,10 @@ Same result as the SQL. Keeping a Python version lets you unit-test the merge an
 - PostgreSQL docs: [Full Text Search](https://www.postgresql.org/docs/current/textsearch.html), especially "Controlling Text Search".
 - Cormack, Clarke & Büttcher, "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods" (SIGIR 2009): the original RRF paper.
 - pgvector-python hybrid search examples (full-text + vector with RRF): https://github.com/pgvector/pgvector-python/tree/master/examples/hybrid_search
+
+<!-- nav:bottom -->
+
+---
+
+[← 08 · pgvector and vector indexes](08-pgvector-and-indexes.md) · [Step 7 lessons](00-start-here.md) · [10 · RAG end to end →](10-rag-end-to-end.md)
+<!-- nav:end -->

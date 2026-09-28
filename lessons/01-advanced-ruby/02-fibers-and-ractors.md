@@ -1,5 +1,9 @@
 # 02 · Fibers, the Fiber scheduler and Ractors
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Fibers** are lightweight, cooperatively scheduled units of work inside a thread; with a **Fiber scheduler** (the `async` gem, Falcon) blocking I/O automatically switches to another fiber, giving thread-like I/O concurrency with less overhead; **Ractors** are the opposite tool: experimental, isolated units with **their own GVL** for real CPU parallelism.
@@ -184,3 +188,10 @@ Read this honestly: on this machine and Ruby version, the Ractor version was **s
 - Ruby docs: [Fiber](https://docs.ruby-lang.org/en/3.4/Fiber.html) (including `Fiber::Scheduler`) and the [Ractor guide](https://docs.ruby-lang.org/en/3.4/ractor_md.html).
 - [socketry/async](https://github.com/socketry/async) and [Falcon](https://github.com/socketry/falcon).
 - Ruby 4.0 [NEWS](https://github.com/ruby/ruby/blob/ruby_4_0/NEWS.md), "Ractor" section: `Ractor::Port` added, `Ractor.yield` and `Ractor#take` removed, `Ractor#join` and `Ractor#value` added.
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · The GVL, threads and thread safety](01-gvl-threads-and-thread-safety.md) · [Step 1 lessons](00-start-here.md) · [03 · Puma sizing and honest benchmarks →](03-puma-and-benchmarking.md)
+<!-- nav:end -->

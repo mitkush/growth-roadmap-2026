@@ -1,5 +1,9 @@
 # 10 · Testing FastAPI with a real database
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 `kb-api`'s tests call the app **in memory** with `httpx.AsyncClient` + `ASGITransport` (no server), run every test inside a **database transaction that is rolled back** (like Rails' transactional fixtures), swap the app's session with `dependency_overrides`, and mock **external** HTTP (GitHub) with **respx**.
@@ -210,3 +214,10 @@ No network was used: respx answered every request. In `kb-api`, test the ingesti
 - FastAPI docs: [Testing](https://fastapi.tiangolo.com/tutorial/testing/) and [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/).
 - SQLAlchemy docs: [Joining a Session into an External Transaction (such as for test suites)](https://docs.sqlalchemy.org/en/20/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites).
 - [respx docs](https://lundberg.github.io/respx/).
+
+<!-- nav:bottom -->
+
+---
+
+[← 09 · Full-text search and cursor pagination](09-full-text-search-and-cursor-pagination.md) · [Step 6 lessons](00-start-here.md) · [11 · Docker for Python services →](11-docker-for-python-services.md)
+<!-- nav:end -->

@@ -1,5 +1,9 @@
 # 13 · Cost and latency
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Every model call costs **money** (tokens in and out × price) and **time** (waiting for the first token, then for the rest), and you control both with a few levers: fewer and smaller calls, prompt caching, the right model and effort level, streaming, and the Batch API for offline work.
@@ -257,3 +261,10 @@ What to notice:
 - Claude docs: [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) and [Batch processing](https://platform.claude.com/docs/en/build-with-claude/batch-processing).
 - Claude docs: [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) and [Streaming](https://platform.claude.com/docs/en/build-with-claude/streaming).
 - Claude docs: [Pricing](https://platform.claude.com/docs/en/about-claude/pricing) and [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting).
+
+<!-- nav:bottom -->
+
+---
+
+[← 12 · LLM-as-judge and calibration](12-llm-as-judge.md) · [Step 7 lessons](00-start-here.md) · [14 · Security and prompt injection →](14-security-and-prompt-injection.md)
+<!-- nav:end -->

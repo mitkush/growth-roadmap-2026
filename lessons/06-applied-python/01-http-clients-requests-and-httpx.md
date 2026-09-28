@@ -1,5 +1,9 @@
 # 01 · HTTP clients: requests and httpx
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **`requests`** is the classic, simple, synchronous HTTP client for Python (like Faraday or HTTParty), and **`httpx`** is its modern successor with the same feel plus **async support**, HTTP/2 and a built-in way to test apps in memory; `kb-api` uses httpx.
@@ -184,3 +188,10 @@ In `kb-api`, put the GitHub calls in `services/github_client.py`, with one `http
 - [HTTPX docs](https://www.python-httpx.org/): Quickstart, Clients, Async Support, Timeouts.
 - [Requests docs](https://requests.readthedocs.io/): Quickstart and "Advanced Usage" (Sessions, timeouts).
 - GitHub docs: [Rate limits for the REST API](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 6 lessons: start here](00-start-here.md) · [Step 6 lessons](00-start-here.md) · [02 · asyncio basics →](02-asyncio-basics.md)
+<!-- nav:end -->

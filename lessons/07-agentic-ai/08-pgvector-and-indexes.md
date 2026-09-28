@@ -1,5 +1,9 @@
 # 08 · pgvector and vector indexes
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **pgvector** is a Postgres extension that adds a `vector` column type, distance operators (such as `<=>` for cosine distance) and special indexes (**HNSW**) that make "find the nearest vectors" fast, so you can do vector search inside the database you already use.
@@ -300,3 +304,10 @@ In `kb-api` you will put the `CREATE EXTENSION` and the table/index in an **Alem
 - [pgvector README](https://github.com/pgvector/pgvector): operators, HNSW/IVFFlat options, filtering, performance tuning.
 - [pgvector-python](https://github.com/pgvector/pgvector-python): SQLAlchemy, psycopg and asyncpg integration.
 - Paper (optional, advanced): Malkov & Yashunin, "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs" (2016).
+
+<!-- nav:bottom -->
+
+---
+
+[← 07 · Chunking](07-chunking.md) · [Step 7 lessons](00-start-here.md) · [09 · Full-text, vector and hybrid search →](09-full-text-vector-and-hybrid-search.md)
+<!-- nav:end -->

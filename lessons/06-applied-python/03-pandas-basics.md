@@ -1,5 +1,9 @@
 # 03 · pandas basics
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **pandas** gives you the **DataFrame**, an in-memory table with named columns, and fast operations to filter, group, aggregate, sort and export it, which makes it the standard tool for quick data scripts and reports in Python.
@@ -168,3 +172,10 @@ The `folder` line is the trickiest: `str.rsplit("/", n=1).str[0]` takes everythi
 - pandas docs: [10 minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html).
 - pandas docs: [Group by: split-apply-combine](https://pandas.pydata.org/docs/user_guide/groupby.html).
 - Wes McKinney, *Python for Data Analysis*, 3rd edition (free online at wesmckinney.com/book), chapters 5 and 10.
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · asyncio basics](02-asyncio-basics.md) · [Step 6 lessons](00-start-here.md) · [04 · FastAPI basics →](04-fastapi-basics.md)
+<!-- nav:end -->

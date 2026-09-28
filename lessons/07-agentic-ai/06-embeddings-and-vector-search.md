@@ -1,5 +1,9 @@
 # 06 · Embeddings and vector search
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **embedding** turns a piece of text into a list of numbers (a **vector**) so that texts with **similar meaning get similar numbers**; **vector search** finds the texts whose vectors are closest to the vector of your question.
@@ -235,3 +239,10 @@ The top result shares almost no words with the question ("saved" vs "persists", 
 - Claude docs: [Embeddings](https://platform.claude.com/docs/en/build-with-claude/embeddings): why and how to choose a provider.
 - [fastembed](https://github.com/qdrant/fastembed): supported models and usage.
 - Jay Alammar, "The Illustrated Word2vec" (jalammar.github.io, verify): a visual intuition for how meaning becomes vectors.
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · Building an MCP server for kb-api](05-building-an-mcp-server.md) · [Step 7 lessons](00-start-here.md) · [07 · Chunking →](07-chunking.md)
+<!-- nav:end -->

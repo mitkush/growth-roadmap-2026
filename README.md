@@ -1,5 +1,9 @@
 # Growth Roadmap 2026: Rails Depth, Python and AI Engineering
 
+<!-- nav:top -->
+**Jump to:** [How to use this roadmap](#how-to-use-this-roadmap) · [Steps](#steps) · [Calendar](#week-by-week-calendar) · [Progress tracker](#progress-tracker) · [Start Step 1](steps/01-advanced-ruby.md) · [Glossary](GLOSSARY.md)
+<!-- nav:end -->
+
 **Goal:** Strengthen Core Engineering Skills in Ruby on Rails and Build Hands-on Python & AI Skills
 **Timeline:** Mon 28 Sep 2026 to Tue 15 Dec 2026 (11 weeks + 2 days)
 **Time budget:** 8-10 hours per week (1-1.5 h on weekdays, 3-4 h at the weekend)
@@ -19,6 +23,7 @@ This repository is a **self-contained course**: every concept a step asks you to
 3. **Use the starter kits** so you spend your time on the topic, not on setup: [`starters/shop-lab/`](starters/shop-lab/README.md) (Rails app with 2.8M rows of seed data and deliberately slow endpoints, Steps 1-3) and [`starters/kb-api/`](starters/kb-api/README.md) (a working FastAPI skeleton with tests and CI, Steps 6-7).
 4. **On Sunday, self-check.** Answer the step's self-check questions and the "Check your understanding" questions of that week's lessons without looking (answers are folded under each lesson). Anything you cannot answer is next week's first 20 minutes.
 5. **Look up any unfamiliar term** in the combined [GLOSSARY.md](GLOSSARY.md), which links each term to the lesson that explains it.
+6. **Move around with the navigation bars.** Every step plan, lesson, starter and template has a bar at the top (course home › step plan › step lessons · glossary) and at the bottom (previous and next lesson, or previous and next step), so you never need to come back here to find the next page.
 
 | Step | Lessons | Starter |
 |---|---|---|

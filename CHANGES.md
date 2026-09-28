@@ -1,5 +1,9 @@
 # CHANGES: how the original 8 steps were refined
 
+<!-- nav:top -->
+[Course home](README.md) · [Glossary](GLOSSARY.md)
+<!-- nav:end -->
+
 This file records what changed from the first draft of the goal and why. The overall shape is unchanged: **Rails depth, then contribution, then Python, then AI, with the AI tool as the capstone**. The end date is still **15 Dec 2026**.
 
 ## Summary
@@ -221,3 +225,25 @@ Fixed:
 - The Step 8 plan's first day now links lesson 07 for Options B and C.
 - Step 2's `pluck` note now points to Step 1 lesson 06 with the re-measured numbers.
 - "Interpreter", "PyPI" and the `help wanted` label are now explained in the lessons their glossary entries link to.
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](README.md)
+<!-- nav:end -->
+
+### Navigation on every page
+
+| Change | Item | Why |
+|---|---|---|
+| Added | A navigation bar at the top and bottom of every step plan, lesson, start page, starter README, template, `CHANGES.md` and `GLOSSARY.md`. Lessons show course home › step plan › step lessons at the top, and previous/next lesson at the bottom (the last lesson links back to the step plan). Start pages link to the previous and next step's lessons. Step plans link to the previous and next step. The README has a "Jump to" line. | So you can follow the course page to page without going back to the README. |
+| Added | `scripts/build_nav.py` generates the bars between `<!-- nav:top -->` / `<!-- nav:bottom -->` markers; re-running it only replaces those regions (tested: only additions, and a second run changes nothing). `scripts/build_glossary.py` runs it after rebuilding the glossary. | Keeps the links correct if lessons are added or renamed. |
+| Clarified | Weekly update template: "copy everything between the two horizontal lines" | The tips (and now the navigation links) are also below the first line. |
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](README.md)
+<!-- nav:end -->

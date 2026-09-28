@@ -1,5 +1,9 @@
 # 06 · Kamal 2 architecture and a first deploy
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Kamal** deploys your app as **Docker containers** to any server you can reach over SSH: it builds and pushes an image, starts the new container next to the old one, and **kamal-proxy** (a small HTTP proxy on each server) switches traffic to the new container once its health check (`/up`) passes, which gives zero-downtime deploys without a PaaS or Kubernetes.
@@ -179,3 +183,10 @@ A useful mental check before each deploy: "If the old code runs for 30 more seco
 - [Kamal documentation](https://kamal-deploy.org) (configuration reference, commands, hooks) and `kamal docs proxy` in your terminal.
 - [kamal-proxy](https://github.com/basecamp/kamal-proxy) README (how the switch and drain work).
 - Rails Guides: [Getting Started: Deploying to production](https://guides.rubyonrails.org/getting_started.html#deploying-to-production).
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · Solid Queue internals (and Solid Cache, Solid Cable)](05-solid-queue-internals.md) · [Step 2 lessons](00-start-here.md) · [Back to the Step 2 plan →](../../steps/02-rails-at-scale.md)
+<!-- nav:end -->

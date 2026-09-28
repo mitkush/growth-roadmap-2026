@@ -1,5 +1,9 @@
 # 07 · Building blocks for Options B and C (GitHub bots)
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 Read this lesson only if you chose **Option B** (`rails-pr-reviewer`) or **Option C** (`ci-triage-agent`). Both are **bots that run in GitHub Actions**, read something from GitHub (a PR diff or CI logs), think, and write back (review comments or a PR comment).
 
 ## 1. In one sentence
@@ -292,3 +296,10 @@ For **Option C**, the equivalent deterministic core is a flakiness signal from h
 - GitHub docs: [Events that trigger workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows) and [Automatic token authentication](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token).
 - GitHub REST API: [Pull request reviews](https://docs.github.com/en/rest/pulls/reviews) and [Workflow jobs](https://docs.github.com/en/rest/actions/workflow-jobs).
 - [strong_migrations](https://github.com/ankane/strong_migrations): a catalogue of unsafe migration patterns to turn into rules.
+
+<!-- nav:bottom -->
+
+---
+
+[← 06 · Writing an eval report](06-writing-an-eval-report.md) · [Step 8 lessons](00-start-here.md) · [Back to the Step 8 plan →](../../steps/08-ai-tool-mvp.md)
+<!-- nav:end -->

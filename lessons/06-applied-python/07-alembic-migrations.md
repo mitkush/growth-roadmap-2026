@@ -1,5 +1,9 @@
 # 07 · Alembic migrations
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Alembic** is SQLAlchemy's migration tool (Python's `db/migrate`): each migration is a Python file with `upgrade()` and `downgrade()` functions, and `alembic revision --autogenerate` can **draft** one by comparing your models with the database, which you then **review** and apply with `alembic upgrade head`.
@@ -237,3 +241,10 @@ def downgrade() -> None:
 - Alembic docs: [Tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html) and [Auto Generating Migrations](https://alembic.sqlalchemy.org/en/latest/autogenerate.html) ("What does Autogenerate Detect (and what does it not detect?)").
 - Alembic docs: [The Importance of Naming Constraints](https://alembic.sqlalchemy.org/en/latest/naming.html).
 - Alembic cookbook: [Using Asyncio with Alembic](https://alembic.sqlalchemy.org/en/latest/cookbook.html#using-asyncio-with-alembic).
+
+<!-- nav:bottom -->
+
+---
+
+[← 06 · SQLAlchemy 2.x with asyncio](06-sqlalchemy-async.md) · [Step 6 lessons](00-start-here.md) · [08 · Dependency injection in FastAPI →](08-dependency-injection.md)
+<!-- nav:end -->

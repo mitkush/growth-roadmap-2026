@@ -1,5 +1,9 @@
 # shop-lab starter kit (Steps 1-3)
 
+<!-- nav:top -->
+[Course home](../../README.md) · Used in: [Step 1 plan](../../steps/01-advanced-ruby.md) · [Step 2 plan](../../steps/02-rails-at-scale.md) · [Step 3 plan](../../steps/03-architecture-system-design.md)
+<!-- nav:end -->
+
 `shop-lab` is a small Rails 8 API with **realistic data volumes** and three deliberately slow endpoints, so Steps 1-3 have something real to measure and fix. This folder does not contain a whole Rails app; it contains the files to **add to a fresh `rails new` app**, plus the exact commands.
 
 Tested with Ruby 3.3, Rails 8.1 and PostgreSQL 16. Full-size seeding took about 40 seconds on the test machine.
@@ -98,3 +102,10 @@ More threads made the I/O-bound endpoint 5× faster and did nothing for the CPU-
 - The data is random but reproducible in shape; re-running `db:seed` truncates and re-creates everything.
 - Do not deploy the `benchmark` environment; it exists only for local measurement.
 - In Step 3 you move models into packs (`packs/catalog`, `packs/ordering`); see [Step 3 lesson 01](../../lessons/03-architecture/01-bounded-contexts-and-packwerk.md).
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](../../README.md) · [Step 1 plan](../../steps/01-advanced-ruby.md) · [Step 2 plan](../../steps/02-rails-at-scale.md) · [Step 3 plan](../../steps/03-architecture-system-design.md)
+<!-- nav:end -->

@@ -1,5 +1,9 @@
 # 02 · asyncio basics
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **asyncio** lets one Python thread run many I/O-bound tasks concurrently: functions declared with `async def` pause at every `await` (for example while waiting for the network or the database), and the **event loop** runs other tasks in the meantime.
@@ -197,3 +201,10 @@ Read the timings: three 0.3 s waits take 0.9 s when awaited one after another, b
 - Python docs: [Coroutines and Tasks](https://docs.python.org/3/library/asyncio-task.html) (`gather`, `timeout`, `to_thread`).
 - FastAPI docs: [Concurrency and async / await](https://fastapi.tiangolo.com/async/) (an excellent plain-English explanation).
 - *Fluent Python*, 2nd ed., chapter 21 ("Asynchronous Programming").
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · HTTP clients: requests and httpx](01-http-clients-requests-and-httpx.md) · [Step 6 lessons](00-start-here.md) · [03 · pandas basics →](03-pandas-basics.md)
+<!-- nav:end -->

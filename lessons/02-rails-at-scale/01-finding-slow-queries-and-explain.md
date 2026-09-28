@@ -1,5 +1,9 @@
 # 01 · Finding slow queries: pg_stat_statements and EXPLAIN ANALYZE
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **`pg_stat_statements`** tells you *which* queries cost the database the most time in total, and **`EXPLAIN (ANALYZE, BUFFERS)`** tells you *why* one query is slow by showing the plan Postgres chose, with real timings, row counts and memory/disk reads for every step.
@@ -215,3 +219,10 @@ The output starts with the SQL Rails generated, then the same plan as above.
 - PostgreSQL docs: [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html) and [pg_stat_statements](https://www.postgresql.org/docs/current/pgstatstatements.html).
 - [explain.dalibo.com](https://explain.dalibo.com) (plan visualiser) and [pgMustard's EXPLAIN glossary](https://www.pgmustard.com/docs/explain).
 - Andrew Atkinson, *High Performance PostgreSQL for Rails*, chapters on query optimisation.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 2 lessons: start here](00-start-here.md) · [Step 2 lessons](00-start-here.md) · [02 · Indexes, N+1 queries and batching →](02-indexes-and-n-plus-one.md)
+<!-- nav:end -->

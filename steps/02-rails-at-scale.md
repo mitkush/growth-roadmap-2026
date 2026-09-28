@@ -1,5 +1,9 @@
 # Step 2: Rails at Scale: PostgreSQL, Solid Queue & Kamal
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 2 of 8 · [Step 2 lessons](../lessons/02-rails-at-scale/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 10% | Mon 5 Oct - Sun 11 Oct 2026 | ~10 h |
@@ -145,3 +149,10 @@ Continue in `shop-lab` from Step 1 (or your work app's staging copy). The [start
 - Add **PgBouncer** in transaction mode in front of Postgres and fix what breaks.
 - Try UUIDv7 primary keys (`uuidv7()` is built into PostgreSQL 18) and compare index size with random UUIDs. UUIDv7 values start with a timestamp, so new keys land at the end of the B-tree index like `bigint` ids, while random (v4) UUIDs land anywhere and cause more page splits and a larger, less cache-friendly index ([lesson 02](../lessons/02-rails-at-scale/02-indexes-and-n-plus-one.md) explains B-trees).
 - Benchmark Solid Cache vs Redis for your top cached fragment.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 1: Advanced Ruby: Concurrency, YJIT & Profiling](01-advanced-ruby.md) · [Step 2 lessons](../lessons/02-rails-at-scale/00-start-here.md) · [Step 3: Rails Architecture: Modular Monolith & Observability →](03-architecture-system-design.md)
+<!-- nav:end -->

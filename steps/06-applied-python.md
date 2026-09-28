@@ -1,5 +1,9 @@
 # Step 6: Applied Python: FastAPI Service with Tests & CI
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 6 of 8 · [Step 6 lessons](../lessons/06-applied-python/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 15% | Mon 9 Nov - Sun 22 Nov 2026 (2 weeks) | ~20 h |
@@ -196,3 +200,10 @@ The starter already contains the workflow: [`starters/kb-api/.github/workflows/c
 - Add OpenTelemetry instrumentation for FastAPI and SQLAlchemy and send traces to the same `otel-lgtm` stack as Step 3.
 - Deploy `kb-api` with Kamal (it deploys any Docker image, not only Rails apps).
 - Add ETag/`If-None-Match` support to `GET /documents/{id}`.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 5: Python Fundamentals for Rubyists](05-python-fundamentals.md) · [Step 6 lessons](../lessons/06-applied-python/00-start-here.md) · [Step 7: Agentic AI Engineering: Tools, MCP, RAG & Evals →](07-agentic-ai-engineering.md)
+<!-- nav:end -->

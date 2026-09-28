@@ -1,5 +1,9 @@
 # 09 · Iterators and generators
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **generator** is a function containing `yield` that produces values **one at a time, on demand**, so you can process a 2 GB log file or an endless stream in constant memory. It is Python's version of Ruby's `Enumerator` and `.lazy`, **not** Ruby's `yield`-to-a-block.
@@ -200,3 +204,10 @@ Notice three things: the pipeline object is a `generator` until you consume it; 
 - The Python Tutorial: [Iterators](https://docs.python.org/3/tutorial/classes.html#iterators) and [Generators](https://docs.python.org/3/tutorial/classes.html#generators).
 - Python docs: [`itertools`](https://docs.python.org/3/library/itertools.html) (including the "recipes" section).
 - *Fluent Python*, 2nd ed., chapter 17 ("Iterators, Generators, and Classic Coroutines").
+
+<!-- nav:bottom -->
+
+---
+
+[← 08 · Classes and dataclasses](08-classes-and-dataclasses.md) · [Step 5 lessons](00-start-here.md) · [10 · Type hints and mypy →](10-type-hints-and-mypy.md)
+<!-- nav:end -->

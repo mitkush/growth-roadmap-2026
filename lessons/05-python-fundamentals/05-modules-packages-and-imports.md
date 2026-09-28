@@ -1,5 +1,9 @@
 # 05 · Modules, packages and imports
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Every `.py` file is a **module**, a folder of modules is a **package**, and nothing is loaded automatically: each file **imports** exactly the names it uses, which replaces Rails autoloading and Ruby's `require`.
@@ -220,3 +224,10 @@ Add `katas = "katas.cli:main"` under `[project.scripts]` in `pyproject.toml`, ru
 - The Python Tutorial: [Modules](https://docs.python.org/3/tutorial/modules.html).
 - Python docs: [`argparse` tutorial](https://docs.python.org/3/howto/argparse.html).
 - uv docs: [Creating projects](https://docs.astral.sh/uv/concepts/projects/init/) (application vs packaged application layouts).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · Functions, arguments and closures](04-functions-and-closures.md) · [Step 5 lessons](00-start-here.md) · [06 · Testing with pytest →](06-testing-with-pytest.md)
+<!-- nav:end -->

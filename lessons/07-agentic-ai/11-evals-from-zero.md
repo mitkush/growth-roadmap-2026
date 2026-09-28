@@ -1,5 +1,9 @@
 # 11 · Evals from zero
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **eval** is an automated test for an AI system that runs a fixed set of cases (a **golden dataset**) and produces **scores** (for example "recall@5 = 0.82, task pass rate = 75%"), so you can tell whether a change made things better or worse.
@@ -302,3 +306,10 @@ Run it in GitHub Actions after ingesting a small, committed set of fixture docum
 - Hamel Husain, ["Your AI Product Needs Evals"](https://hamel.dev/blog/posts/evals/): practical, from a practitioner.
 - Claude docs: "Define success criteria" and "Create strong empirical evaluations" (under Test & evaluate at platform.claude.com, verify paths).
 - Anthropic engineering: "Demystifying evals for AI agents" (anthropic.com/engineering, verify).
+
+<!-- nav:bottom -->
+
+---
+
+[← 10 · RAG end to end](10-rag-end-to-end.md) · [Step 7 lessons](00-start-here.md) · [12 · LLM-as-judge and calibration →](12-llm-as-judge.md)
+<!-- nav:end -->

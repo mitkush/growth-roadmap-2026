@@ -1,5 +1,9 @@
 # 02 · Static mode: parsing `schema.rb` without booting Rails
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Static mode** builds a smaller codebase index by **reading files** (mainly `db/schema.rb` and the list of files under `app/`) instead of booting the app, so `rails-lens` still works when the app cannot start.
@@ -207,3 +211,10 @@ Write tests for the cases that break naive parsers: a table with `id: false`, a 
 
 - Rails Guides: [Active Record Migrations → Schema Dumping and You](https://guides.rubyonrails.org/active_record_migrations.html#schema-dumping-and-you).
 - Python docs: [`re` module](https://docs.python.org/3/library/re.html) (named groups) and [`dataclasses`](https://docs.python.org/3/library/dataclasses.html).
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · Rails introspection with `bin/rails runner`](01-rails-introspection-with-rails-runner.md) · [Step 8 lessons](00-start-here.md) · [03 · Building the rails-lens MCP server →](03-building-the-rails-lens-server.md)
+<!-- nav:end -->

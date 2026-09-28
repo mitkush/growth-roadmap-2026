@@ -1,5 +1,9 @@
 # kb-api starter (Step 6)
 
+<!-- nav:top -->
+[Course home](../../README.md) · Used in: [Step 6 plan](../../steps/06-applied-python.md) · [Step 7 plan](../../steps/07-agentic-ai-engineering.md) (course links: they stop working after you copy this folder into your own repository)
+<!-- nav:end -->
+
 A small, working starting point for the Step 6 project: a FastAPI service with async SQLAlchemy 2.x, Alembic migrations, API-key auth, cursor pagination, tests against a real Postgres, Docker and GitHub Actions. It implements **one resource** (`documents`) end to end. You build the rest (sources, GitHub ingestion, full-text search) during Step 6, following [the Step 6 plan](../../steps/06-applied-python.md) and [its lessons](../../lessons/06-applied-python/00-start-here.md).
 
 Tested with Python 3.13, uv 0.8, FastAPI 0.141, SQLAlchemy 2.1, Alembic 1.20 and PostgreSQL 16 with pgvector (the compose file uses the Postgres 17 image). The Docker image build itself was not run while preparing the starter (Docker was not available), so treat the first `docker compose up --build` as part of your Thursday task.
@@ -61,3 +65,10 @@ curl -s 'localhost:8000/documents?limit=10'
 | Tests (one file / one test) | `uv run pytest tests/test_documents.py::test_cursor_pagination` |
 | Lint, format, types | `uv run ruff check . && uv run ruff format . && uv run mypy src` |
 | Everything in Docker | `docker compose up --build` |
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](../../README.md) · [Step 6 plan](../../steps/06-applied-python.md) · [Step 7 plan](../../steps/07-agentic-ai-engineering.md)
+<!-- nav:end -->

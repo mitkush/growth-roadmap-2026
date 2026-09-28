@@ -1,5 +1,9 @@
 # Step 3 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 Steps 1 and 2 made `shop-lab` fast. This week makes it **well-structured and observable**: clear boundaries inside the monolith (Packwerk), events that are never lost or processed twice (the transactional outbox), an API that behaves correctly under retries and load, and tracing that lets you follow one request from HTTP into a background job. You also practise writing decisions down (ADRs), which is how senior engineers make their thinking visible.
 
 **How to use this folder:** each day in [the Step 3 plan](../../steps/03-architecture-system-design.md) starts with **"Read first:"** links. Read the lesson, run its example on `shop-lab`, then do the day's tasks. Outputs in these lessons are real, from `shop-lab` on Rails 8.1.4 unless marked otherwise.
@@ -61,3 +65,10 @@ flowchart LR
 | **Cardinality** | The number of distinct values of a label; high cardinality makes metrics expensive. | [04](04-opentelemetry.md) |
 | **ADR** | Architecture Decision Record: a short document of one decision, its context and consequences. | [05](05-adrs-and-design-docs.md) |
 | **Design doc** | A short proposal describing a problem, options and a plan before building. | [05](05-adrs-and-design-docs.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 2 lessons](../02-rails-at-scale/00-start-here.md) · [Step 3 plan](../../steps/03-architecture-system-design.md) · [First lesson: 01 · Bounded contexts and Packwerk →](01-bounded-contexts-and-packwerk.md) · [Step 4 lessons →](../04-open-source/00-start-here.md)
+<!-- nav:end -->

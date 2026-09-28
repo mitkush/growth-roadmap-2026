@@ -1,5 +1,9 @@
 # 02 · Tool calling from first principles
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Tool calling lets the model **ask your code to run a function** (for example "search the docs for X") by returning a structured request; your code runs it and sends the result back, and the model uses that result to answer.
@@ -235,3 +239,10 @@ answer: Order 1042 has shipped with DHL. Order 1043 is still being processed.
 - Claude docs: [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview): definitions, parallel calls, strict tools, errors.
 - Claude docs: [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs): when you want JSON back without a tool.
 - Anthropic engineering blog: ["Writing effective tools for AI agents"](https://www.anthropic.com/engineering/writing-tools-for-agents) (naming, descriptions, returning useful errors, evaluating tools).
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · How an LLM API call works](01-how-an-llm-api-call-works.md) · [Step 7 lessons](00-start-here.md) · [03 · The agent loop →](03-agent-loop.md)
+<!-- nav:end -->

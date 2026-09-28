@@ -1,5 +1,9 @@
 # 05 · Packaging and releasing a tool others can install
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Packaging turns your project folder into something a stranger can install and run with **one command** (`uvx --from rails-lens-mcp rails-lens serve`), and releasing means giving each version a number, notes and a public, installable artifact.
@@ -276,3 +280,10 @@ After that, anyone can run `uvx --from rails-lens-mcp rails-lens serve`.
 - uv docs: [Building and publishing a package](https://docs.astral.sh/uv/guides/package/) and [Tools (`uvx`)](https://docs.astral.sh/uv/guides/tools/).
 - Python Packaging User Guide: [Writing your `pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) and [Publishing with GitHub Actions (trusted publishing)](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/).
 - [Semantic Versioning](https://semver.org) and [Keep a Changelog](https://keepachangelog.com).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · Evaluating your tool: ground truth and A/B evals](04-evaluating-your-tool.md) · [Step 8 lessons](00-start-here.md) · [06 · Writing an eval report →](06-writing-an-eval-report.md)
+<!-- nav:end -->

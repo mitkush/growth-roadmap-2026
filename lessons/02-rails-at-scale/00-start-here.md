@@ -1,5 +1,9 @@
 # Step 2 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 In Step 1 you measured Ruby. This week you look at the part of a Rails app that is usually the real bottleneck: **PostgreSQL**. You will find the queries that cost the most, read their plans, fix them with indexes, run migrations without taking the site down, and then look at the Rails 8 infrastructure around the database: **Solid Queue** (jobs stored in Postgres) and **Kamal** (deploying containers to your own server).
 
 **How to use this folder:** each day in [the Step 2 plan](../../steps/02-rails-at-scale.md) starts with **"Read first:"** links. Read the lesson (20-30 minutes), run its example on `shop-lab` (built with the [shop-lab starter kit](../../starters/shop-lab/README.md) in Step 1), then do the day's tasks.
@@ -82,3 +86,10 @@ Four questions answer most database problems:
 | **kamal-proxy** | Kamal's HTTP proxy on each server; switches traffic to the new container after its health check passes. | [06](06-kamal-architecture.md) |
 | **Role / accessory** | A group of servers running the app with one command (web, job) / a supporting service such as Postgres. | [06](06-kamal-architecture.md) |
 | **Zero-downtime deploy** | Starting the new version and switching traffic without dropping requests. | [06](06-kamal-architecture.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 1 lessons](../01-advanced-ruby/00-start-here.md) · [Step 2 plan](../../steps/02-rails-at-scale.md) · [First lesson: 01 · Finding slow queries: pg_stat_statements and EXPLAIN ANALYZE →](01-finding-slow-queries-and-explain.md) · [Step 3 lessons →](../03-architecture/00-start-here.md)
+<!-- nav:end -->

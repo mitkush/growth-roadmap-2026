@@ -1,5 +1,9 @@
 # 01 · The GVL, threads and thread safety
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 In CRuby, the **GVL (Global VM Lock)** lets only **one thread per process run Ruby code at a time**, but a thread **releases** it while it waits on I/O (database, HTTP, `sleep`); so threads speed up I/O-bound work, not CPU-bound work, and they still need locks to be **thread-safe**.
@@ -255,3 +259,10 @@ safe rates loaded 1 time(s)
 - Jean Boussier (byroot), "So You Want To Remove The GVL?" and related posts on the GVL and Puma sizing: https://byroot.github.io/ (verify titles).
 - Ruby docs: [Thread](https://docs.ruby-lang.org/en/3.4/Thread.html), [Thread::Queue](https://docs.ruby-lang.org/en/3.4/Thread/Queue.html), [Mutex](https://docs.ruby-lang.org/en/3.4/Thread/Mutex.html).
 - Rails Guides: [Threading and Code Execution in Rails](https://guides.rubyonrails.org/threading_and_code_execution.html).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 1 lessons: start here](00-start-here.md) · [Step 1 lessons](00-start-here.md) · [02 · Fibers, the Fiber scheduler and Ractors →](02-fibers-and-ractors.md)
+<!-- nav:end -->

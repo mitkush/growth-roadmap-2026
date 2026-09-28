@@ -1,5 +1,9 @@
 # Step 7: Agentic AI Engineering: Tools, MCP, RAG & Evals
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 7 of 8 · [Step 7 lessons](../lessons/07-agentic-ai/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 15% | Mon 23 Nov - Sun 29 Nov 2026 | ~10 h (including ~30 min of reading each day) |
@@ -167,3 +171,10 @@ Work in a branch `ai` of `kb-api`. Once, add the dependencies: `uv add anthropic
 - Build the same MCP server in Ruby with the official Ruby SDK (`mcp` gem, https://github.com/modelcontextprotocol/ruby-sdk, verify) and compare.
 - Add OpenTelemetry spans around model calls and tools, with token counts as attributes.
 - Try an eval framework (for example UK AISI's Inspect, verify) and compare it with your pytest-based harness.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 6: Applied Python: FastAPI Service with Tests & CI](06-applied-python.md) · [Step 7 lessons](../lessons/07-agentic-ai/00-start-here.md) · [Step 8: AI Tool MVP with Evals, Published on GitHub →](08-ai-tool-mvp.md)
+<!-- nav:end -->

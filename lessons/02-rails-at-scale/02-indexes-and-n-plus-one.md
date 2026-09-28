@@ -1,5 +1,9 @@
 # 02 · Indexes, N+1 queries and batching
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **index** is a sorted copy of some columns that lets Postgres find rows without reading the whole table (the right column order, a `WHERE` condition or extra `INCLUDE` columns make it fit a query exactly), and most remaining Active Record slowness comes from **too many queries** (N+1) or **too many rows loaded into Ruby**, which `includes`, `strict_loading`, grouping in SQL and batching fix.
@@ -211,3 +215,10 @@ Order.includes(:line_items).strict_loading.first.line_items.size   # => 2, no er
 - PostgreSQL docs: [Indexes](https://www.postgresql.org/docs/current/indexes.html) (especially "Multicolumn Indexes", "Partial Indexes", "Index-Only Scans and Covering Indexes").
 - Rails Guides: [Active Record Query Interface: Eager Loading Associations](https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations) and [strict_loading](https://guides.rubyonrails.org/active_record_querying.html#strict-loading).
 - Andrew Atkinson, *High Performance PostgreSQL for Rails*, chapters on indexes; [PgHero](https://github.com/ankane/pghero) for unused and duplicate index reports.
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · Finding slow queries: pg_stat_statements and EXPLAIN ANALYZE](01-finding-slow-queries-and-explain.md) · [Step 2 lessons](00-start-here.md) · [03 · Locks and safe migrations →](03-locks-and-safe-migrations.md)
+<!-- nav:end -->

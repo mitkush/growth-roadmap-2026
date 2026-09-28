@@ -1,5 +1,9 @@
 # 05 · Building an MCP server for kb-api
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 You add a small file to `kb-api` that wraps your **existing service functions** as MCP tools, so Claude Code, Claude Desktop and your own agent can all search and read your knowledge base through one implementation.
@@ -301,3 +305,10 @@ In Step 8 you will use exactly this pattern to compare an agent **with** and **w
 - MCP Python SDK docs: https://py.sdk.modelcontextprotocol.io (servers, clients, testing).
 - Claude Code docs: [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp).
 - MCP spec: [Security best practices](https://modelcontextprotocol.io) (under Specification).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · MCP concepts](04-mcp-concepts.md) · [Step 7 lessons](00-start-here.md) · [06 · Embeddings and vector search →](06-embeddings-and-vector-search.md)
+<!-- nav:end -->

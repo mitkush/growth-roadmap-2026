@@ -1,6 +1,10 @@
 # Weekly update template
 
-Send every Friday. Takes about 5 minutes if you keep a learning log. Copy everything below the line.
+<!-- nav:top -->
+[Course home](../README.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
+Send every Friday. Takes about 5 minutes if you keep a learning log. Copy everything between the two horizontal lines (not the tips or links below them).
 
 ---
 
@@ -37,3 +41,10 @@ Send every Friday. Takes about 5 minutes if you keep a learning log. Copy everyt
 - Keep it under 150 words. Link to details instead of pasting them.
 - Be honest about status. A 🟡 with a plan is better than a surprise 🔴 later.
 - If you are behind, say what you will cut (stretch goals first) to stay on the due date.
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](../README.md)
+<!-- nav:end -->

@@ -1,5 +1,9 @@
 # 03 · Collections and comprehensions
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Python's four core collections are `list` (Array), `tuple` (frozen Array), `dict` (Hash) and `set` (Set), and instead of Ruby's block methods (`map`, `select`, `each_with_object`) you mostly use **comprehensions** and a few built-in functions.
@@ -210,3 +214,10 @@ Line 5 uses `defaultdict(int)`: a dict that creates a missing key with `int()`, 
 - The Python Tutorial: [Data Structures](https://docs.python.org/3/tutorial/datastructures.html).
 - Python docs: [`collections`](https://docs.python.org/3/library/collections.html) (`Counter`, `defaultdict`, `deque`).
 - *Fluent Python*, 2nd ed., chapter 2 ("An Array of Sequences") and chapter 3 ("Dictionaries and Sets").
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Values, strings, truthiness and equality](02-values-and-truthiness.md) · [Step 5 lessons](00-start-here.md) · [04 · Functions, arguments and closures →](04-functions-and-closures.md)
+<!-- nav:end -->

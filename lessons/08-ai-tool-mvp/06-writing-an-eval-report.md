@@ -1,5 +1,9 @@
 # 06 · Writing an eval report
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **eval report** (`EVALS.md`) explains, for a reader who was not there, **what you measured, how, what you found and what you did not measure**, so that anyone can judge (and reproduce) the claim that your tool works.
@@ -202,3 +206,10 @@ Copy this into your repository and fill it in. The numbers below are **placehold
 - Hamel Husain, ["Your AI Product Needs Evals"](https://hamel.dev/blog/posts/evals/) (sections on looking at data and reporting).
 - The Step 1 perf report you wrote: reuse its structure.
 - [templates/blog-post-outline.md](../../templates/blog-post-outline.md): turn this report into Blog post #2.
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · Packaging and releasing a tool others can install](05-packaging-and-releasing.md) · [Step 8 lessons](00-start-here.md) · [07 · Building blocks for Options B and C (GitHub bots) →](07-github-bots-for-options-b-and-c.md)
+<!-- nav:end -->

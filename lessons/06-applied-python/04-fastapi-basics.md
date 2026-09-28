@@ -1,5 +1,9 @@
 # 04 · FastAPI basics
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **FastAPI** is a web framework where each route is a Python function whose **type hints** declare the path parameters, query parameters and request body; FastAPI validates the input, converts the output to JSON, and generates interactive **OpenAPI docs** at `/docs` automatically.
@@ -219,3 +223,10 @@ uv run fastapi dev mini_api.py      # then open http://127.0.0.1:8000/docs
 - [FastAPI Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/): "First Steps" to "Bigger Applications - Multiple Files".
 - FastAPI docs: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/) and [Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/).
 - FastAPI docs: [Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · pandas basics](03-pandas-basics.md) · [Step 6 lessons](00-start-here.md) · [05 · Pydantic v2 and settings →](05-pydantic-and-settings.md)
+<!-- nav:end -->

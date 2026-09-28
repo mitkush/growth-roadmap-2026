@@ -1,5 +1,9 @@
 # 04 · Partitioning, replicas and sharding
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 When one table or one database gets too big or too busy, you can **partition** a table (split it into child tables by a key such as month, inside one database), add **read replicas** (read-only copies that take read traffic), or **shard** (split the data across several databases), and each brings a new cost, so you choose the smallest step that solves a measured problem.
@@ -228,3 +232,10 @@ Rails blocked the write itself (before sending it). With the database selector e
 - PostgreSQL docs: [Table Partitioning](https://www.postgresql.org/docs/current/ddl-partitioning.html).
 - Rails Guides: [Multiple Databases with Active Record](https://guides.rubyonrails.org/active_record_multiple_databases.html) (replicas, automatic switching, horizontal sharding).
 - [pg_partman](https://github.com/pgpartman/pg_partman) for automatic partition maintenance.
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · Locks and safe migrations](03-locks-and-safe-migrations.md) · [Step 2 lessons](00-start-here.md) · [05 · Solid Queue internals (and Solid Cache, Solid Cable) →](05-solid-queue-internals.md)
+<!-- nav:end -->

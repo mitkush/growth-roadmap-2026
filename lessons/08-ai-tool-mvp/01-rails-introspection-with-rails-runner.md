@@ -1,5 +1,9 @@
 # 01 · Rails introspection with `bin/rails runner`
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Introspection** means asking the running Rails app to describe itself (every model, its columns, associations, validations and callbacks, every route and job) by running a small Ruby script with `bin/rails runner` and saving the answer as JSON.
@@ -286,3 +290,10 @@ If this raises `subprocess.CalledProcessError` or `subprocess.TimeoutExpired`, l
 - Rails API: [`ActiveRecord::Reflection::ClassMethods`](https://api.rubyonrails.org/classes/ActiveRecord/Reflection/ClassMethods.html) and [`ActiveModel::Validations::ClassMethods#validators`](https://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html).
 - Rails Guides: [Autoloading and Reloading Constants](https://guides.rubyonrails.org/autoloading_and_reloading_constants.html) (eager loading).
 - Rails Guides: [The Rails Command Line](https://guides.rubyonrails.org/command_line.html) (`bin/rails runner`).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 8 lessons: start here](00-start-here.md) · [Step 8 lessons](00-start-here.md) · [02 · Static mode: parsing `schema.rb` without booting Rails →](02-static-mode-parsing-schema-rb.md)
+<!-- nav:end -->

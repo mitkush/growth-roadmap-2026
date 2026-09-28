@@ -1,5 +1,9 @@
 # Step 3: Rails Architecture: Modular Monolith & Observability
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 3 of 8 · [Step 3 lessons](../lessons/03-architecture/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 10% | Mon 12 Oct - Sun 18 Oct 2026 | ~10 h |
@@ -147,3 +151,10 @@ Continue in `shop-lab`. Target contexts: **Catalog** (products), **Ordering** (o
 - Enforce API contracts in CI by validating responses against the rswag OpenAPI file.
 - Extract `packs/billing` as a Rails engine and compare the developer experience with a Packwerk pack.
 - Write a short internal tech-talk from your ADRs (15 minutes).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 2: Rails at Scale: PostgreSQL, Solid Queue & Kamal](02-rails-at-scale.md) · [Step 3 lessons](../lessons/03-architecture/00-start-here.md) · [Step 4: Open-Source Contribution to the Ruby Ecosystem →](04-open-source-contribution.md)
+<!-- nav:end -->

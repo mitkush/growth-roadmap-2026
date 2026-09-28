@@ -1,5 +1,9 @@
 # Step 8 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 Step 8 is where everything comes together: you build a small but real AI tool, prove it works with evals, and publish it. This page explains the **three project options in plain language**, with a walkthrough of what each one looks like to a user, so you can choose with confidence. The other lessons in this folder teach what you need to build the recommended option.
 
 **How to use this folder:** read this page on Sun 29 Nov (the last day of Step 7) and choose your option. Then follow the "Read first:" links in [the Step 8 plan](../../steps/08-ai-tool-mvp.md) each day.
@@ -151,3 +155,10 @@ If you are unsure, choose **A**. The plan, milestones and most lessons in this f
 | **Flaky test** | A test that sometimes passes and sometimes fails without code changes. | [07](07-github-bots-for-options-b-and-c.md) |
 
 All Step 7 terms (tool, agent, MCP, embedding, recall@k, LLM-as-judge and so on) are in the [Step 7 glossary](../07-agentic-ai/00-start-here.md#glossary).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 7 lessons](../07-agentic-ai/00-start-here.md) · [Step 8 plan](../../steps/08-ai-tool-mvp.md) · [First lesson: 01 · Rails introspection with `bin/rails runner` →](01-rails-introspection-with-rails-runner.md)
+<!-- nav:end -->

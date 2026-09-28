@@ -1,5 +1,9 @@
 # 01 · Tooling: uv, ruff and mypy
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **uv** installs Python and manages each project's dependencies and virtual environment (like rbenv + Bundler), **ruff** lints and formats your code (like RuboCop), and **mypy** checks your type hints (like Sorbet or Steep).
@@ -210,3 +214,10 @@ Add these to your editor (the Ruff and Mypy extensions for VS Code, or your edit
 - [uv docs](https://docs.astral.sh/uv/): "Working on projects" and "Installing Python".
 - [ruff docs](https://docs.astral.sh/ruff/): rules reference and configuration.
 - [mypy docs](https://mypy.readthedocs.io/en/stable/): "Getting started" and the cheat sheet.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 5 lessons: start here](00-start-here.md) · [Step 5 lessons](00-start-here.md) · [02 · Values, strings, truthiness and equality →](02-values-and-truthiness.md)
+<!-- nav:end -->

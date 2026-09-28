@@ -1,5 +1,9 @@
 # Step 5: Python Fundamentals for Rubyists
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 5 of 8 · [Step 5 lessons](../lessons/05-python-fundamentals/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 15% | Mon 26 Oct - Sun 8 Nov 2026 (2 weeks) | ~20 h |
@@ -191,3 +195,10 @@ Port a small Ruby script or Rake task **you wrote at work** (100-300 lines), rem
 - Try **pyright** (or Astral's `ty` type checker, verify its status) alongside mypy and compare the errors.
 - Add property-based tests to P4 with **Hypothesis**.
 - Package the port and publish it to TestPyPI.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 4: Open-Source Contribution to the Ruby Ecosystem](04-open-source-contribution.md) · [Step 5 lessons](../lessons/05-python-fundamentals/00-start-here.md) · [Step 6: Applied Python: FastAPI Service with Tests & CI →](06-applied-python.md)
+<!-- nav:end -->

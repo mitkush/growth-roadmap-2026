@@ -1,5 +1,9 @@
 # 03 · Locks and safe migrations
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 2 plan](../../steps/02-rails-at-scale.md) › [Step 2 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Postgres uses **row locks** so two transactions cannot change the same row at once and **table locks** so schema changes do not collide with queries; a migration that waits for a strong table lock makes **every later query on that table wait behind it**, so you write migrations that take weak locks, give up quickly (`lock_timeout`) and let `strong_migrations` catch the dangerous ones.
@@ -240,3 +244,10 @@ The safe version ran in 0.24 s on 200k orders without blocking writes. For your 
 - PostgreSQL docs: [Explicit Locking](https://www.postgresql.org/docs/current/explicit-locking.html) (table of conflicting modes).
 - [strong_migrations README](https://github.com/ankane/strong_migrations) (every unsafe operation with the safe alternative).
 - Rails Guides: [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html) and the API docs for [`ActiveRecord::Locking::Pessimistic`](https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html) and [`Optimistic`](https://api.rubyonrails.org/classes/ActiveRecord/Locking/Optimistic.html).
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Indexes, N+1 queries and batching](02-indexes-and-n-plus-one.md) · [Step 2 lessons](00-start-here.md) · [04 · Partitioning, replicas and sharding →](04-partitioning-and-multi-db.md)
+<!-- nav:end -->

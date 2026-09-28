@@ -1,5 +1,9 @@
 # 08 · Dependency injection in FastAPI
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A FastAPI **dependency** is a function that FastAPI calls **before** your route to provide something the route needs (a database session, the current user, settings); you declare it with `Depends`, FastAPI resolves the whole chain for each request, and tests can **override** any dependency.
@@ -230,3 +234,10 @@ Line 1 shows the order: the session was opened **once** (even though both `get_c
 - FastAPI docs: [Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/) (including "Dependencies with yield" and "Dependencies in path operation decorators").
 - FastAPI docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/advanced/testing-dependencies/).
 - FastAPI docs: [Security - First Steps](https://fastapi.tiangolo.com/tutorial/security/first-steps/) (for real authentication later).
+
+<!-- nav:bottom -->
+
+---
+
+[← 07 · Alembic migrations](07-alembic-migrations.md) · [Step 6 lessons](00-start-here.md) · [09 · Full-text search and cursor pagination →](09-full-text-search-and-cursor-pagination.md)
+<!-- nav:end -->

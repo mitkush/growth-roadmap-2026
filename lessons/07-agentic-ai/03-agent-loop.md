@@ -1,5 +1,9 @@
 # 03 · The agent loop
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **agent** is a loop in your code that keeps calling the model, running the tools it asks for and sending back the results, **until the model says it is done** (or until your safety limits stop it).
@@ -333,3 +337,10 @@ Build the manual loop first (this lesson), then rewrite it with the Tool Runner 
 - Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents): workflows vs agents, common patterns.
 - Claude docs: [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the Tool Runner.
 - [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python): `tool_runner` examples.
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Tool calling from first principles](02-tool-calling.md) · [Step 7 lessons](00-start-here.md) · [04 · MCP concepts →](04-mcp-concepts.md)
+<!-- nav:end -->

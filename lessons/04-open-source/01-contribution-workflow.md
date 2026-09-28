@@ -1,5 +1,9 @@
 # 01 · The contribution workflow: fork, test suite, PR, review
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 4 plan](../../steps/04-open-source-contribution.md) › [Step 4 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Contributing to an open-source project means: agree with maintainers that a change is wanted, **fork** the repository, get its **test suite running** locally, write a **failing test** that shows the problem, make the smallest fix, open a **PR** that is easy to review, and respond to **review** until it is merged.
@@ -187,3 +191,10 @@ Write this into your `contribution-notes.md`: setup commands, suite time, how to
 - Rails Guides: [Contributing to Ruby on Rails](https://guides.rubyonrails.org/contributing_to_ruby_on_rails.html) (setup, bug report templates, the PR process).
 - GitHub Docs: [Contributing to a project](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) (fork and pull request flow).
 - The `CONTRIBUTING.md` of each project on your shortlist.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 4 lessons: start here](00-start-here.md) · [Step 4 lessons](00-start-here.md) · [Back to the Step 4 plan →](../../steps/04-open-source-contribution.md)
+<!-- nav:end -->

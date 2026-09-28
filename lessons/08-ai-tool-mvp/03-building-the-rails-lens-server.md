@@ -1,5 +1,9 @@
 # 03 · Building the rails-lens MCP server
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 `rails-lens` is an MCP server with a handful of **read-only tools** (`describe_model`, `find_routes`, `model_graph`, `search_code`) that answer from a cached **codebase index** of a Rails app, so an AI assistant gets precise facts in one tool call instead of grepping around.
@@ -342,3 +346,10 @@ Then ask: "Using rails-lens, what happens when an Order is created?"
 - MCP Python SDK docs: https://py.sdk.modelcontextprotocol.io (tools, structured output, testing).
 - ripgrep user guide: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
 - Python docs: [`pathlib.Path.resolve` and `is_relative_to`](https://docs.python.org/3/library/pathlib.html).
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Static mode: parsing `schema.rb` without booting Rails](02-static-mode-parsing-schema-rb.md) · [Step 8 lessons](00-start-here.md) · [04 · Evaluating your tool: ground truth and A/B evals →](04-evaluating-your-tool.md)
+<!-- nav:end -->

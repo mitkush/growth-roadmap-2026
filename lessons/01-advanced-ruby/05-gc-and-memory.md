@@ -1,5 +1,9 @@
 # 05 · GC, heap slots and memory
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Every Ruby object lives in a **heap slot**; the **garbage collector** (GC) frees objects nobody references, mostly with cheap **minor** collections of young objects and occasionally expensive **major** ones, so the most effective memory and latency optimisation is simply **allocating fewer objects**, while process memory (RSS) also depends on `malloc` behaviour you can improve with **jemalloc** or `MALLOC_ARENA_MAX`.
@@ -177,3 +181,10 @@ Try on `shop-lab` (Saturday's task): run the endpoint under load for 5 minutes w
 - Ruby docs: [GC](https://docs.ruby-lang.org/en/3.4/GC.html) (`GC.stat`, `GC.stat_heap`, `GC.compact`).
 - [Shopify/autotuner](https://github.com/Shopify/autotuner).
 - Nate Berkopec, "Malloc Can Double Multi-threaded Ruby Program Memory Usage" (speedshop.co, verify title).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · YJIT](04-yjit.md) · [Step 1 lessons](00-start-here.md) · [06 · Profiling: Vernier, stackprof and memory_profiler →](06-profiling.md)
+<!-- nav:end -->

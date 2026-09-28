@@ -1,5 +1,9 @@
 # 07 · Errors, files and `with`
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Python raises and catches **exceptions** with `try/except/else/finally` (Ruby's `begin/rescue/else/ensure`), and uses **`with` blocks** to open and reliably close files and other resources, while `pathlib.Path` handles file paths.
@@ -215,3 +219,10 @@ Notice `error.__cause__`: because of `raise ... from error`, the domain error st
 - The Python Tutorial: [Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html) and [Reading and Writing Files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files).
 - Python docs: [`pathlib`](https://docs.python.org/3/library/pathlib.html), [`csv`](https://docs.python.org/3/library/csv.html), [`json`](https://docs.python.org/3/library/json.html).
 - *Fluent Python*, 2nd ed., chapter 18 ("with, match, and else Blocks").
+
+<!-- nav:bottom -->
+
+---
+
+[← 06 · Testing with pytest](06-testing-with-pytest.md) · [Step 5 lessons](00-start-here.md) · [08 · Classes and dataclasses →](08-classes-and-dataclasses.md)
+<!-- nav:end -->

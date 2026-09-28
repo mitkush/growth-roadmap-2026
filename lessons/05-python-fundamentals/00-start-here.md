@@ -1,5 +1,9 @@
 # Step 5 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 These lessons teach Python from the fundamentals, **for someone who already programs well in Ruby**. Every lesson compares Python with Ruby, so you learn the differences rather than re-learning programming. They move fast on what is the same, and slow down on what trips Rubyists up.
 
 **How to use this folder:** every day in [the Step 5 plan](../../steps/05-python-fundamentals.md) starts with **"Read first:"** links. Read the lesson (20-40 minutes), type and run its example yourself (do not copy-paste; typing builds the habits), then do the day's tasks.
@@ -93,3 +97,10 @@ Python's culture values explicitness. Run `python -c "import this"` to see its d
 | **Decorator** | `@something` above a function: a function that wraps another function. | [11](11-decorators-and-context-managers.md) |
 | **Structural pattern matching** | `match value: case {...}:` (like Ruby's `case ... in`). | [12](12-pattern-matching-and-enums.md) |
 | **Enum** | A fixed set of named constants (instead of Ruby symbols). | [12](12-pattern-matching-and-enums.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 4 lessons](../04-open-source/00-start-here.md) · [Step 5 plan](../../steps/05-python-fundamentals.md) · [First lesson: 01 · Tooling: uv, ruff and mypy →](01-tooling-uv-ruff-mypy.md) · [Step 6 lessons →](../06-applied-python/00-start-here.md)
+<!-- nav:end -->

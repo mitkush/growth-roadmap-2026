@@ -1,5 +1,9 @@
 # Step 6 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 In Step 6 you build **`kb-api`**, a real service, in Python. Every tool in this step has a Rails counterpart you already know well, so the lessons are organised around one question: **"What is the Rails equivalent, and where does it differ?"**
 
 **How to use this folder:** each day in [the Step 6 plan](../../steps/06-applied-python.md) starts with **"Read first:"** links. Read the lesson (20-40 minutes), run its example, then work on `kb-api`. You do not start from an empty folder: the **[kb-api starter](../../starters/kb-api/README.md)** is a small, tested service (one resource, migrations, auth, tests, Docker, CI) that you extend.
@@ -101,3 +105,10 @@ A request's journey, the way you would describe it in Rails:
 | **Coverage** | The share of code lines executed by the tests. | [10](10-testing-fastapi.md) |
 | **Multi-stage Docker build** | Build in one image, copy only the result into a small final image. | [11](11-docker-for-python-services.md) |
 | **Service container (CI)** | A database container that GitHub Actions starts next to your job. | [12](12-github-actions-ci.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 5 lessons](../05-python-fundamentals/00-start-here.md) · [Step 6 plan](../../steps/06-applied-python.md) · [First lesson: 01 · HTTP clients: requests and httpx →](01-http-clients-requests-and-httpx.md) · [Step 7 lessons →](../07-agentic-ai/00-start-here.md)
+<!-- nav:end -->

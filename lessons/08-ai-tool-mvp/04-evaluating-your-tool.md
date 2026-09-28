@@ -1,5 +1,9 @@
 # 04 · Evaluating your tool: ground truth and A/B evals
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 8 plan](../../steps/08-ai-tool-mvp.md) › [Step 8 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 You prove your tool is useful by running **the same tasks with and without it** (an **A/B eval**) and comparing accuracy, tokens, turns, cost and time, using **ground truth** that, for rails-lens, comes for free from Rails itself.
@@ -387,3 +391,10 @@ jobs:
 - Step 7 lessons [11 Evals from zero](../07-agentic-ai/11-evals-from-zero.md) and [12 LLM-as-judge](../07-agentic-ai/12-llm-as-judge.md).
 - Claude docs: [Batch processing](https://platform.claude.com/docs/en/build-with-claude/batch-processing) to halve the cost of large eval runs.
 - Anthropic engineering: "Writing effective tools for agents" (anthropic.com/engineering, verify): how Anthropic evaluates tools with realistic tasks.
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · Building the rails-lens MCP server](03-building-the-rails-lens-server.md) · [Step 8 lessons](00-start-here.md) · [05 · Packaging and releasing a tool others can install →](05-packaging-and-releasing.md)
+<!-- nav:end -->

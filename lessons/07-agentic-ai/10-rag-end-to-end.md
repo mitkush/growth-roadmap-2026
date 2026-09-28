@@ -1,5 +1,9 @@
 # 10 · RAG end to end
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **RAG (retrieval-augmented generation)** means: **search your own data first**, put the most relevant pieces into the prompt, and ask the model to **answer only from those pieces, citing them**.
@@ -239,3 +243,10 @@ The second question shows the most important behaviour of a good RAG system: whe
 - Claude docs: [Citations](https://platform.claude.com/docs/en/build-with-claude/citations): the API can return structured citations when you pass documents as `document` blocks.
 - Anthropic, "Introducing Contextual Retrieval" (anthropic.com/news, verify): improving chunk retrieval with added context.
 - Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents): the "augmented LLM" pattern behind RAG.
+
+<!-- nav:bottom -->
+
+---
+
+[← 09 · Full-text, vector and hybrid search](09-full-text-vector-and-hybrid-search.md) · [Step 7 lessons](00-start-here.md) · [11 · Evals from zero →](11-evals-from-zero.md)
+<!-- nav:end -->

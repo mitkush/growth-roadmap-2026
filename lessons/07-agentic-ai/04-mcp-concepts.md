@@ -1,5 +1,9 @@
 # 04 · MCP concepts
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **MCP (Model Context Protocol)** is an open standard that lets you write your tools and data access **once, as an MCP server**, and use them from **any** AI application that speaks MCP: Claude Code, Claude Desktop, IDEs, or your own agent.
@@ -232,3 +236,10 @@ It prints a local URL. Open it, click **Connect**, then **Tools → search_docum
 - [modelcontextprotocol.io](https://modelcontextprotocol.io): introduction, architecture, and the specification (including security best practices).
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) and its docs at https://py.sdk.modelcontextprotocol.io (v2 migration guide included).
 - [MCP Inspector](https://github.com/modelcontextprotocol/inspector).
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · The agent loop](03-agent-loop.md) · [Step 7 lessons](00-start-here.md) · [05 · Building an MCP server for kb-api →](05-building-an-mcp-server.md)
+<!-- nav:end -->

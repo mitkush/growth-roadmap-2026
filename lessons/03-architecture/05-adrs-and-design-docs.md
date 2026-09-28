@@ -1,5 +1,9 @@
 # 05 · ADRs and one-page design docs
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) › [Step 3 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **Architecture Decision Record (ADR)** is a short, numbered Markdown file that records **one** significant technical decision with its context, the options considered and the consequences, and a **one-page design doc** proposes a change before you build it, so that decisions can be reviewed now and understood a year later.
@@ -144,3 +148,10 @@ Link the ADR from the PR that introduces Packwerk, and from your weekly update.
 - Michael Nygard, ["Documenting Architecture Decisions"](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) (the original ADR post).
 - [adr.github.io](https://adr.github.io/) (templates including MADR, and tools).
 - Will Larson, *Staff Engineer*, the chapters on writing design documents and engineering strategy.
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · OpenTelemetry for Rails](04-opentelemetry.md) · [Step 3 lessons](00-start-here.md) · [Back to the Step 3 plan →](../../steps/03-architecture-system-design.md)
+<!-- nav:end -->

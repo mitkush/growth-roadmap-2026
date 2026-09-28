@@ -1,5 +1,9 @@
 # 04 · Functions, arguments and closures
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Python functions are defined with `def`, must `return` explicitly, take positional and keyword arguments (with `*` and `**` for extras), and are ordinary objects you can pass around, which is how Python does most of what Ruby does with blocks.
@@ -250,3 +254,10 @@ Line 3 is the one to remember: the buggy version prints `['a', 'b']` **twice**. 
 - The Python Tutorial: [Defining Functions](https://docs.python.org/3/tutorial/controlflow.html#defining-functions) and "More on Defining Functions".
 - Python docs: [`functools`](https://docs.python.org/3/library/functools.html) (`partial`, `lru_cache`, `cache`, `wraps`).
 - *Fluent Python*, 2nd ed., chapter 7 ("Functions as First-Class Objects") and chapter 9 ("Decorators and Closures").
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · Collections and comprehensions](03-collections-and-comprehensions.md) · [Step 5 lessons](00-start-here.md) · [05 · Modules, packages and imports →](05-modules-packages-and-imports.md)
+<!-- nav:end -->

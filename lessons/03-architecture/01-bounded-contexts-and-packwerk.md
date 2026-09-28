@@ -1,5 +1,9 @@
 # 01 · Bounded contexts and Packwerk
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) › [Step 3 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **bounded context** is a part of the business with its own model and vocabulary (Catalog, Ordering, Billing); **Packwerk** lets you turn those contexts into **packs** inside one Rails app and fails CI when code reaches across a boundary it has not declared or uses another pack's private classes.
@@ -213,3 +217,10 @@ bin/packwerk check           # "No offenses detected"; add this command to CI
 - [Packwerk README and USAGE](https://github.com/Shopify/packwerk) and [packwerk-extensions](https://github.com/rubyatscale/packwerk-extensions).
 - [Ruby at Scale](https://github.com/rubyatscale) tools, including `packs-rails`.
 - Vlad Khononov, *Learning Domain-Driven Design*, chapters 1-4 (bounded contexts, context maps).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 3 lessons: start here](00-start-here.md) · [Step 3 lessons](00-start-here.md) · [02 · Events and the transactional outbox →](02-events-and-outbox.md)
+<!-- nav:end -->

@@ -1,5 +1,9 @@
 # 07 · Chunking
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Chunking** means cutting each document into smaller, self-contained pieces (**chunks**, usually a few paragraphs) **before** you embed them, so that search can return the exact part of a document that answers a question.
@@ -220,3 +224,10 @@ In `kb-api`, call `chunk_markdown()` during ingestion, then embed `chunk.for_emb
 
 - Anthropic engineering: "Introducing Contextual Retrieval" (anthropic.com/news, verify): adding context to chunks before embedding, with measured gains.
 - pgvector-python examples, including hybrid search: https://github.com/pgvector/pgvector-python/tree/master/examples
+
+<!-- nav:bottom -->
+
+---
+
+[← 06 · Embeddings and vector search](06-embeddings-and-vector-search.md) · [Step 7 lessons](00-start-here.md) · [08 · pgvector and vector indexes →](08-pgvector-and-indexes.md)
+<!-- nav:end -->

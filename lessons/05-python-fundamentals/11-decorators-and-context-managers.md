@@ -1,5 +1,9 @@
 # 11 · Decorators and context managers
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **decorator** (`@retry(times=3)` above a function) is a function that takes a function and returns a wrapped version of it, and a **context manager** (used with `with`) runs setup code before a block and guaranteed cleanup after it; together they replace much of what Ruby does with blocks, `around` callbacks and `ensure`.
@@ -257,3 +261,10 @@ Two details to notice: `@counted` counted **one** call even though `retry` tried
 - Python docs: [`functools.wraps`](https://docs.python.org/3/library/functools.html#functools.wraps) and [`contextlib`](https://docs.python.org/3/library/contextlib.html).
 - Python docs: [The `with` statement](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement).
 - *Fluent Python*, 2nd ed., chapter 9 ("Decorators and Closures") and chapter 18 ("with, match, and else Blocks").
+
+<!-- nav:bottom -->
+
+---
+
+[← 10 · Type hints and mypy](10-type-hints-and-mypy.md) · [Step 5 lessons](00-start-here.md) · [12 · Pattern matching and enums →](12-pattern-matching-and-enums.md)
+<!-- nav:end -->

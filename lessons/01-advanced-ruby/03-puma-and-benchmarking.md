@@ -1,5 +1,9 @@
 # 03 · Puma sizing and honest benchmarks
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Puma serves requests with **worker processes** (for parallel CPU work) each running **threads** (for overlapping I/O waits); you choose the numbers by **measuring** throughput and latency percentiles under realistic load, with a repeatable benchmark method, and you size the **database pool** to match.
@@ -164,3 +168,10 @@ With [oha](https://github.com/hatoo/oha), the equivalent is `oha -z 15s -c 16 --
 - Puma docs: [Deployment engineering](https://github.com/puma/puma/blob/main/docs/deployment.md) and [Configuration](https://github.com/puma/puma#configuration).
 - Rails Guides: [Tuning Performance for Deployment](https://guides.rubyonrails.org/tuning_performance_for_deployment.html).
 - Nate Berkopec, *The Complete Guide to Rails Performance* (Puma, Little's Law, memory).
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Fibers, the Fiber scheduler and Ractors](02-fibers-and-ractors.md) · [Step 1 lessons](00-start-here.md) · [04 · YJIT →](04-yjit.md)
+<!-- nav:end -->

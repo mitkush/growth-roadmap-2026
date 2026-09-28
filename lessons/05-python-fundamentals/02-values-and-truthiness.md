@@ -1,5 +1,9 @@
 # 02 · Values, strings, truthiness and equality
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Python's basic values (numbers, strings, `None`, booleans) look like Ruby's, but **truthiness**, **equality vs identity**, **integer division** and **indentation as syntax** work differently enough to cause real bugs.
@@ -212,3 +216,10 @@ Before moving on, explain each line to yourself. For example: `0.1 + 0.2` is not
 - The Python Tutorial: [An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html) and [More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html).
 - Python docs: [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth-value-testing).
 - *Fluent Python*, 2nd ed., chapter 6 ("Object References, Mutability, and Recycling").
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · Tooling: uv, ruff and mypy](01-tooling-uv-ruff-mypy.md) · [Step 5 lessons](00-start-here.md) · [03 · Collections and comprehensions →](03-collections-and-comprehensions.md)
+<!-- nav:end -->

@@ -1,5 +1,9 @@
 # 01 · How an LLM API call works
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 You send the model a **conversation** (a list of messages) over HTTP, and it sends back **the next assistant message**, plus counts of how many tokens it read and wrote, which is what you pay for.
@@ -253,3 +257,10 @@ Notice that the second call's input tokens grew: it includes the first question 
 - Claude docs: [Messages API and models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing).
 - Claude docs: [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) and [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking).
 - [Anthropic Python SDK README](https://github.com/anthropics/anthropic-sdk-python): client options, errors, retries.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 7 lessons: start here](00-start-here.md) · [Step 7 lessons](00-start-here.md) · [02 · Tool calling from first principles →](02-tool-calling.md)
+<!-- nav:end -->

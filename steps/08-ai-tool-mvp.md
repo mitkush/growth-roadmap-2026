@@ -1,5 +1,9 @@
 # Step 8: AI Tool MVP with Evals, Published on GitHub
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 8 of 8 · [Step 8 lessons](../lessons/08-ai-tool-mvp/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 15% | Mon 30 Nov - Tue 15 Dec 2026 (2 weeks + 2 days) | ~23 h |
@@ -263,3 +267,10 @@ MIT
 - Add Streamable HTTP transport with authentication for a shared team server.
 - Run the eval on a third, large open-source Rails app and publish the results.
 - Turn Blog post #2 into a 10-minute internal talk or a Ruby meetup talk.
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 7: Agentic AI Engineering: Tools, MCP, RAG & Evals](07-agentic-ai-engineering.md) · [Step 8 lessons](../lessons/08-ai-tool-mvp/00-start-here.md) · [Progress tracker →](../README.md#progress-tracker)
+<!-- nav:end -->

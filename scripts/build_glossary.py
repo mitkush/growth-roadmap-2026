@@ -51,3 +51,8 @@ for key, term, meaning, step, lessons in entries:
     out.append(f"| {term} | {meaning} | {step} | {lessons} |")
 (ROOT / "GLOSSARY.md").write_text("\n".join(out) + "\n")
 print(f"{len(entries)} terms written to GLOSSARY.md")
+
+# Re-add the navigation bars (the glossary file was just rewritten).
+import runpy  # noqa: E402
+
+runpy.run_path(str(ROOT / "scripts" / "build_nav.py"))

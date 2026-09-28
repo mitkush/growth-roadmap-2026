@@ -1,5 +1,9 @@
 # 06 · Profiling: Vernier, stackprof and memory_profiler
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **profiler** tells you **where** time and memory go: sampling CPU/wall profilers (**Vernier**, **stackprof**) show which methods the time is spent in, often as a **flame graph**, and **memory_profiler** shows which lines allocate objects; together they turn "this endpoint is slow" into "these three lines are the problem".
@@ -291,3 +295,10 @@ The single-pass version is 1.37× faster, and the ranges (721 ± 10%, 526 ± 11%
 - [Vernier](https://github.com/jhawthorn/vernier) (README: usage, Rails integration) and the [Firefox Profiler docs](https://profiler.firefox.com/docs/).
 - [stackprof](https://github.com/tmm1/stackprof) and [memory_profiler](https://github.com/SamSaffron/memory_profiler).
 - Brendan Gregg, "Flame Graphs" (brendangregg.com/flamegraphs.html): where flame graphs come from and how to read them.
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · GC, heap slots and memory](05-gc-and-memory.md) · [Step 1 lessons](00-start-here.md) · [Back to the Step 1 plan →](../../steps/01-advanced-ruby.md)
+<!-- nav:end -->

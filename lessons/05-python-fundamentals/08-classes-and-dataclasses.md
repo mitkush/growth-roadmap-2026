@@ -1,5 +1,9 @@
 # 08 · Classes and dataclasses
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Python classes work much like Ruby's, but `self` is written explicitly as the first parameter, attributes are public by default, **dunder methods** (`__init__`, `__repr__`, `__eq__`, `__len__`...) hook your objects into language features, and **`@dataclass`** writes the boilerplate for simple data objects.
@@ -238,3 +242,10 @@ Every line of output comes from a dunder method you wrote or `@dataclass` genera
 - The Python Tutorial: [Classes](https://docs.python.org/3/tutorial/classes.html).
 - Python docs: [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) and the [data model](https://docs.python.org/3/reference/datamodel.html) (the full list of dunder methods).
 - *Fluent Python*, 2nd ed., chapter 1 ("The Python Data Model"), chapter 5 ("Data Class Builders") and chapter 11 ("A Pythonic Object").
+
+<!-- nav:bottom -->
+
+---
+
+[← 07 · Errors, files and `with`](07-errors-files-and-with.md) · [Step 5 lessons](00-start-here.md) · [09 · Iterators and generators →](09-iterators-and-generators.md)
+<!-- nav:end -->

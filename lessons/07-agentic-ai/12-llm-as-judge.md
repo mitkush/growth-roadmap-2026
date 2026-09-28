@@ -1,5 +1,9 @@
 # 12 · LLM-as-judge and calibration
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 An **LLM judge** is a model call that grades another model's answer against a **written rubric** (for example "is every claim supported by the sources?"), and **calibration** means checking, on cases you labelled yourself, how often the judge agrees with you before you trust its scores.
@@ -250,3 +254,10 @@ The list of disagreements is your to-do list for improving the rubric.
 - Hamel Husain, "Creating a LLM-as-a-Judge That Drives Business Results" (hamel.dev, verify title).
 - Claude docs: [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
 - Zheng et al., "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena" (2023): known judge biases (position, verbosity, self-preference).
+
+<!-- nav:bottom -->
+
+---
+
+[← 11 · Evals from zero](11-evals-from-zero.md) · [Step 7 lessons](00-start-here.md) · [13 · Cost and latency →](13-cost-and-latency.md)
+<!-- nav:end -->

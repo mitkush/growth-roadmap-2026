@@ -1,5 +1,9 @@
 # 12 · Pattern matching and enums
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 `match`/`case` (Python 3.10+) matches a value against **shapes** (literal values, sequences, dicts, objects) and pulls out parts of it, like Ruby's `case ... in`, and **enums** give you a fixed set of named values where Ruby would use symbols.
@@ -186,3 +190,10 @@ Look at the first event: it has an extra `"meta"` key and still matches, because
 - [PEP 636: Structural Pattern Matching tutorial](https://peps.python.org/pep-0636/).
 - Python docs: [`enum` HOWTO](https://docs.python.org/3/howto/enum.html).
 - *Fluent Python*, 2nd ed., chapter 18 ("with, match, and else Blocks") for pattern matching in depth.
+
+<!-- nav:bottom -->
+
+---
+
+[← 11 · Decorators and context managers](11-decorators-and-context-managers.md) · [Step 5 lessons](00-start-here.md) · [Back to the Step 5 plan →](../../steps/05-python-fundamentals.md)
+<!-- nav:end -->

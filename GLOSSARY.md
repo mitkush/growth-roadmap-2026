@@ -1,5 +1,9 @@
 # Glossary
 
+<!-- nav:top -->
+[Course home](README.md) · Steps: [1](steps/01-advanced-ruby.md) · [2](steps/02-rails-at-scale.md) · [3](steps/03-architecture-system-design.md) · [4](steps/04-open-source-contribution.md) · [5](steps/05-python-fundamentals.md) · [6](steps/06-applied-python.md) · [7](steps/07-agentic-ai-engineering.md) · [8](steps/08-ai-tool-mvp.md)
+<!-- nav:end -->
+
 Every term defined in the course, A to Z, with the step and the lesson that explains it.
 Generated from the glossary in each `lessons/*/00-start-here.md` by `python3 scripts/build_glossary.py`;
 edit those files, not this one. Some terms appear twice because two steps use them in different contexts.

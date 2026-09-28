@@ -1,5 +1,9 @@
 # 14 · Security and prompt injection
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) › [Step 7 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Prompt injection** is when text inside your data (a document, a web page, a tool result) tries to give the model new instructions; you defend against it the same way you defend any system from untrusted input: **least privilege, confirmation for risky actions, input and output validation, and tests**.
@@ -231,3 +235,10 @@ Extend your grader (lesson 11) with `"did_not_call_forbidden_tools": not set(cas
 - [OWASP Top 10 for LLM Applications](https://genai.owasp.org) (verify current version): prompt injection, sensitive information disclosure, excessive agency.
 - MCP specification: Security best practices (at https://modelcontextprotocol.io, under Specification).
 - Simon Willison's writing on prompt injection and "the lethal trifecta" (simonwillison.net, verify).
+
+<!-- nav:bottom -->
+
+---
+
+[← 13 · Cost and latency](13-cost-and-latency.md) · [Step 7 lessons](00-start-here.md) · [Back to the Step 7 plan →](../../steps/07-agentic-ai-engineering.md)
+<!-- nav:end -->

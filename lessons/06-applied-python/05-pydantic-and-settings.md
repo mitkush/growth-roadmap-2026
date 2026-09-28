@@ -1,5 +1,9 @@
 # 05 · Pydantic v2 and settings
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Pydantic** turns a class with type hints into a **validator and converter**: give it untrusted data (JSON, form input, environment variables) and you get either a typed object you can trust or a clear `ValidationError`; **pydantic-settings** does the same for configuration from environment variables.
@@ -241,3 +245,10 @@ Line 4 shows two useful behaviours: the string timestamp became a `datetime`, an
 - [Pydantic docs](https://docs.pydantic.dev/latest/): Models, Fields, Validators, and the [v2 migration guide](https://docs.pydantic.dev/latest/migration/).
 - [pydantic-settings docs](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
 - FastAPI docs: [Body - Updates](https://fastapi.tiangolo.com/tutorial/body-updates/) (PATCH with `exclude_unset`).
+
+<!-- nav:bottom -->
+
+---
+
+[← 04 · FastAPI basics](04-fastapi-basics.md) · [Step 6 lessons](00-start-here.md) · [06 · SQLAlchemy 2.x with asyncio →](06-sqlalchemy-async.md)
+<!-- nav:end -->

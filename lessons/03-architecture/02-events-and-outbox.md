@@ -1,5 +1,9 @@
 # 02 · Events and the transactional outbox
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) › [Step 3 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **domain event** ("order placed") lets other parts of the system react without the order code knowing about them; the **transactional outbox** makes sure the event is recorded **in the same database transaction** as the order and delivered later by a job, and **idempotent consumers** make the unavoidable duplicate deliveries harmless.
@@ -229,3 +233,10 @@ The failed order left **no** event; the redelivery did **no** double work.
 - Chris Richardson: [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html) and [Idempotent consumer](https://microservices.io/patterns/communication-style/idempotent-consumer.html).
 - Rails 8.1 [release notes](https://guides.rubyonrails.org/8_1_release_notes.html) and the API docs for `ActiveSupport::EventReporter` (the class behind `Rails.event`).
 - Martin Kleppmann, *Designing Data-Intensive Applications*, chapters on transactions and stream processing.
+
+<!-- nav:bottom -->
+
+---
+
+[← 01 · Bounded contexts and Packwerk](01-bounded-contexts-and-packwerk.md) · [Step 3 lessons](00-start-here.md) · [03 · API design: cursors, idempotency keys, errors, rate limits →](03-api-design.md)
+<!-- nav:end -->

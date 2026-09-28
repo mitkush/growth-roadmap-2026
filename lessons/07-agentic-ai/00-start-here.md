@@ -1,5 +1,9 @@
 # Step 7 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 7 plan](../../steps/07-agentic-ai-engineering.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 This folder teaches everything the Step 7 plan asks you to do. You have used LLMs a lot, but you have not built an application around one yet. These lessons start from the ground up and build towards the finished system.
 
 **How to use this folder:** every day in [the Step 7 plan](../../steps/07-agentic-ai-engineering.md) starts with a **"Read first:"** line. Read those lessons (20-40 minutes), run their small example, then do the day's tasks. If you meet a word you do not know, look it up in the [glossary](#glossary) at the bottom of this page.
@@ -226,3 +230,10 @@ Terms are grouped by topic. The link shows the lesson that explains each term in
 | **Prompt injection** | Text in data (a document, a web page, a tool result) that tries to give the model new instructions. | [14](14-security-and-prompt-injection.md) |
 | **Least privilege** | Give each tool only the access it needs (for example a read-only DB user for read tools). | [14](14-security-and-prompt-injection.md) |
 | **Excessive agency** | An agent that can do more (delete, send, pay) than its task needs. | [14](14-security-and-prompt-injection.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 6 lessons](../06-applied-python/00-start-here.md) · [Step 7 plan](../../steps/07-agentic-ai-engineering.md) · [First lesson: 01 · How an LLM API call works →](01-how-an-llm-api-call-works.md) · [Step 8 lessons →](../08-ai-tool-mvp/00-start-here.md)
+<!-- nav:end -->

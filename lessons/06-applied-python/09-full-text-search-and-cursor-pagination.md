@@ -1,5 +1,9 @@
 # 09 · Full-text search and cursor pagination
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 Postgres **full-text search** matches processed words (a `tsvector` column, a `tsquery` from the user's text, `ts_rank` to order by relevance), and **cursor (keyset) pagination** pages through results with "rows after id X" instead of `OFFSET`, so pages stay fast and stable while data changes.
@@ -217,3 +221,10 @@ Or keep it as a `text()` statement with bound parameters. Never build SQL with f
 - PostgreSQL docs: [Full Text Search](https://www.postgresql.org/docs/current/textsearch.html), especially "Controlling Text Search" (`websearch_to_tsquery`, `ts_rank`, `ts_headline`).
 - PostgreSQL docs: [Generated Columns](https://www.postgresql.org/docs/current/ddl-generated-columns.html).
 - Markus Winand, "We need tool support for keyset pagination" and *Use The Index, Luke* (use-the-index-luke.com): why `OFFSET` is slow.
+
+<!-- nav:bottom -->
+
+---
+
+[← 08 · Dependency injection in FastAPI](08-dependency-injection.md) · [Step 6 lessons](00-start-here.md) · [10 · Testing FastAPI with a real database →](10-testing-fastapi.md)
+<!-- nav:end -->

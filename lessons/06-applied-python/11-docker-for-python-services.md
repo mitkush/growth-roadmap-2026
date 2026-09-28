@@ -1,5 +1,9 @@
 # 11 · Docker for Python services
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A **Dockerfile** packages `kb-api` with its exact Python and dependencies into an image that runs the same everywhere, and **`compose.yaml`** starts the app together with Postgres for local development; a good Python Dockerfile installs dependencies with **uv** in a **multi-stage** build, runs as a **non-root** user and keeps the image small.
@@ -151,3 +155,10 @@ Then change one line in `src/kb_api/main.py` and run `docker compose build app`:
 - uv docs: [Using uv in Docker](https://docs.astral.sh/uv/guides/integration/docker/) (multi-stage builds, caching, non-editable installs).
 - Docker docs: [Multi-stage builds](https://docs.docker.com/build/building/multi-stage/) and [Compose file reference](https://docs.docker.com/reference/compose-file/).
 - FastAPI docs: [FastAPI in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/).
+
+<!-- nav:bottom -->
+
+---
+
+[← 10 · Testing FastAPI with a real database](10-testing-fastapi.md) · [Step 6 lessons](00-start-here.md) · [12 · GitHub Actions CI →](12-github-actions-ci.md)
+<!-- nav:end -->

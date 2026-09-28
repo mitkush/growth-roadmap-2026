@@ -1,5 +1,9 @@
 # Step 4: Open-Source Contribution to the Ruby Ecosystem
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 4 of 8 · [Step 4 lessons](../lessons/04-open-source/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 10% | Mon 19 Oct - Sun 25 Oct 2026 (scouting starts in W1) | ~10 h (+ ~1 h scouting in W1-W3) |
@@ -177,3 +181,10 @@ If no suitable issue is confirmed by Wednesday, or the project is unresponsive, 
 - Review someone else's open PR in the same project (helpful reviews are valued contributions).
 - Write a short "How I fixed X in Y" section in your blog or team wiki.
 - If you published a gem: add a GitHub Actions matrix for Ruby 3.3, 3.4 and 4.0, and automate releases with a trusted publisher on RubyGems (verify setup docs).
+
+<!-- nav:bottom -->
+
+---
+
+[← Step 3: Rails Architecture: Modular Monolith & Observability](03-architecture-system-design.md) · [Step 4 lessons](../lessons/04-open-source/00-start-here.md) · [Step 5: Python Fundamentals for Rubyists →](05-python-fundamentals.md)
+<!-- nav:end -->

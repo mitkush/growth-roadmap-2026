@@ -1,5 +1,9 @@
 # 06 · Testing with pytest
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **pytest** runs any function named `test_*` in files named `test_*.py`, uses plain `assert` for expectations, and gives you **fixtures** (like RSpec's `let` and `before`) and **parametrize** (one test, many inputs).
@@ -244,3 +248,10 @@ Read the failure: pytest shows **both** dictionaries and points at the exact dif
 - [pytest docs](https://docs.pytest.org/en/stable/): "Get Started", "How to use fixtures", "How to parametrize fixtures and test functions".
 - pytest docs: [`monkeypatch`](https://docs.pytest.org/en/stable/how-to/monkeypatch.html) and [`tmp_path`](https://docs.pytest.org/en/stable/how-to/tmp_path.html).
 - Brian Okken, *Python Testing with pytest*, 2nd edition (Pragmatic Bookshelf, 2022).
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · Modules, packages and imports](05-modules-packages-and-imports.md) · [Step 5 lessons](00-start-here.md) · [07 · Errors, files and `with` →](07-errors-files-and-with.md)
+<!-- nav:end -->

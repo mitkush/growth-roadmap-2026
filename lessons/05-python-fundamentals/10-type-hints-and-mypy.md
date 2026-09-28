@@ -1,5 +1,9 @@
 # 10 · Type hints and mypy
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 5 plan](../../steps/05-python-fundamentals.md) › [Step 5 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **Type hints** (`def total(prices: list[int]) -> int:`) describe what types a function expects and returns; Python **ignores them at runtime**, but **mypy** (and your editor) checks them before you run anything, catching a whole class of bugs early.
@@ -243,3 +247,10 @@ Every error above would be a runtime crash or a wrong result in production: a `N
 - [mypy cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html) and "Getting started".
 - Python docs: [`typing`](https://docs.python.org/3/library/typing.html) (Protocol, TypedDict, Literal, generics).
 - *Fluent Python*, 2nd ed., chapter 8 ("Type Hints in Functions") and chapter 15 ("More About Type Hints").
+
+<!-- nav:bottom -->
+
+---
+
+[← 09 · Iterators and generators](09-iterators-and-generators.md) · [Step 5 lessons](00-start-here.md) · [11 · Decorators and context managers →](11-decorators-and-context-managers.md)
+<!-- nav:end -->

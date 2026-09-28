@@ -1,5 +1,9 @@
 # Step 1: Advanced Ruby: Concurrency, YJIT & Profiling
 
+<!-- nav:top -->
+[Course home](../README.md) · Step 1 of 8 · [Step 1 lessons](../lessons/01-advanced-ruby/00-start-here.md) · [Glossary](../GLOSSARY.md)
+<!-- nav:end -->
+
 | Weight | Dates | Hours |
 |---|---|---|
 | 10% | Mon 28 Sep - Sun 4 Oct 2026 | ~10 h |
@@ -145,3 +149,10 @@ Send your manager:
 - Serve `shop-lab` with **Falcon** (Fiber-based server) and compare `/slow_io` throughput with Puma.
 - Take a heap dump with `ObjectSpace.dump_all` and find the largest retained object types.
 - Measure GVL wait time per request with the `gvltools` gem (Shopify; Ruby 3.2+): `GVLTools::LocalTimer.enable` once, then compare `GVLTools::LocalTimer.monotonic_time` (nanoseconds this thread waited for the GVL) before and after a request. High wait time means threads are queueing for the GVL ([lesson 01](../lessons/01-advanced-ruby/01-gvl-threads-and-thread-safety.md)).
+
+<!-- nav:bottom -->
+
+---
+
+[← How to use this roadmap](../README.md#how-to-use-this-roadmap) · [Step 1 lessons](../lessons/01-advanced-ruby/00-start-here.md) · [Step 2: Rails at Scale: PostgreSQL, Solid Queue & Kamal →](02-rails-at-scale.md)
+<!-- nav:end -->

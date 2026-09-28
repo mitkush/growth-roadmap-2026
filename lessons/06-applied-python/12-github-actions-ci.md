@@ -1,5 +1,9 @@
 # 12 · GitHub Actions CI
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A GitHub Actions **workflow** (a YAML file in `.github/workflows/`) runs your checks on every push and pull request: for `kb-api` that means installing with uv, then **ruff**, **mypy**, **Alembic migrations** and **pytest with coverage** against a Postgres **service container**, plus a Docker build.
@@ -182,3 +186,10 @@ jobs:
 - GitHub docs: [Building and testing Python](https://docs.github.com/en/actions/tutorials/build-and-test-code/python) and [Creating PostgreSQL service containers](https://docs.github.com/en/actions/tutorials/use-containerized-services/create-postgresql-service-containers).
 - uv docs: [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/) (caching, Python versions).
 - GitHub docs: [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+
+<!-- nav:bottom -->
+
+---
+
+[← 11 · Docker for Python services](11-docker-for-python-services.md) · [Step 6 lessons](00-start-here.md) · [Back to the Step 6 plan →](../../steps/06-applied-python.md)
+<!-- nav:end -->

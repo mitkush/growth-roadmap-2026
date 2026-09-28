@@ -1,5 +1,9 @@
 # 04 · OpenTelemetry for Rails
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) › [Step 3 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **OpenTelemetry** (OTel) is the vendor-neutral standard for telemetry: its Ruby SDK records a **trace** for each request, made of timed **spans** (HTTP, controller, SQL, outgoing HTTP, jobs) linked by a shared `trace_id`, and **exports** them over **OTLP** to any backend (Grafana, Jaeger, Honeycomb, Datadog), so you can see where time goes in production and follow one request into its background jobs.
@@ -187,3 +191,10 @@ end
 - [OpenTelemetry Ruby docs](https://opentelemetry.io/docs/languages/ruby/) (getting started, instrumentation, exporters, sampling).
 - [opentelemetry-ruby-contrib](https://github.com/open-telemetry/opentelemetry-ruby-contrib) (each instrumentation's README lists its options, such as `propagation_style`).
 - Google SRE book, chapter "Service Level Objectives" ([sre.google/sre-book/service-level-objectives](https://sre.google/sre-book/service-level-objectives/)).
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · API design: cursors, idempotency keys, errors, rate limits](03-api-design.md) · [Step 3 lessons](00-start-here.md) · [05 · ADRs and one-page design docs →](05-adrs-and-design-docs.md)
+<!-- nav:end -->

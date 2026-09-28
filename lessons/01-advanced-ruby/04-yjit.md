@@ -1,5 +1,9 @@
 # 04 · YJIT
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) › [Step 1 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **YJIT** is CRuby's built-in **just-in-time compiler**: while your app runs, it compiles frequently executed Ruby code into machine code, typically making CPU-bound Rails work noticeably faster at the cost of some extra memory per process; new Rails apps on Ruby 3.3+ enable it by default.
@@ -146,3 +150,10 @@ Keep YJIT if the latency or CPU gain is worth the memory. Two typical outcomes: 
 - [YJIT documentation](https://github.com/ruby/ruby/blob/master/doc/jit/yjit.md) (options, stats, memory) and, next to it, the [ZJIT documentation](https://github.com/ruby/ruby/blob/master/doc/jit/zjit.md).
 - Rails Guides: [Tuning Performance for Deployment](https://guides.rubyonrails.org/tuning_performance_for_deployment.html) (YJIT section).
 - Shopify Engineering blog posts on YJIT in production (shopify.engineering, verify titles).
+
+<!-- nav:bottom -->
+
+---
+
+[← 03 · Puma sizing and honest benchmarks](03-puma-and-benchmarking.md) · [Step 1 lessons](00-start-here.md) · [05 · GC, heap slots and memory →](05-gc-and-memory.md)
+<!-- nav:end -->

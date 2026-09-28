@@ -1,5 +1,9 @@
 # 03 · API design: cursors, idempotency keys, errors, rate limits
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 3 plan](../../steps/03-architecture-system-design.md) › [Step 3 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 A good JSON API stays correct when the data changes during paging (**keyset cursors** instead of `OFFSET`), when clients retry (**idempotency keys** so a repeated `POST` does not create a second order), when things fail (**consistent RFC 9457 error bodies**) and when a client sends too much (**rate limits** with HTTP 429).
@@ -238,3 +242,10 @@ The cursor decodes to `["2026-09-28T10:03:06.053506Z",179988]`: the sort key of 
 - [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).
 - IETF draft: [The Idempotency-Key HTTP Header Field](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/) and Stripe's [idempotent requests](https://docs.stripe.com/api/idempotent_requests) documentation.
 - Rails API docs: [`ActionController::RateLimiting`](https://api.rubyonrails.org/classes/ActionController/RateLimiting/ClassMethods.html).
+
+<!-- nav:bottom -->
+
+---
+
+[← 02 · Events and the transactional outbox](02-events-and-outbox.md) · [Step 3 lessons](00-start-here.md) · [04 · OpenTelemetry for Rails →](04-opentelemetry.md)
+<!-- nav:end -->

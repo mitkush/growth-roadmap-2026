@@ -1,5 +1,9 @@
 # Step 1 lessons: start here
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 1 plan](../../steps/01-advanced-ruby.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 You have written Rails apps for years; this step looks **underneath** them: how Ruby runs your threads, why some endpoints scale with more Puma threads and others do not, what YJIT and the garbage collector are doing, and how to prove a performance change with numbers. The lessons assume you know Rails well and explain the runtime concepts you have probably used without needing to look inside.
 
 **How to use this folder:** each day in [the Step 1 plan](../../steps/01-advanced-ruby.md) starts with **"Read first:"** links. Read the lesson (20-30 minutes), run its example, then do the tasks on `shop-lab` (set it up with the **[shop-lab starter kit](../../starters/shop-lab/README.md)**).
@@ -67,3 +71,10 @@ Three questions answer most Rails performance problems:
 | **Flame graph** | A picture of profile samples: width = time, stacking = call depth. | [06](06-profiling.md) |
 | **Wall time / CPU time** | Real elapsed time (including waiting) / time on the CPU only. | [06](06-profiling.md) |
 | **Micro-benchmark (benchmark-ips)** | Timing two small implementations against each other; `benchmark-ips` reports iterations per second with a ± margin of error. | [06](06-profiling.md) |
+
+<!-- nav:bottom -->
+
+---
+
+[← Course home](../../README.md) · [Step 1 plan](../../steps/01-advanced-ruby.md) · [First lesson: 01 · The GVL, threads and thread safety →](01-gvl-threads-and-thread-safety.md) · [Step 2 lessons →](../02-rails-at-scale/00-start-here.md)
+<!-- nav:end -->

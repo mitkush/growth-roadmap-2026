@@ -1,5 +1,9 @@
 # 06 · SQLAlchemy 2.x with asyncio
 
+<!-- nav:top -->
+[Course home](../../README.md) › [Step 6 plan](../../steps/06-applied-python.md) › [Step 6 lessons](00-start-here.md) · [Glossary](../../GLOSSARY.md)
+<!-- nav:end -->
+
 ## 1. In one sentence
 
 **SQLAlchemy** is Python's main ORM (the Active Record of Python, but with a different design): you declare **models** with typed columns, build queries with **`select()`**, and run them through a **session**, which with `AsyncSession` and the `asyncpg` driver lets you `await` the database without blocking the event loop.
@@ -251,3 +255,10 @@ Line 5 is the important one for Rails developers: touching `source.documents` wi
 - SQLAlchemy docs: [ORM Quick Start](https://docs.sqlalchemy.org/en/20/orm/quickstart.html) and the [Unified Tutorial](https://docs.sqlalchemy.org/en/20/tutorial/index.html) (the 2.0 docs apply to 2.1).
 - SQLAlchemy docs: [Asynchronous I/O (asyncio)](https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html), especially "Preventing Implicit IO when Using AsyncSession".
 - Harry Percival & Bob Gregory, *Architecture Patterns with Python*, chapters 1-2 (repository pattern, unit of work).
+
+<!-- nav:bottom -->
+
+---
+
+[← 05 · Pydantic v2 and settings](05-pydantic-and-settings.md) · [Step 6 lessons](00-start-here.md) · [07 · Alembic migrations →](07-alembic-migrations.md)
+<!-- nav:end -->
