@@ -84,7 +84,7 @@ The plan below is for the **recommended Option A**. For Option B or C, keep the 
 
 **Problem:** AI coding assistants often guess about Rails apps: they miss associations defined in concerns, invent columns, and do not know routes or callbacks. They waste tokens grepping and still get it wrong.
 **Target users:** Rails developers using Claude Code, Cursor or other MCP clients; Rails teams onboarding new engineers.
-**Prior art:** check existing projects such as the `rails-mcp-server` gem (verify) and explain in the README what is different (live introspection + published evals).
+**Prior art:** check existing projects such as the [`rails-mcp-server`](https://rubygems.org/gems/rails-mcp-server) gem ("a Ruby implementation of Model Context Protocol server for Rails projects", 2.0.0 at the time of writing) and explain in the README what is different (live introspection + published evals).
 
 ```mermaid
 flowchart LR
@@ -228,7 +228,7 @@ MIT
 3. **MCP Python SDK** (v2 `MCPServer`, Inspector, testing): https://github.com/modelcontextprotocol/python-sdk
 4. **Claude docs: Tool use** and **Prompt caching**: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview and https://platform.claude.com/docs/en/build-with-claude/prompt-caching
 5. **Rails API: `ActiveRecord::Reflection`** (`reflect_on_all_associations`) and **`ActiveModel::Validations`** (`validators`), for `introspect.rb`: https://api.rubyonrails.org
-6. **GitHub docs: Creating releases** and **Publishing actions in GitHub Marketplace** (Option B/C): https://docs.github.com/en/repositories/releasing-projects-on-github and https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace (verify path)
+6. **GitHub docs: Creating releases** and **Publishing actions in GitHub Marketplace** (Option B/C): https://docs.github.com/en/repositories/releasing-projects-on-github and https://docs.github.com/en/actions/how-tos/create-and-publish-actions/publish-in-github-marketplace
 7. **uv: Building and publishing a package** (for `uvx` installs and PyPI): https://docs.astral.sh/uv/guides/package/
 8. **Hamel Husain, "Your AI Product Needs Evals"**: https://hamel.dev/blog/posts/evals/
 

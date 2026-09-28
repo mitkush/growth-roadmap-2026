@@ -232,6 +232,6 @@ The top result shares almost no words with the question ("saved" vs "persists", 
 
 ## 9. Go deeper (optional)
 
-- Claude docs: [Embeddings](https://platform.claude.com/docs/en/build-with-claude/embeddings) (verify path): why and how to choose a provider.
+- Claude docs: [Embeddings](https://platform.claude.com/docs/en/build-with-claude/embeddings): why and how to choose a provider.
 - [fastembed](https://github.com/qdrant/fastembed): supported models and usage.
 - Jay Alammar, "The Illustrated Word2vec" (jalammar.github.io, verify): a visual intuition for how meaning becomes vectors.

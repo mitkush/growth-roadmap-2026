@@ -10,7 +10,7 @@ This week you learn how AI applications are actually built, starting from a sing
 
 **Stack:** `kb-api` from Step 6, the Anthropic Python SDK (`anthropic`), the MCP Python SDK (`mcp` 2.x, which uses `MCPServer`), pgvector + `pgvector-python`, a local embedding model through `fastembed` (`BAAI/bge-small-en-v1.5`, 384 dimensions, free), pytest for evals.
 
-**Models:** `claude-opus-5-5` is the default model for the agent. `claude-sonnet-5` is the comparison model and the judge; `claude-haiku-4-5` is an optional third comparison. Check the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) before you start.
+**Models:** `claude-opus-5-5` is the default model for the agent. `claude-sonnet-5` is the comparison model and the judge; `claude-haiku-4-5` is an optional third comparison (its retirement is scheduled for "not sooner than 15 Oct 2026", so check the [model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) page first and skip it if it is gone). Check the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) before you start.
 
 > This step is about **engineering**, not prompting: tool contracts, loops, retrieval quality, measurement, cost, latency and safety. It has 1 week, so it is scoped tightly; the CI regression gate for evals is built in Step 8, which reuses everything from this week.
 
@@ -127,7 +127,7 @@ Work in a branch `ai` of `kb-api`. Once, add the dependencies: `uv add anthropic
 3. **Anthropic Python SDK** (including the Tool Runner): https://github.com/anthropics/anthropic-sdk-python
 4. **Model Context Protocol**: https://modelcontextprotocol.io and the Python SDK at https://github.com/modelcontextprotocol/python-sdk (v2 docs: https://py.sdk.modelcontextprotocol.io)
 5. **pgvector**: https://github.com/pgvector/pgvector and **pgvector-python**: https://github.com/pgvector/pgvector-python
-6. **Anthropic, "Building effective agents"**: https://www.anthropic.com/engineering/building-effective-agents (verify path)
+6. **Anthropic, "Building effective agents"**: https://www.anthropic.com/engineering/building-effective-agents
 7. **Claude docs: Prompt caching**: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
 8. **Hamel Husain, "Your AI Product Needs Evals"**: https://hamel.dev/blog/posts/evals/
 

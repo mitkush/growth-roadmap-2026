@@ -39,11 +39,13 @@ Prices per million tokens (MTok) at the time of writing. **Always check the [pri
 
 | Model | Input | Output | Cache read | Notes |
 |---|---|---|---|---|
-| `claude-opus-5-5` | $4 | $20 | $0.20 | Strongest; default in this course |
-| `claude-sonnet-5` | $2 | $10 | (see pricing page) | Good balance; good judge model |
-| `claude-haiku-4-5` | $1 | $5 | (see pricing page) | Fastest and cheapest |
+| `claude-opus-5-5` | $4 | $20 | $0.20 (5% of input) | Strongest; default in this course |
+| `claude-sonnet-5` | $2 | $10 | $0.20 (10% of input) | Good balance; good judge model |
+| `claude-haiku-4-5` | $1 | $5 | $0.10 (10% of input) | Fastest and cheapest; may be retired from 15 Oct 2026 (see below) |
 
-Cache **writes** cost about 1.25× the normal input price (5-minute cache).
+Cache **writes** cost 1.25× the normal input price for the 5-minute cache and 2× for the 1-hour cache. On `claude-opus-5-5` a prompt must be at least 512 tokens to be cached. The [Batch API](https://platform.claude.com/docs/en/build-with-claude/batch-processing) halves both prices for work that can wait (for example nightly eval runs).
+
+Claude Haiku 4.5's retirement date on the Claude API is "not sooner than 15 October 2026". Before you use it, check the [model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) page; if it has been retired, skip the optional Haiku comparison.
 
 Two facts drive most costs:
 

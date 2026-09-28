@@ -106,10 +106,10 @@ Send your manager:
 
 1. **Lessons for this step**: [`lessons/01-advanced-ruby/`](../lessons/01-advanced-ruby/00-start-here.md) and the [shop-lab starter kit](../starters/shop-lab/README.md) (start here).
 2. **Ruby docs: `Thread`, `Thread::Queue`, `Fiber`, `Ractor`**: https://docs.ruby-lang.org/en/3.4/ (use the class pages; Ractor guide: `ractor.md` in the same docs).
-3. **YJIT documentation** (options, stats, memory): https://github.com/ruby/ruby/blob/master/doc/yjit/yjit.md
+3. **YJIT documentation** (options, stats, memory): https://github.com/ruby/ruby/blob/master/doc/jit/yjit.md
 4. **Vernier** (sampling profiler with GVL/GC markers): https://github.com/jhawthorn/vernier
 5. **memory_profiler**: https://github.com/SamSaffron/memory_profiler and **stackprof**: https://github.com/tmm1/stackprof
-6. **Puma docs: deployment and threads/workers**: https://github.com/puma/puma/blob/master/docs/deployment.md
+6. **Puma docs: deployment and threads/workers**: https://github.com/puma/puma/blob/main/docs/deployment.md
 7. **Nate Berkopec, *The Complete Guide to Rails Performance*** (sections on memory, Puma and profiling). Paid book; chapter names vary by edition (verify).
 8. **Jean Boussier (byroot) blog**, posts on the GVL and Puma/thread sizing: https://byroot.github.io/ (verify the specific post titles).
 9. **derailed_benchmarks**: https://github.com/zombocom/derailed_benchmarks
@@ -140,8 +140,8 @@ Send your manager:
 
 ## 10. Stretch goals
 
-- Try **ZJIT** (experimental in Ruby 4.0) on the same benchmark and compare with YJIT (verify flags in the Ruby 4.0 release notes).
+- Try **ZJIT** (experimental in Ruby 4.0) on the same benchmark and compare with YJIT (`ruby --zjit` or `RubyVM::ZJIT.enable`; see [lesson 04](../lessons/01-advanced-ruby/04-yjit.md)).
 - Run the `autotuner` gem (Shopify) against `shop-lab` under load and evaluate its GC suggestions.
 - Serve `shop-lab` with **Falcon** (Fiber-based server) and compare `/slow_io` throughput with Puma.
 - Take a heap dump with `ObjectSpace.dump_all` and find the largest retained object types.
-- Measure GVL wait time per request with the `gvltools` gem (Shopify) (verify API).
+- Measure GVL wait time per request with the `gvltools` gem (Shopify; Ruby 3.2+): `GVLTools::LocalTimer.enable` once, then compare `GVLTools::LocalTimer.monotonic_time` (nanoseconds this thread waited for the GVL) before and after a request. High wait time means threads are queueing for the GVL ([lesson 01](../lessons/01-advanced-ruby/01-gvl-threads-and-thread-safety.md)).

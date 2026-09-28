@@ -202,7 +202,6 @@ Notes on the Python you may not know yet:
 `test_rails_lens.py`, next to `rails_lens.py` (tests in memory, against a fixture index created by lesson 01's script):
 
 ```python
-import json
 import shutil
 import subprocess
 from pathlib import Path

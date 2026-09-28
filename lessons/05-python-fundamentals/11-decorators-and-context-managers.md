@@ -74,6 +74,7 @@ flowchart LR
 The easy way to write one is `contextlib.contextmanager`: write a generator that yields **once**. Code before `yield` is setup, code after it (in `finally`) is cleanup:
 
 ```python
+import os
 from contextlib import contextmanager
 
 @contextmanager

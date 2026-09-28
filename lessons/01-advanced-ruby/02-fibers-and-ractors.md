@@ -102,6 +102,7 @@ Create `ractor_demo.rb`:
 
 ```ruby
 require "benchmark"
+require "etc" # for Etc.nprocessors (number of CPU cores)
 
 def fib(n) = n < 2 ? n : fib(n - 1) + fib(n - 2)
 
@@ -113,7 +114,7 @@ ractors = Benchmark.realtime do
   Array.new(4) { Ractor.new { fib(30) } }.each { |r| result_of(r) }
 end
 puts format("4 x fib(30)  threads: %.2fs  ractors: %.2fs  (CPU cores: %d)",
-            threads, ractors, Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 0)
+            threads, ractors, Etc.nprocessors)
 
 begin
   config = { retries: 3 } # a normal (unfrozen) Hash is not shareable between Ractors
@@ -127,7 +128,7 @@ end
 ```
 
 ```bash
-ruby -retc ractor_demo.rb
+ruby ractor_demo.rb
 ```
 
 Output on the test machine (Ruby 3.3, 4 cores):
@@ -139,7 +140,7 @@ copied: arguments are deep-copied into the Ractor
 ArgumentError: can not isolate a Proc because it accesses outer variables (shared).
 ```
 
-Read this honestly: on this machine and Ruby version, the Ractor version was **slower** than threads, even though it could use 4 cores. Ractor performance depends heavily on the Ruby version (Ruby 3.4 and 4.0 improved it a lot) and on the workload (method-call-heavy code like `fib` suffered from shared VM structures in older versions). Run it on your Ruby 3.4 or 4.0 and compare. That is the whole lesson of this week in miniature: **measure, do not assume**.
+Read this honestly: on this machine and Ruby version, the Ractor version was **slower** than threads, even though it could use 4 cores. Ractor performance depends on the Ruby version (Ractors are still experimental and change between releases; Ruby 4.0 reworked their API) and on the workload. Run it on your Ruby 3.4 or 4.0 and compare. That is the whole lesson of this week in miniature: **measure, do not assume**.
 
 ## 6. Key terms
 
@@ -180,6 +181,6 @@ Read this honestly: on this machine and Ruby version, the Ractor version was **s
 
 ## 9. Go deeper (optional)
 
-- Ruby docs: [Fiber](https://docs.ruby-lang.org/en/3.4/Fiber.html) (including `Fiber::Scheduler`) and the [Ractor guide](https://docs.ruby-lang.org/en/3.4/ractor_md.html) (verify path).
+- Ruby docs: [Fiber](https://docs.ruby-lang.org/en/3.4/Fiber.html) (including `Fiber::Scheduler`) and the [Ractor guide](https://docs.ruby-lang.org/en/3.4/ractor_md.html).
 - [socketry/async](https://github.com/socketry/async) and [Falcon](https://github.com/socketry/falcon).
-- Ruby 4.0 release notes (Ractor changes: `Ractor#value`, `Ractor::Port`) at ruby-lang.org (verify).
+- Ruby 4.0 [NEWS](https://github.com/ruby/ruby/blob/ruby_4_0/NEWS.md), "Ractor" section: `Ractor::Port` added, `Ractor.yield` and `Ractor#take` removed, `Ractor#join` and `Ractor#value` added.

@@ -69,7 +69,7 @@ Two checks:
 
 ```bash
 bundle add packwerk
-bundle binstub packwerk          # use bin/packwerk (Bundler 4 did not find `bundle exec packwerk` in testing)
+bundle binstub packwerk          # creates bin/packwerk, the command Packwerk's messages use (`bundle exec packwerk` works too)
 bin/packwerk init
 mkdir -p packs/catalog/app/models packs/ordering/app/models
 git mv app/models/product.rb packs/catalog/app/models/

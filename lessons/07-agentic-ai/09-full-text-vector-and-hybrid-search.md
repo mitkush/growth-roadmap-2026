@@ -217,4 +217,4 @@ Same result as the SQL. Keeping a Python version lets you unit-test the merge an
 
 - PostgreSQL docs: [Full Text Search](https://www.postgresql.org/docs/current/textsearch.html), especially "Controlling Text Search".
 - Cormack, Clarke & Büttcher, "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods" (SIGIR 2009): the original RRF paper.
-- pgvector-python hybrid search example: https://github.com/pgvector/pgvector-python/tree/master/examples (verify file name).
+- pgvector-python hybrid search examples (full-text + vector with RRF): https://github.com/pgvector/pgvector-python/tree/master/examples/hybrid_search

@@ -129,7 +129,7 @@ RSS of this process: 102 MB
 
 The same result computed two ways: 200,014 allocations and a GC run versus 7 allocations. The `+` version of string building allocates 3× more strings than interpolation, triggers six collections (including a major one), and spends 71 ms in GC.
 
-The same effect on a real endpoint (`shop-lab`'s `/reports/sales`, measured in lesson 06): loading Active Record objects allocated **688,550 objects (91 MB) per call**, versus **168,590 (11 MB)** with `pluck`.
+The same effect on a real endpoint (`shop-lab`'s `/reports/sales`, measured in lesson 06): loading Active Record objects allocated about **745,000 objects per call** (91 MB, according to memory_profiler), versus about **187,000** with `pluck`.
 
 Try on `shop-lab` (Saturday's task): run the endpoint under load for 5 minutes with and without `MALLOC_ARENA_MAX=2` and compare RSS per Puma worker.
 

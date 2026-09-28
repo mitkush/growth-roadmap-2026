@@ -238,4 +238,4 @@ The second question shows the most important behaviour of a good RAG system: whe
 
 - Claude docs: [Citations](https://platform.claude.com/docs/en/build-with-claude/citations): the API can return structured citations when you pass documents as `document` blocks.
 - Anthropic, "Introducing Contextual Retrieval" (anthropic.com/news, verify): improving chunk retrieval with added context.
-- Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents) (verify path): the "augmented LLM" pattern behind RAG.
+- Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents): the "augmented LLM" pattern behind RAG.

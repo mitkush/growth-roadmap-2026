@@ -193,6 +193,7 @@ mistakes.py:12: error: Incompatible types (expression has type "Literal['shipped
 mistakes.py:12: error: Incompatible types (expression has type "str", TypedDict item "total_cents" has type "int")  [typeddict-item]
 mistakes.py:14: error: Argument 1 to "checkout" has incompatible type "Coupon"; expected "PricingRule"  [arg-type]
 mistakes.py:15: error: Argument 1 to "PercentOff" has incompatible type "str"; expected "int"  [arg-type]
+Found 5 errors in 1 file (checked 2 source files)
 ```
 
 Every error above would be a runtime crash or a wrong result in production: a `None` subscript, a status that is not allowed, a price stored as a string, an object that does not fit the pricing protocol, and a percentage passed as a string. mypy found them without running anything.

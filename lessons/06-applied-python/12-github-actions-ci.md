@@ -20,7 +20,7 @@ A green CI badge on a public repository is also part of your "proof of completio
 
 | Rails CI (GitHub Actions) | kb-api CI |
 |---|---|
-| `uses: ruby/setup-ruby@v1` with `bundler-cache: true` | `uses: astral-sh/setup-uv@v6` then `uv sync --locked` |
+| `uses: ruby/setup-ruby@v1` with `bundler-cache: true` | `uses: astral-sh/setup-uv@v7` then `uv sync --locked` |
 | `services: postgres:` | the same, with the `pgvector/pgvector:pg17` image |
 | `bin/rails db:schema:load` | `uv run alembic upgrade head` |
 | `bundle exec rubocop` | `uv run ruff check . && uv run ruff format --check .` |
@@ -49,8 +49,8 @@ The [starter's workflow](../../starters/kb-api/.github/workflows/ci.yml), part b
 | `jobs.test.services.postgres` | Start a Postgres container next to the job. `ports: ["5432:5432"]` makes it reachable at `localhost:5432` from the steps |
 | `options: --health-cmd "pg_isready -U kb" ...` | GitHub waits until Postgres answers before running the steps |
 | `env: DATABASE_URL / TEST_DATABASE_URL` | Both point at the service database |
-| `actions/checkout@v5` | Check out the code |
-| `astral-sh/setup-uv@v6` | Install uv (use the latest major version) |
+| `actions/checkout@v7` | Check out the code |
+| `astral-sh/setup-uv@v7` | Install uv (use the latest major version) |
 | `uv sync --locked` | Install exactly the locked versions; **fails if `uv.lock` is out of date**, which catches "forgot to commit the lockfile" |
 | `ruff check` + `ruff format --check` | Lint, and fail if any file is not formatted |
 | `mypy src` | Type-check (strict mode from `pyproject.toml`) |
@@ -124,8 +124,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync --locked
       - run: uv run ruff check . && uv run ruff format --check .
       - run: uv run mypy --strict src
@@ -179,6 +179,6 @@ jobs:
 
 ## 9. Go deeper (optional)
 
-- GitHub docs: [Building and testing Python](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python) (verify path) and [About service containers](https://docs.github.com/en/actions/use-cases-and-examples/using-containerized-services/about-service-containers) (verify path).
+- GitHub docs: [Building and testing Python](https://docs.github.com/en/actions/tutorials/build-and-test-code/python) and [Creating PostgreSQL service containers](https://docs.github.com/en/actions/tutorials/use-containerized-services/create-postgresql-service-containers).
 - uv docs: [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/) (caching, Python versions).
 - GitHub docs: [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).

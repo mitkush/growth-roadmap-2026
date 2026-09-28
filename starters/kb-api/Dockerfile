@@ -1,6 +1,6 @@
 # Multi-stage build: install dependencies with uv in a builder image, copy only the result.
 FROM python:3.13-slim AS builder
-COPY --from=ghcr.io/astral-sh/uv:0.8 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.12 /uv /bin/uv
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 WORKDIR /app
 # 1. Dependencies first (cached until pyproject.toml or uv.lock change).

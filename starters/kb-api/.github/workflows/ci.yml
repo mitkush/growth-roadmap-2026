@@ -23,8 +23,8 @@ jobs:
       DATABASE_URL: postgresql+asyncpg://kb:kb@localhost:5432/kb_test
       TEST_DATABASE_URL: postgresql+asyncpg://kb:kb@localhost:5432/kb_test
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync --locked
       - name: Lint and format
         run: uv run ruff check . && uv run ruff format --check .
@@ -38,5 +38,5 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: docker build -t kb-api .

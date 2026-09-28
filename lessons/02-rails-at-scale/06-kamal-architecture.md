@@ -178,4 +178,4 @@ A useful mental check before each deploy: "If the old code runs for 30 more seco
 
 - [Kamal documentation](https://kamal-deploy.org) (configuration reference, commands, hooks) and `kamal docs proxy` in your terminal.
 - [kamal-proxy](https://github.com/basecamp/kamal-proxy) README (how the switch and drain work).
-- Rails Guides: [Getting Started: Deploying to production](https://guides.rubyonrails.org/getting_started.html#deploying-to-production) (verify section name).
+- Rails Guides: [Getting Started: Deploying to production](https://guides.rubyonrails.org/getting_started.html#deploying-to-production).

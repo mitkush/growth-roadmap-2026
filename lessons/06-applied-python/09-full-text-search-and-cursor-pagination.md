@@ -38,7 +38,7 @@ flowchart LR
 - `to_tsvector('english', text)` lowercases, drops stop words, and **stems** words ("retrying" → `retri`), keeping positions.
 - `websearch_to_tsquery('english', text)` parses what a user types into a web search box: words are ANDed, `"quoted phrases"` must appear together, `-word` excludes, `or` gives alternatives. It never raises a syntax error, unlike `to_tsquery`.
 - `@@` tests a match; `ts_rank` scores it (more matches, closer together, rank higher).
-- Make the `tsvector` a **stored generated column** with a **GIN index**, so it is computed on write and searched quickly (the migration is in lesson 07).
+- Make the `tsvector` a **stored generated column** with a **GIN index**, so it is computed on write and searched quickly (lesson 07, part 5, shows how to declare it in the `Document` model and generate the migration).
 
 ### Cursor (keyset) pagination
 
@@ -59,7 +59,7 @@ Create `search_demo.py` (it creates its own table in the database from `DATABASE
 import asyncio
 import os
 
-from sqlalchemy import func, select, text
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql+asyncpg://kb:kb@localhost:5432/kb")
@@ -155,7 +155,22 @@ Things to notice:
 - Identifiers such as `SOLID_QUEUE_IN_PUMA` are split into separate words at the underscores. That is why the Puma document matched the phrase "solid queue" too. Usually helpful, but worth knowing when you search for exact identifiers.
 - The pages walked through all five rows without `OFFSET`, and the last page has `next_cursor = None`.
 
-In `kb-api`, express the same query with SQLAlchemy functions (`func.websearch_to_tsquery`, `func.ts_rank`, `Document.search_vector.op("@@")(query)`) or keep it as a `text()` statement with bound parameters. Never build SQL with f-strings from user input.
+In `kb-api`, once `search_vector` is declared in the model (lesson 07, part 5), the same query in SQLAlchemy is (tested in the starter):
+
+```python
+from sqlalchemy import func, select
+
+query = func.websearch_to_tsquery("english", q)   # q is the user's text, sent as a bound parameter
+rank = func.ts_rank(Document.search_vector, query)
+stmt = (
+    select(Document.path, rank.label("rank"))
+    .where(Document.search_vector.op("@@")(query))
+    .order_by(rank.desc())
+)
+rows = (await session.execute(stmt)).all()      # [('docs/retries.md', 0.186...)]
+```
+
+Or keep it as a `text()` statement with bound parameters. Never build SQL with f-strings from user input.
 
 ## 6. Key terms
 

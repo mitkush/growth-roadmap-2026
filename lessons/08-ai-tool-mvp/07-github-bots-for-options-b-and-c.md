@@ -58,8 +58,8 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv run python -m pr_reviewer --pr ${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -97,8 +97,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv run python -m ci_triage --run-id ${{ github.event.workflow_run.id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -289,6 +289,6 @@ For **Option C**, the equivalent deterministic core is a flakiness signal from h
 
 ## 9. Go deeper (optional)
 
-- GitHub docs: [Events that trigger workflows](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows) (verify path) and [Automatic token authentication](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication) (verify path).
+- GitHub docs: [Events that trigger workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows) and [Automatic token authentication](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token).
 - GitHub REST API: [Pull request reviews](https://docs.github.com/en/rest/pulls/reviews) and [Workflow jobs](https://docs.github.com/en/rest/actions/workflow-jobs).
 - [strong_migrations](https://github.com/ankane/strong_migrations): a catalogue of unsafe migration patterns to turn into rules.

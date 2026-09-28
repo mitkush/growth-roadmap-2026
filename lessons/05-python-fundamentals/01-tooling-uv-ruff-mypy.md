@@ -142,6 +142,7 @@ Output:
 bad.py:5: error: Function is missing a type annotation  [no-untyped-def]
 bad.py:14: error: Incompatible return value type (got "str", expected "int")  [return-value]
 bad.py:17: error: Call to untyped function "add_tag" in typed context  [no-untyped-call]
+Found 3 errors in 1 file (checked 1 source file)
 ```
 
 Read the findings:

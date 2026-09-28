@@ -64,14 +64,15 @@ flowchart TB
 
 ## 5. Minimal working example
 
-The profiled code is `shop-lab`'s `/reports/sales` logic (from the [starter kit](../../starters/shop-lab/README.md)), in a method `naive`, and a first improved version, `plucked`, that reads four columns with `pluck` instead of building model objects:
+The profiled code is `shop-lab`'s `/reports/sales` logic (from the [starter kit](../../starters/shop-lab/README.md)), in a method `naive`, and a first improved version, `plucked`, that reads four columns with `pluck` instead of building model objects. Save both in `shop-lab` as `tmp/sales_methods.rb`; every part below loads that file:
 
 ```ruby
+# tmp/sales_methods.rb
 def naive
   line_items = LineItem.includes(:product).where(id: ..50_000).to_a
   line_items.group_by { |item| item.product.category }.map do |category, items|
     revenue_cents = items.map { |item| item.quantity * item.unit_price_cents }.sum
-    top_skus = items.map { |item| item.product.sku }.tally.sort_by { |_sku, count| -count }.first(3).map(&:first)
+    top_skus = items.map { |item| item.product.sku }.tally.sort_by { |sku, count| [-count, sku] }.first(3).map(&:first) # ties: by SKU
     { category: category, items: items.size, revenue: format("%.2f", revenue_cents / 100.0), top_skus: top_skus }
   end
 end
@@ -81,7 +82,7 @@ def plucked
                  .pluck("products.category", "products.sku", :quantity, :unit_price_cents)
   rows.group_by(&:first).map do |category, items|
     revenue_cents = items.sum { |_cat, _sku, qty, price| qty * price }
-    top_skus = items.map { |row| row[1] }.tally.max_by(3) { |_sku, count| count }.map(&:first)
+    top_skus = items.map { |row| row[1] }.tally.sort_by { |sku, count| [-count, sku] }.first(3).map(&:first)
     { category: category, items: items.size, revenue: format("%.2f", revenue_cents / 100.0), top_skus: top_skus }
   end
 end
@@ -129,8 +130,12 @@ How to read it: **17% of the time is GC** (`(marking)` and `(sweeping)`), and mo
 ### Part B: Vernier, in the Firefox Profiler
 
 ```ruby
+# tmp/vernier_sales.rb (run with: RAILS_ENV=benchmark bin/rails runner tmp/vernier_sales.rb)
 require "vernier"
+load "tmp/sales_methods.rb"
+naive # warm up
 Vernier.profile(out: "tmp/sales.vernier.json") { 3.times { naive } }
+puts "wrote tmp/sales.vernier.json"
 ```
 
 Open https://profiler.firefox.com, choose **Load a profile from file**, and select `tmp/sales.vernier.json`. Use the **Flame Graph** tab for the overall picture, and the **Stack Chart** tab to see GC pauses and GVL waits along the timeline. (Vernier can also profile a whole server: see its README for `vernier run -- bin/rails server`.)
@@ -138,9 +143,13 @@ Open https://profiler.firefox.com, choose **Load a profile from file**, and sele
 ### Part C: allocations, before and after
 
 ```ruby
+# tmp/memory_sales.rb (run with: RAILS_ENV=benchmark bin/rails runner tmp/memory_sales.rb)
 require "memory_profiler"
+load "tmp/sales_methods.rb"
+naive # warm up
 report = MemoryProfiler.report { naive }
 report.pretty_print(to_file: "tmp/sales-memory.txt", scale_bytes: true, normalize_paths: true)
+puts "wrote tmp/sales-memory.txt"
 ```
 
 Excerpt of `tmp/sales-memory.txt`:
@@ -165,15 +174,40 @@ allocated objects by class
      50000  LineItem
 ```
 
-Almost everything is allocated **inside Active Record and Active Model** on behalf of the model objects. Then compare both versions (time per call, allocations, GC runs):
+Almost everything is allocated **inside Active Record and Active Model** on behalf of the model objects. Then compare both versions (time per call, allocations, GC runs) with a small script that uses only `GC.stat`:
+
+```ruby
+# tmp/compare_sales.rb (run with: RAILS_ENV=benchmark bin/rails runner tmp/compare_sales.rb)
+load "tmp/sales_methods.rb"
+
+def measure(name)
+  yield # warm up
+  GC.start
+  before = GC.stat
+  started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  3.times { yield }
+  ms = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - started) * 1000 / 3
+  after = GC.stat
+  allocated = (after[:total_allocated_objects] - before[:total_allocated_objects]) / 3
+  printf("%-8s %5.0f ms/call  allocated=%8d objects per call  GC runs in 3 calls: minor=%d major=%d (%d ms)\n",
+         name, ms, allocated, after[:minor_gc_count] - before[:minor_gc_count],
+         after[:major_gc_count] - before[:major_gc_count], after[:time] - before[:time])
+end
+
+measure("naive") { naive }
+measure("plucked") { plucked }
+puts "same results: #{naive.sort_by { _1[:category] } == plucked.sort_by { _1[:category] }}"
+```
+
+Output (Ruby 3.3, full seed):
 
 ```
-naive      1321 ms/call  allocated= 688550 objects ( 91.4 MB)  retained= 18331  GC runs in 3 calls: minor=2 major=0 (83 ms)
-plucked     112 ms/call  allocated= 168590 objects ( 10.8 MB)  retained=     4  GC runs in 3 calls: minor=1 major=0 (14 ms)
-same totals: true
+naive     1304 ms/call  allocated=  744513 objects per call  GC runs in 3 calls: minor=6 major=1 (449 ms)
+plucked    170 ms/call  allocated=  187097 objects per call  GC runs in 3 calls: minor=3 major=0 (57 ms)
+same results: true
 ```
 
-**12× faster and 76% fewer allocations**, with the same results (checked in the last line). The Step 1 lab asks you to go further (aggregate in SQL) and to prove it with the load test from lesson 03.
+**About 8× faster and 75% fewer allocations**, with the same results. Always check that: while writing this lesson, the first version of `plucked` broke ties between equally popular SKUs differently from `naive`, so the "same results" check failed until both used the same tie-break (`[-count, sku]`). The Step 1 lab asks you to go further (aggregate in SQL) and to prove it with the load test from lesson 03.
 
 ### Part D: micro-benchmarks with benchmark-ips
 

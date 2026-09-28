@@ -161,6 +161,6 @@ With [oha](https://github.com/hatoo/oha), the equivalent is `oha -z 15s -c 16 --
 
 ## 9. Go deeper (optional)
 
-- Puma docs: [Deployment engineering](https://github.com/puma/puma/blob/master/docs/deployment.md) and [Configuration](https://github.com/puma/puma#configuration).
+- Puma docs: [Deployment engineering](https://github.com/puma/puma/blob/main/docs/deployment.md) and [Configuration](https://github.com/puma/puma#configuration).
 - Rails Guides: [Tuning Performance for Deployment](https://guides.rubyonrails.org/tuning_performance_for_deployment.html).
 - Nate Berkopec, *The Complete Guide to Rails Performance* (Puma, Little's Law, memory).

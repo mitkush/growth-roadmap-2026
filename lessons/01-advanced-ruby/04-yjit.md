@@ -53,8 +53,8 @@ ruby: warning: Ruby was built without YJIT support. You may need to install rust
 ### Stats and memory
 
 - `ruby --yjit-stats` (or `RUBY_YJIT_ENABLE=1` plus `--yjit-stats`) prints statistics at exit; `RubyVM::YJIT.runtime_stats` returns a Hash while running. The keys vary by Ruby version; look for the ratio of instructions executed in YJIT (`ratio_in_yjit`, with stats enabled) and the memory used by compiled code.
-- Ruby 3.4 adds `--yjit-mem-size` to cap YJIT's total memory (verify the default for your version in the YJIT docs).
-- Ruby 4.0 ships **ZJIT**, a newer JIT design, as **experimental**. Stay on YJIT for production and try ZJIT as a stretch goal.
+- Ruby 3.4 adds `--yjit-mem-size=N`, a soft limit on YJIT's total memory in MiB (default 128).
+- Ruby 4.0 ships **ZJIT**, a newer method-based JIT, as **experimental** (enable with `ruby --zjit` or `RubyVM::ZJIT.enable`). Its release notes say it is faster than the interpreter but not yet as fast as YJIT, and advise against production use. Stay on YJIT for production and try ZJIT as a stretch goal.
 
 ## 5. Minimal working example
 
@@ -143,6 +143,6 @@ Keep YJIT if the latency or CPU gain is worth the memory. Two typical outcomes: 
 
 ## 9. Go deeper (optional)
 
-- [YJIT documentation](https://github.com/ruby/ruby/blob/master/doc/yjit/yjit.md) (options, stats, memory).
+- [YJIT documentation](https://github.com/ruby/ruby/blob/master/doc/jit/yjit.md) (options, stats, memory) and, next to it, the [ZJIT documentation](https://github.com/ruby/ruby/blob/master/doc/jit/zjit.md).
 - Rails Guides: [Tuning Performance for Deployment](https://guides.rubyonrails.org/tuning_performance_for_deployment.html) (YJIT section).
 - Shopify Engineering blog posts on YJIT in production (shopify.engineering, verify titles).

@@ -115,7 +115,7 @@ export ANTHROPIC_API_KEY="sk-ant-..."   # from https://platform.claude.com (Sett
 
 - Put the API key in your shell profile or a `.env` file that is **not committed** (add `.env` to `.gitignore`).
 - Set a **monthly spend limit** in the Claude Console before you start. The examples cost cents, but a bug in a loop can cost more.
-- Model IDs used in this step: `claude-opus-5-5` (main model), `claude-sonnet-5` and `claude-haiku-4-5` (cheaper, for comparison). Check the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) for the current list and prices before you start.
+- Model IDs used in this step: `claude-opus-5-5` (main model), `claude-sonnet-5` and `claude-haiku-4-5` (cheaper, for an optional comparison; it may be retired from 15 Oct 2026, so check the deprecations page). Check the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) for the current list and prices before you start.
 
 ## Glossary
 
@@ -130,7 +130,7 @@ Terms are grouped by topic. The link shows the lesson that explains each term in
 | **Message / role** | One turn of the conversation, from the `user` or the `assistant`. | [01](01-how-an-llm-api-call-works.md) |
 | **System prompt** | Instructions that apply to the whole conversation (the `system` parameter), such as the assistant's job and rules. | [01](01-how-an-llm-api-call-works.md) |
 | **Content block** | One piece of a message: `text`, `thinking`, `tool_use`, `tool_result`, and so on. A message is a list of blocks. | [01](01-how-an-llm-api-call-works.md) |
-| **Token** | The unit models read and write, roughly ¾ of an English word. Prices and limits are counted in tokens. | [01](01-how-an-llm-api-call-works.md) |
+| **Token** | The unit models read and write: on current Claude models about half an English word (2.5 characters). Prices and limits are counted in tokens. | [01](01-how-an-llm-api-call-works.md) |
 | **Context window** | The maximum number of tokens the model can read in one request (the whole conversation, tools and documents). | [01](01-how-an-llm-api-call-works.md) |
 | **`max_tokens`** | The most tokens the model may *write* in one response. If it is reached, the answer is cut off. | [01](01-how-an-llm-api-call-works.md) |
 | **Stateless API** | The API remembers nothing between calls; you resend the whole conversation every time. | [01](01-how-an-llm-api-call-works.md) |

@@ -82,7 +82,7 @@ def total_cents(self) -> int:
 ### Dataclasses
 
 ```python
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Money:

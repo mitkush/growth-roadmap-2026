@@ -234,4 +234,4 @@ answer: Order 1042 has shipped with DHL. Order 1043 is still being processed.
 
 - Claude docs: [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview): definitions, parallel calls, strict tools, errors.
 - Claude docs: [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs): when you want JSON back without a tool.
-- Anthropic engineering blog: "Writing effective tools for agents" (verify the exact URL on anthropic.com/engineering).
+- Anthropic engineering blog: ["Writing effective tools for AI agents"](https://www.anthropic.com/engineering/writing-tools-for-agents) (naming, descriptions, returning useful errors, evaluating tools).

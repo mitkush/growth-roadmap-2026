@@ -354,7 +354,7 @@ edit those files, not this one. Some terms appear twice because two steps use th
 | **Thread::Queue** | A thread-safe queue for producer/consumer work. | 01 Advanced Ruby | [01](lessons/01-advanced-ruby/01-gvl-threads-and-thread-safety.md) |
 | **Throughput / latency** | Requests per second / time per request. | 01 Advanced Ruby | [03](lessons/01-advanced-ruby/03-puma-and-benchmarking.md) |
 | **Timeout** | The maximum time to wait for a response before giving up. Always set one. | 06 Applied Python | [01](lessons/06-applied-python/01-http-clients-requests-and-httpx.md) |
-| **Token** | The unit models read and write, roughly ¾ of an English word. Prices and limits are counted in tokens. | 07 Agentic AI | [01](lessons/07-agentic-ai/01-how-an-llm-api-call-works.md) |
+| **Token** | The unit models read and write: on current Claude models about half an English word (2.5 characters). Prices and limits are counted in tokens. | 07 Agentic AI | [01](lessons/07-agentic-ai/01-how-an-llm-api-call-works.md) |
 | **Tool (function calling)** | A function you describe to the model (name, description, JSON Schema for inputs). The model can ask you to call it. | 07 Agentic AI | [02](lessons/07-agentic-ai/02-tool-calling.md) |
 | **Tool Runner** | A helper in the Anthropic Python SDK that runs the agent loop for you. | 07 Agentic AI | [03](lessons/07-agentic-ai/03-agent-loop.md) |
 | **`tool_result` block** | Your reply with the tool's output, linked by `tool_use_id`. | 07 Agentic AI | [02](lessons/07-agentic-ai/02-tool-calling.md) |

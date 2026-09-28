@@ -50,7 +50,7 @@ The [starter's Dockerfile](../../starters/kb-api/Dockerfile), line by line:
 | Line | Why |
 |---|---|
 | `FROM python:3.13-slim AS builder` | A small Debian-based image with Python; `AS builder` names the first stage |
-| `COPY --from=ghcr.io/astral-sh/uv:0.8 /uv /bin/uv` | Copies only the `uv` binary from the official uv image (no install script) |
+| `COPY --from=ghcr.io/astral-sh/uv:0.12 /uv /bin/uv` | Copies only the `uv` binary from the official uv image (no install script) |
 | `ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0` | Precompile `.pyc` files for faster start-up; copy files instead of linking; use the image's Python |
 | `COPY pyproject.toml uv.lock ./` then `uv sync --locked --no-install-project --no-dev` | Install **only dependencies** first. This layer is reused until the lockfile changes |
 | `COPY . .` then `uv sync --locked --no-dev --no-editable` | Add your code and install the project itself as a normal (non-editable) package |

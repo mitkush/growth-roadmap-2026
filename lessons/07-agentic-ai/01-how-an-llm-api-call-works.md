@@ -94,9 +94,9 @@ messages = [
 
 ### Tokens, context window and cost
 
-A **token** is a piece of text, often part of a word. As a rule of thumb, 1 token ≈ 4 characters of English, or ¾ of a word; code and non-English text use more tokens.
+A **token** is a piece of text, often part of a word. On current Claude models (Opus 4.7 and later, including Opus 5.5 and Sonnet 5) a token is roughly 2.5 characters of English, about half a word: the docs estimate 1 million tokens ≈ 555,000 words. Older models used about 4 characters (¾ of a word) per token. Code and non-English text use more tokens. For exact numbers, read `usage` or call `client.messages.count_tokens(...)`.
 
-- The **context window** is the most the model can read in one request. Current Claude models accept up to 1 million input tokens. Big is not free: every token you send is billed on every call.
+- The **context window** is the most the model can read in one request. `claude-opus-5-5` and `claude-sonnet-5` accept up to 1 million tokens (`claude-haiku-4-5`: 200,000). Big is not free: every token you send is billed on every call.
 - **Cost** = input tokens × input price + output tokens × output price. Prices are per **MTok** (1 million tokens). For `claude-opus-5-5`: $4 per MTok input, $20 per MTok output (check the [pricing page](https://platform.claude.com/docs/en/about-claude/pricing); prices change).
 
 Worked example: the response above used 31 input and 212 output tokens.
@@ -124,7 +124,7 @@ sequenceDiagram
   API-->>App: assistant₂
 ```
 
-When you append the assistant's reply, **append its whole `content` list** (including thinking blocks), not just the text. The API expects the history back exactly as it produced it, and some features (tool loops, caching) depend on that.
+When you append the assistant's reply, **append its whole `content` list** (including thinking blocks), not just the text. The API expects the history back exactly as it produced it, and some features (tool loops, caching) depend on that. For the same reason, do not edit earlier messages, the `system` prompt or the `tools` list during a conversation (verify the current rules on the [preserved thinking](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking) page).
 
 ## 5. Minimal working example
 
@@ -223,7 +223,8 @@ Notice that the second call's input tokens grew: it includes the first question 
 - **Reading `response.content[0].text`.** The first block is often a `thinking` block, so this crashes or returns an empty string. Filter by `block.type == "text"`.
 - **Ignoring `stop_reason`.** A `max_tokens` stop looks like a normal answer that just ends early. Check it on every call.
 - **`max_tokens` too small.** Thinking counts towards it. With a very low limit, the model can use it all on thinking and return no text.
-- **Setting `temperature`.** Current models such as `claude-opus-5-5` do not accept sampling parameters like `temperature`; the request fails with a 400 error. Use `effort` and clear instructions instead.
+- **Setting `temperature`.** Current models such as `claude-opus-5-5` reject non-default sampling parameters (`temperature`, `top_p`, `top_k`) with a 400 error, and the Python SDK (1.x) no longer accepts them at all (`TypeError`). Old tutorials still show them. Use `effort` and clear instructions instead.
+- **Editing the system prompt or tools in the middle of a conversation.** Thinking blocks are tied to everything before them; on accounts created from 31 Aug 2026, replaying them after such an edit returns a 400 error. Keep the conversation append-only.
 - **Putting the API key in code or in Git.** Use an environment variable and a spend limit.
 - **Appending only the text of the reply to the history.** Append the full `response.content` list.
 - **Assuming it remembers.** Each call only knows what you sent in that call.

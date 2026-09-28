@@ -159,7 +159,7 @@ Run the tests:
 uv run pytest -v tests/test_pricing.py
 ```
 
-Output (the last test fails on purpose so you can see a failure report):
+Output (the last test fails on purpose so you can see a failure report; the platform, rootdir and plugins lines under the first line are left out, and timings are removed):
 
 ```
 ============================= test session starts ==============================

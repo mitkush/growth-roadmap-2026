@@ -115,7 +115,7 @@ Continue in `shop-lab`. Target contexts: **Catalog** (products), **Ordering** (o
 6. **Transactional outbox pattern** (Chris Richardson): https://microservices.io/patterns/data/transactional-outbox.html
 7. **OpenTelemetry Ruby docs** (getting started, instrumentation, exporters): https://opentelemetry.io/docs/languages/ruby/
 8. **RFC 9457, Problem Details for HTTP APIs**: https://www.rfc-editor.org/rfc/rfc9457
-9. **Rails 8.1 release notes** (structured event reporting, `Rails.event`): https://guides.rubyonrails.org/8_1_release_notes.html (verify)
+9. **Rails 8.1 release notes** (structured event reporting, `Rails.event`): https://guides.rubyonrails.org/8_1_release_notes.html
 
 ## 8. Self-check questions
 

@@ -299,5 +299,5 @@ In Step 8 you will use exactly this pattern to compare an agent **with** and **w
 ## 9. Go deeper (optional)
 
 - MCP Python SDK docs: https://py.sdk.modelcontextprotocol.io (servers, clients, testing).
-- Claude Code docs: [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) (verify path).
+- Claude Code docs: [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp).
 - MCP spec: [Security best practices](https://modelcontextprotocol.io) (under Specification).

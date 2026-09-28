@@ -176,7 +176,25 @@ kill -9 <worker pid from solid_queue_processes>
 SolidQueue-1.7.0 Fail claimed jobs (77.2ms)  job_ids: [6], process_ids: [7], error: "SolidQueue::Processes::ProcessExitError Process pid=13654 exited unexpectedly. Received unhandled signal 9."
 ```
 
-The job is in `solid_queue_failed_executions`, and the supervisor started a new worker. Add **Mission Control – Jobs** (`bundle add mission_control-jobs`, then `mount MissionControl::Jobs::Engine, at: "/jobs"` in routes; it asks for HTTP basic auth credentials by default (verify the current setup in its README, especially for API-only apps)) and retry it from the UI.
+The job is in `solid_queue_failed_executions`, and the supervisor started a new worker. Now retry it from a dashboard, **Mission Control – Jobs**. Tested on the API-only `shop-lab` (mission_control-jobs 1.3.1):
+
+```bash
+bundle add mission_control-jobs
+bundle add propshaft    # API-only apps only: without an asset pipeline the app fails to boot
+                        # ("undefined method `assets' for ... Rails::Application::Configuration")
+```
+
+```ruby
+# config/routes.rb
+mount MissionControl::Jobs::Engine, at: "/jobs"
+
+# config/initializers/mission_control.rb (development only; for real environments use
+# `bin/rails mission_control:jobs:authentication:configure`, which stores them in credentials)
+MissionControl::Jobs.http_basic_auth_user = "dev"
+MissionControl::Jobs.http_basic_auth_password = "secret"
+```
+
+HTTP basic auth is **on and closed by default**: without credentials configured, nobody can open it. With the settings above, `curl localhost:3000/jobs` returns 401, and the browser (user `dev`, password `secret`) shows the Queues page. Open "Failed jobs", click **Retry** on the `SlowJob`, and it moves from `solid_queue_failed_executions` back to `solid_queue_ready_executions`. In production, add `bin/rails assets:precompile` to your Docker build for the dashboard's CSS and JavaScript (the gem's README explains this for API-only apps).
 
 ## 6. Key terms
 

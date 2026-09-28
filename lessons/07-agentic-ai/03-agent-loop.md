@@ -330,6 +330,6 @@ Build the manual loop first (this lesson), then rewrite it with the Tool Runner 
 
 ## 9. Go deeper (optional)
 
-- Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents) (verify path): workflows vs agents, common patterns.
+- Anthropic, ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents): workflows vs agents, common patterns.
 - Claude docs: [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the Tool Runner.
 - [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python): `tool_runner` examples.
